@@ -1,0 +1,25 @@
+@CHARSET "EUC-KR";
+
+#about{
+	width: 960px;
+	height: 200px;
+}
+.menu_box{
+	line-height: 5px;
+	float:left;
+	margin: 20px;
+	text-align : center;
+	transition: 0.3s;
+	cursor: pointer;
+}
+.menu_img{
+	background-color:#A7CA37;
+	border-radius:20px;
+	padding: 20px;
+}
+.menu_img:hover{
+	background-color:#9EBA42;
+}
+.menu_box:hover{
+	transform: translateY(-10px);
+}

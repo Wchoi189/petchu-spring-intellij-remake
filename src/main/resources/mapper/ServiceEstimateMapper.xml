@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.ServiceEstimateMapper">
+    <select id="list" resultType="com.example.domain.ServiceEstimateVO">
+        select * from serviceEstimate
+    </select>
+    
+   <!-- 채택시 -->
+   <update id="secheck">
+   		update serviceEstimate set secheck=1 where seno=#{seno}
+   </update>
+   
+   <update id="bfailCheck">
+   		update serviceEstimate set failcheck=1 where brno=#{brno} and secheck=0;
+   </update>
+   
+   <update id="cfailCheck">
+   		update serviceEstimate set failcheck=1 where crno=#{crno} and secheck=0;
+   </update>
+   
+   <update id="lfailCheck">
+   		update serviceEstimate set failcheck=1 where lrno=#{lrno} and secheck=0;
+   </update>
+    
+  <!-- call view -->
+   	<!-- 미용 -->
+    <select id="beautyViewList" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from beautyMyEstimate where scno=#{scno} order by seno desc;
+    </select>
+    
+    <select id="beautyViewRead" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from beautyMyEstimate where brno=#{brno} and scno=#{scno}
+    </select>
+    
+     <select id="beautyEstimateRead" resultType="com.example.domain.ServiceEstimateVO">
+    	select *, format(price, 0) fprice from servicecoEstimate where brno=#{brno} and scno =#{scno}
+    </select>
+    
+    <select id="cleanEstimateRead" resultType="com.example.domain.ServiceEstimateVO">
+    	select *, format(price, 0) fprice from servicecoEstimate where crno=#{crno} and scno =#{scno}
+    </select>
+    
+    <select id="lessonEstimateRead" resultType="com.example.domain.ServiceEstimateVO">
+    	select *, format(price, 0) fprice from servicecoEstimate where lrno=#{lrno} and scno =#{scno}
+    </select>
+    
+    
+    
+    <!-- 홈클리닝 -->
+    <select id="cleaningViewList" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from cleaningMyEstimate where scno=#{scno} order by seno desc;
+    </select>
+    
+    <select id="cleaningViewRead" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from cleaningMyEstimate where crno=#{crno} and scno=#{scno}
+    </select>
+    
+    <!-- 레슨 -->
+    <select id="lessonViewList" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from lessonMyEstimate where scno=#{scno} order by seno desc;
+    </select>
+    
+	<select id="lessonViewRead" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from lessonMyEstimate where lrno=#{lrno} and scno=#{scno}
+    </select>
+    
+    
+    
+    <!-- 중복체크  -->
+    <select id="overlapCheck" resultType="int"> <!-- 업체넘버별 리뷰 추천 중복 여부 확인 -->
+		select count(*) from serviceEstimate where scno=#{scno} and brno=#{brno}
+	</select>
+	
+	<select id="overlapCheck2" resultType="int"> <!-- 업체넘버별 리뷰 추천 중복 여부 확인 -->
+		select count(*) from serviceEstimate where scno=#{scno} and crno=#{crno}
+	</select>
+	
+	<select id="overlapCheck3" resultType="int"> <!-- 업체넘버별 리뷰 추천 중복 여부 확인 -->
+		select count(*) from serviceEstimate where scno=#{scno} and lrno=#{lrno}
+	</select>
+    
+    
+    <!-- 미용  -->
+    <insert id="brnoInsert">
+    	insert into serviceEstimate(scno, scname, brno, price, description) 
+    	values(#{scno}, #{scname}, #{brno}, #{price}, #{description})
+    </insert>
+    
+    <select id="brnoList" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from serviceEstimate where brno=#{brno} order by seno desc
+    </select>
+    
+    
+    <!-- 홈 클리닝 -->
+     <insert id="crnoInsert">
+    	insert into serviceEstimate(scno, scname, crno, price, description) 
+    	values(#{scno}, #{scname}, #{crno}, #{price}, #{description})
+    </insert>
+    
+    <select id="crnoList" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from serviceEstimate where crno=#{crno} order by seno desc
+    </select>
+    
+    <!-- 레슨 -->
+     <insert id="lrnoInsert">
+    	insert into serviceEstimate(scno, scname,lrno, price, description) 
+    	values(#{scno}, #{scname}, #{lrno}, #{price}, #{description});
+    </insert>
+    
+    <select id="lrnoList" resultType="com.example.domain.ServiceEstimateVO">
+    	select * from serviceEstimate where lrno=#{lrno} order by seno desc
+    </select>
+</mapper>

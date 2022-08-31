@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.CleaningRequestMapper">
+    <insert id="cleanInsert">
+       insert into cleaningrequest(uid, nick, building_classification, house_size, wish_date, wish_local1, wish_local2, hope_matters) 
+       values(#{uid}, #{nick}, #{building_classification}, #{house_size}, #{wish_date}, #{wish_local1}, #{wish_local2}, #{hope_matters})
+    </insert>
+    
+    <select id="cleanList" resultType="com.example.domain.CleaningRequestVO">
+    	select * from cleaningrequest where isDelete=0 order by crno desc
+    </select>
+    
+    <select id="cleanRead" resultType="com.example.domain.CleaningRequestVO">
+   		select * from cleaningrequest where crno=#{crno}
+   	</select>
+   	
+   	<select id="mycleaningRead" resultType="com.example.domain.CleaningRequestVO">
+   		select * from cleaningrequest where uid=#{uid} and isDelete=0
+   	</select>
+   	
+   	<select id="cleanDeadlineList" resultType="com.example.domain.CleaningRequestVO">
+   		select * from cleaningrequest where uid=#{uid} and isDelete=1 and choose_check = 0
+   	</select>
+   	
+   	<select id="cleanChooseList" resultType="com.example.domain.CleaningRequestVO">
+   		select * from cleaningrequest where uid=#{uid} and choose_check = 1
+   	</select>
+   	
+   	<select id="cleaningCount" resultType="int">
+   		select count(*) from cleaningrequest where uid=#{uid} and isDelete = 0;
+   	</select>
+   	
+   	<select id="cleaningTotalCount" resultType="int">
+   		select count(*) from cleaningrequest where isDelete = 0;
+   	</select>
+   	
+   	<update id="cisDeleteUpdate">
+   		update cleaningrequest set isDelete = 1 where crno=#{crno};
+   	</update>
+   	
+   	<update id="cChooseUpdate">
+   		update cleaningrequest set choose_check = 1 where crno=#{crno};
+   	</update>
+   	
+   	<select id="crno" resultType="int">
+   		select crno from cleaningrequest where uid=#{uid} and isDelete = 0;
+   	</select>
+   	
+</mapper>

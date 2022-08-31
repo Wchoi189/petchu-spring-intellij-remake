@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.shopproductMapper">
+	<select id="list" resultType="com.example.domain.shopproductVO">
+		select * from shopproduct
+	</select>
+	<select id="read" resultType="com.example.domain.shopproductVO">
+		select * from shopproduct
+		where pno=#{pno}
+	</select>
+	<select id="contents_list" resultType="com.example.domain.shopproductVO">
+		select * from shopproduct
+		where pcate4 like concat('%',#{selectCate},'%')		
+		<if test="selectCate2 != null">
+		and pcate3 like concat('%',#{selectCate2},'%')
+		</if>	
+		<if test="selectCate3 != null">
+		and pcate2 like concat('%',#{selectCate3},'%')
+		</if>
+		<if test="keyword != null">
+		and pname like concat('%',#{keyword},'%')
+		</if>
+		order by pno desc
+ 		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="totalCount" resultType="int">
+ 		select count(*) from shopproduct
+ 		where pcate4 like concat('%',#{selectCate},'%')		
+		<if test="selectCate2 != null">
+		and pcate3 like concat('%',#{selectCate2},'%')
+		</if>	
+		<if test="selectCate3 != null">
+		and pcate2 like concat('%',#{selectCate3},'%')
+		</if>
+		<if test="keyword != null">
+		and pname like concat('%',#{keyword},'%')
+		</if>
+	</select>
+</mapper>

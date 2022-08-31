@@ -1,0 +1,122 @@
+@CHARSET "UTF-8";
+#page{
+  /*border:1px solid black;*/
+  width:1000px;
+  height:1000px;
+  margin:0px auto;
+ 
+}
+.insert_page{
+  /*border:3px solid gray;*/
+  width:800px;
+  /*background-color:lightgray;*/
+  margin:50px;
+  margin-bottom: 20px;
+ 
+  
+  
+}
+.page_title{
+  border:1px solid #f5f5dc;
+  background-color:#f5f5dc;
+}
+.page_info{
+  display:flex;
+  flex-direction: column;
+  /*border:1px solid red;*/
+  width:800px;
+  justify-content: space-around;
+  align-item: space-around;
+  
+  
+}
+.inin_page{
+  /*border:2px solid orange;*/
+  margin:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content: space-around;
+  
+}
+.r_q{
+  /*border:2px solid yellow;*/
+  padding:10px;
+}
+.p_info{
+  /*border:2px solid green;*/
+  display:flex;
+  justify-content: flex-start
+  object-fit: scale-down;
+}
+#p_img{
+  /*border:2px solid lightgreen;*/
+  justify-content: center;
+  align-item: center;
+  margin:40px;
+  object-fit: scale-down;
+}
+.p_ns{
+  /*border:2px solid blue;*/
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+}
+.review_e{
+  /*border:3px solid skyblue;*/
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
+  
+}
+.d_review{
+  /*border:3px solid navy;*/
+  margin:10px;
+}
+.textarea{
+  margin:5px;
+  /*border:3px solid violet;*/
+}
+.r_photo{
+  display:flex;
+  flex-direction:row;
+  /*border:3px solid pink;*/
+  justify-content:flex-start
+}
+.photo_a{
+  /*border:3px solid lightcyan;*/
+  margin-left:35px;
+}
+.rtitle{
+  display:flex;
+  justify-content: space-around;
+  /*border:3px solid lightcyan;*/
+}
+.h_info{
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  /*border:3px solid lightsalmon;*/
+}
+#button{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  margin:10px;
+  /*border:3px solid lightsalmon;*/
+  
+  }
+.box{
+  margin:10px;
+}
+.box1{
+  margin:45px;
+}
+.satisfaction{
+  /*border:3px solid lightcyan;*/
+  margin-left:60px;
+  margin-right:100px;
+}
+.fa-solid{
+	cursor:pointer;
+	color : #D3D3D3;
+	}

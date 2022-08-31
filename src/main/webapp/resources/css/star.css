@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border: none;
+    background-color: A7CA37;
+    float: left;
+    font-size: 11px;
+    margin-left: 10px;
+    border-radius: 10px 10px 0px 0px;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    cursor: pointer;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+
+#reviewContents {
+    width: 98%;
+    height: 150px;
+    border-radius: 0px 10px 0px 0px;
+    font-size: 16px;
+    border: #BFC1B9 1px solid;
+    outline-color: #A7CA37;
+    padding: 10px;
+    resize: none;
+}

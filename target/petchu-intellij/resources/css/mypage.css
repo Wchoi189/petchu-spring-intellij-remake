@@ -1,0 +1,178 @@
+@CHARSET "UTF-8";
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+table, td, tr{
+	border: none;
+}
+
+input[type="text"],input[type="number"],input[type="date"]{
+	width: 250px;
+	border-radius: 15px;
+	border: #BFC1B9 1px solid;
+	outline-color: #A7CA37;
+	padding: 13px 10px 13px 10px;
+	margin-bottom: 10px;
+}
+
+button[type="submit"] {
+	border: none;
+	background-color: #A7CA37;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 900px;
+	color: white;
+	cursor: pointer;
+	width: 150px;
+	height: 40px;
+	margin-bottom: 10px;
+
+}
+button[type="submit"]:hover{
+	background-color: 7F9730;
+}
+
+button[type="reset"]{
+	background-color: white;
+	color: #A7CA37;
+	border: 1px solid #A7CA37;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 900px;
+	cursor: pointer;
+	width: 150px;
+	height: 40px;
+	margin-bottom: 10px;
+}
+button[type="reset"]:hover{
+	background-color: DEFA81;'
+}
+select{
+	width: 250px;
+	border-radius: 5px;
+	border: #BFC1B9 1px solid;
+	outline-color: #A7CA37;
+	padding: 10px 5px 10px 5px;
+	margin-bottom: 10px;
+	width: 80px;
+}
+.smallbtn{
+	border: none;
+	background-color: #A7CA37;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	padding: 10px;
+	margin-left: 5px;
+}
+[type="radio"]{
+	display:none;
+}
+[type="radio"]+label{
+	display: inline-block;
+	cursor: pointer;
+	padding: 10px 0px 10px 0px;
+ 	width: 80px;
+    border: 1px solid #A7CA37;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+    border-radius: 10px;
+}
+[type="radio"]+label{
+	background-color: white;
+    color: #A7CA37;
+}
+[type="radio"]:checked+label{
+	 background-color: #A7CA37;
+    color: white;
+}
+
+/*----------mypetinsert------------------*/
+#contents{
+	margin: 20px;
+	margin-left: 50px;
+}
+/*---------mypetlist-------------*/
+#page{
+	width: 960px;
+}
+.myPetBox{
+	overflow:hidden;
+	width: 150px;
+	height: 300px;
+	float: left;
+	box-shadow: 3px 3px 10px rgb(200,200,200);
+	border-radius: 20px;
+	margin: 20px;
+	margin-left: 30px;
+	text-align: center;
+}
+#tbl{
+	display: none;	
+
+}
+#petcontent{
+	width:700px;
+	text-align: right;
+	margin-left: 200px;
+	padding: 10px;
+	border-radius: 20px;
+	background-color: #e0e4da;
+	margin-top: 80px;
+	
+}
+#nameBox{
+	width: 150px;
+	height: 150px;
+	border-radius:50%;
+	border: 2px solid #718925;
+	box-shadow: 1px 1px 3px rgb(200,200,200);
+	font-size: 40px;
+	text-align: center;
+	top: 30px;
+	margin: 35px;
+}
+.naming{
+	top: 5px;
+}
+#viewdiv{
+	margin-top: 40px;
+	text-align: center;
+}
+#viewdiv .view{
+	border: none;
+	background-color: #A7CA37;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	padding: 10px;
+	margin-left: 5px;
+}
+.slick-slide{
+	margin: 30px;
+	text-align: center;
+
+}
+#slider-div{
+	margin-left: 30px;
+}
+#btnCombi {
+	margin-top: 20px;
+	margin-left: 550px;
+}
+#btnCombi .smallbtn{
+	border: none;
+	background-color: #A7CA37;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	padding: 10px;
+	margin-left: 5px;
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.ReserveMapper">
+    <select id="list" resultType="com.example.domain.ReserveVO">
+		select r.*, s.scname, s.sctel 
+		from reserve r join serviceco s
+		on r.scno=s.scno 
+		where r.id=#{id} and checkin > now() and isDel!=2
+		order by rno desc
+    </select>
+    <select id="oldlist" resultType="com.example.domain.ReserveVO">
+       select r.*, s.scname, s.sctel 
+		from reserve r join serviceco s
+		on r.scno=s.scno 
+		where (r.id=#{id} and checkin &lt; now()) or (r.id=#{id} and isDel=2)
+		order by rno desc
+    </select>
+    <insert id="insert">
+    	insert into reserve(scno, id, checkin, checkout, request, userName, userTel)
+    	values(#{scno}, #{id}, #{checkin}, #{checkout}, #{request}, #{userName}, #{userTel})
+    </insert>
+    <select id="read" resultType="com.example.domain.ReserveVO">
+    	select r.* , s.scname, s.sctel, s.scaddress1
+		from serviceco s , reserve r
+		where s.scno=r.scno and r.rno=#{rno}
+    </select>
+	 <select id="checkDate" resultType="com.example.domain.ReserveVO">
+        SELECT * 
+        FROM (
+			select A.*, count(B.rno) as cnt
+			from serviceco A left join reserve B
+			on A.scno = B.scno 
+
+				and (
+				   #{checkin} between B.checkin and B.checkout
+				    or #{checkout} between B.checkin and B.checkout
+				    or B.checkin between #{checkin} and #{checkout}
+				    or B.checkout between #{checkin} and #{checkout}
+				)
+			
+			WHERE A.isDelete = 0
+			and (A.sccate='유치원' or A.sccate='호텔')
+			group by scno
+			) t
+		WHERE t.cnt &lt; 10 
+		<if test="keword != null">
+			and (scname like concat('%',#{keyword},'%')
+				or scaddress1 like concat('%',#{keyword},'%')
+				or tag like concat('%',#{keyword},'%'))
+        </if>
+           
+    </select>
+    <update id="updateReserve">
+    	update reserve
+		set isEdit=#{isEdit}, isDel=#{isDel}, checkin=#{checkin}, checkout=#{checkout}, userName=#{userName}, userTel=#{userTel}, request=#{request}
+		where rno=#{rno}
+    </update>
+    <update id="ReserveEdit">
+    	update reserve
+		set isEdit=#{isEdit}, isDel=#{isDel}
+		where rno=#{rno}
+    </update>
+    
+    <select id="comList" resultType="com.example.domain.ReserveVO">
+       	select r.* , s.scname
+		from serviceco s , reserve r
+		where s.scno=r.scno and isDelete=0 and s.id=#{id} and checkin > now() 
+		and s.scname like concat('%',#{keyword},'%')
+
+		order by rno desc
+    </select>
+    <select id="comOldlist" resultType="com.example.domain.ReserveVO">
+        select r.* , s.scname
+		from serviceco s , reserve r
+		where s.scno=r.scno and isDelete=0 and s.id=#{id} and checkin &lt; now()
+		and s.scname like concat('%',#{keyword},'%')
+		order by rno desc
+    </select>
+    <select id="myCompany" resultType="com.example.domain.ReserveVO">
+    	select * from serviceco where id=#{id} and isDelete=0 and (sccate='유치원' or sccate='호텔')
+    </select>
+</mapper>

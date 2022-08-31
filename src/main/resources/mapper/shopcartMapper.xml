@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.shopcartMapper">
+	<select id="cart_read" resultType="com.example.domain.shopcartVO">
+		select c.uid, c.pno, p.pimage, p.pname, p.pprice, c.amount, cno, c.amount * pprice sum, chk, pqantity
+		from shopproduct p, shopcart c
+		where c.uid=#{uid} and c.pno = p.pno
+		order by cno desc
+	</select>
+	<insert id="cart_insert">
+		insert into shopcart(pno, uid, amount)
+		values(#{pno}, #{uid}, #{amount})
+	</insert>
+	<delete id="cart_delete">
+		delete from shopcart
+		where cno=#{cno}
+	</delete>
+	<update id="cart_update">
+		 update shopcart set amount=#{amount} where cno=#{cno}
+	</update>
+	<update id="cart_chk_update">
+		 update shopcart set chk=#{chk} where cno=#{cno}
+	</update>
+	<select id="cart_buy" resultType="com.example.domain.shopcartVO">
+		select c.uid, c.pno, p.pimage, p.pname, p.pprice, c.amount, cno, c.amount * pprice sum, chk
+		from shopproduct p, shopcart c
+		where c.uid=#{uid} and c.pno = p.pno and chk=1
+	</select>
+	<insert id="order_insert">
+		insert into orderlist(uid, pno, amount, orno, zipcode, address1, address2, receiver, tel)
+		values(#{uid}, #{pno}, #{amount}, #{orno}, #{zipcode}, #{address1}, #{address2}, #{receiver}, #{tel})
+	</insert>
+	<delete id="chk_delete">
+		delete from shopcart
+		where uid=#{uid} and chk=1
+	</delete>
+	<select id="order_list" resultType="com.example.domain.shopcartVO">
+		select o.orno, pimage, p.pno, pname, pprice, o.amount, odate, state from 
+		orderlist o, shopproduct p, user_order u
+		where o.pno=p.pno and o.uid=#{uid} and isDelete = 0
+        group by orno
+		order by odate desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="order_read" resultType="com.example.domain.shopcartVO">
+		select o.*, p.pimage, p.pname, p.pprice 
+		from orderlist o, shopproduct p
+		where orno = #{orno} and o.pno=p.pno and isDelete=0
+	</select>
+	<select id="cart_check" resultType="com.example.domain.shopcartVO">
+		select * from shopcart
+		where uid = #{uid} and pno = #{pno}
+	</select>
+		<select id="order_read_user" resultType="com.example.domain.shopcartVO">
+		select * from orderlist 
+		where orno = #{orno} group by orno
+	</select>
+	<update id="sell_update">
+		update shopproduct set sellcount = sellcount+#{amount} where pno=#{pno}
+	</update>
+	<select id="today_best_items" resultType="com.example.domain.shopcartVO">
+		select p.*
+		from orderlist o, shopproduct p
+		where (odate>(select DATE_ADD(now(), interval -1 day))) and o.pno=p.pno
+        group by pno
+		order by p.sellcount desc
+		limit 10
+	</select>
+	<select id="best_items" resultType="com.example.domain.shopcartVO">
+		select p.*
+		from orderlist o, shopproduct p
+		where (odate>(select DATE_ADD(now(), interval -7 day))) and o.pno=p.pno
+        group by pno
+		order by p.sellcount desc
+		limit 10
+	</select>
+	<select id="user_point" resultType="com.example.domain.shopcartVO">
+		select point, id uid from user where id = #{uid}
+	</select>
+	<insert id="user_order_insert">
+		insert into user_order(uid, orno, point, sum, omessage) 
+		values(#{uid},#{orno}, #{point} , #{sum}, #{omessage})
+	</insert>
+	<update id="user_point_minus">
+		update user set point=point-#{point} where id=#{uid}
+	</update>
+	<insert id="user_point_history">
+		insert into pointhistory(id, amount, content)
+		values(#{uid}, -#{point}, '쇼핑몰 구매 포인트 사용')
+	</insert>
+	<update id="user_point_plus">
+		update user set point=point+#{pricePoint} where id=#{uid}
+	</update>
+	<insert id="user_point_history_plus">
+		insert into pointhistory(id, amount, content)
+		values(#{uid}, #{pricePoint}, '쇼핑몰 구매 포인트 적립')
+	</insert>
+	<select id="record_best_items" resultType="com.example.domain.shopcartVO">
+	 	select p.*
+		from orderlist o, shopproduct p
+        group by pno
+		order by p.sellcount desc
+		limit 0, 3
+	</select>
+	<select id="record_best_items2" resultType="com.example.domain.shopcartVO">
+	 	select p.*
+		from orderlist o, shopproduct p
+        group by pno
+		order by p.sellcount desc
+		limit 3, 3
+	</select>
+	<select id="read_user_order" resultType="com.example.domain.shopcartVO">
+	 	select * from user_order 
+	 	where orno = #{orno}
+	</select>
+	<update id="user_order_delete">
+		update orderlist set isDelete=1
+		where bno=#{bno}
+	</update>
+	<select id="is_del" resultType="int">
+	 	select count(*) from orderlist
+	 	where orno = #{orno} and isDelete=1
+	</select>
+	<update id="product_count_update">
+		update shopproduct set pqantity = pqantity-#{amount}
+		where pno=#{pno}
+	</update>
+   <select id="order_count" resultType="int">
+   		select count(*) from orderlist where uid=#{uid}
+   </select>
+	<select id="state_read" resultType="com.example.domain.shopcartVO">
+		select state from user_order where orno = #{orno};
+	</select>
+	<select id="shop_review_list" resultType="com.example.domain.shopcartVO">
+		select * from review where pno=#{pno} order by rid desc
+	</select>
+<!-- 	// -->
+	<select id="order_item_qnt" resultType="int">
+		select count(*) from orderlist where orno=#{orno}
+	</select>
+	<select id="order_sum" resultType="int">
+		select sum from user_order where orno=#{orno}
+	</select>
+	<select id="read_state" resultType="int">
+		select state from user_order where orno = #{orno}
+	</select>
+	<select id="read_rcount" resultType="int">
+		select count(*) from review where bno=#{bno};
+	</select>
+	<update id="order_decision">
+		update user_order set state=2 
+		where orno=#{orno} and uono>1;
+	</update>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.HelpMapper">
+    <insert id="insertHelp"> <!-- 리뷰 추천시 help 테이블에 insert -->
+    	insert into hcheck(uid, rid) values(#{uid}, #{rid})
+    </insert>
+    
+    <delete id="deleteHelp"> <!-- 리뷰 추천 취소시  help 테이블에서 delete -->
+    	delete from hcheck where uid=#{uid} and rid=#{rid}
+    </delete>
+    
+    <update id="updateHelpCheck"> <!-- 리뷰 추천시 helpcheck +1 해줌으로 중복체크 -->
+    	update hcheck set helpcheck = 1 where rid=#{rid} and uid=#{uid} 
+    </update>
+    
+    <update id="updateHelpCheckCancel"> <!-- 리뷰 추천 취소시  helpcheck -1 해줌으로 중복체크 해제-->
+    	update hcheck set helpcheck = 0 where rid=#{rid} and uid=#{uid}
+    </update>
+    <select id="helpCheck" resultType="int"> <!-- 아이디별 리뷰 추천 중복 여부 확인 -->
+    	select count(*) from hcheck where rid=#{rid} and uid=#{uid}
+    </select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RecruitReplyMapper">
+	<insert id="insert" >
+       insert into recruitReply(id,bno,regdate,reply)
+       
+	   values(#{id},#{bno}, #{regdate}, #{reply}) 
+    </insert>
+    
+	<select id="list" resultType="com.example.domain.RecruitReplyVO">
+		select * from recruitReply where bno=#{bno} 
+	</select>
+	 <update id="update"> 
+    	update recruitReply set reply=#{reply} where rno=#{rno} 
+    </update>
+    <delete id="delete">
+    	delete from recruitReply where rno=#{rno}
+    </delete>
+<select id="count" resultType="int"> select count(*) from recruitReply where bno=#{bno} </select>
+</mapper>
+    

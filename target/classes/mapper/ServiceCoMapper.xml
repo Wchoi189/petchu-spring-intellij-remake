@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.ServiceCoMapper">
+	<select id="list" resultType="com.example.domain.ServiceCoVO">
+		select * from serviceco where id=#{id}
+	</select>
+	
+	<select id="read" resultType="com.example.domain.ServiceCoVO">
+		select * from serviceco where scno=#{scno}
+	</select>
+	
+	<select id="partialbRead0" resultType="com.example.domain.ServiceCoVO">
+		select scno, scname, scimage, sccate from serviceco where id=#{id} and isdelete='0';
+	</select>
+	
+	<select id="partialbRead" resultType="com.example.domain.ServiceCoVO">
+		select scno, scname, scimage from serviceco where id=#{id} and isdelete='0' and sccate = '미용';
+	</select>
+	
+	<select id="partialbRead2" resultType="com.example.domain.ServiceCoVO">
+		select scno, scname, scimage from serviceco where id=#{id} and isdelete='0' and sccate = '홈클리닝';
+	</select>
+	
+	<select id="partialbRead3" resultType="com.example.domain.ServiceCoVO">
+		select scno, scname, scimage from serviceco where id=#{id} and isdelete='0' and sccate = '레슨';
+	</select>
+	
+	<insert id="insert">
+	insert into serviceco
+			(id,sccate,scname,scimage,sclicense,sctel,
+			sczipcode,scaddress1,scaddress2,sconeline,
+			scdetail_description,opentime,breaktime,closetime)
+	values(#{id},#{sccate},#{scname},#{scimage},#{sclicense},#{sctel},
+			#{sczipcode},#{scaddress1},#{scaddress2},#{sconeline},
+			#{scdetail_description},#{opentime},#{breaktime},#{closetime})
+	</insert>
+	<update id="update">
+	update serviceco set 
+		id=#{id},sccate=#{sccate},scname=#{scname},scimage=#{scimage},
+		sclicense=#{sclicense},sctel=#{sctel},sczipcode=#{sczipcode},
+		scaddress1=#{scaddress1},scaddress2=#{scaddress2},
+		sconeline=#{sconeline},	scdetail_description=#{scdetail_description},
+		opentime=#{opentime},breaktime=#{breaktime},closetime=#{closetime}
+		where scno=#{scno}
+	</update>
+	<delete id="delete" >
+		delete from serviceco where scno=#{scno}
+	</delete>
+</mapper>

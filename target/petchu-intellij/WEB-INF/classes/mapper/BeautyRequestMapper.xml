@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.BeautyRequestMapper">
+    <insert id="beautyInsert">
+       insert into beautyrequest(uid, nick, pcate, beauty_classification, weight, age, last_beautydate, 
+       service_place, wish_date, wish_local1, wish_local2, detailed_matters)
+       
+	   values(#{uid}, #{nick}, #{pcate}, #{beauty_classification}, #{weight}, 
+	   #{age}, #{last_beautydate}, #{service_place}, #{wish_date}, 
+	   #{wish_local1}, #{wish_local2}, #{detailed_matters})
+    </insert>
+    <select id="beautyList" resultType="com.example.domain.BeautyRequestVO">
+    	select * from beautyrequest where isDelete=0 order by brno desc
+    </select>
+    
+   	<select id="beautyRead" resultType="com.example.domain.BeautyRequestVO">
+   		select * from beautyrequest where brno=#{brno}
+   	</select>
+   	
+   	<select id="myBeautyRead" resultType="com.example.domain.BeautyRequestVO">
+   		select * from beautyrequest where uid=#{uid} and isDelete=0
+   	</select>
+   	
+   	<select id="beautyDeadlineList" resultType="com.example.domain.BeautyRequestVO">
+   		select * from beautyrequest where uid=#{uid} and isDelete=1 and choose_check = 0
+   	</select>
+   	
+   	<select id="beautyChooseList" resultType="com.example.domain.BeautyRequestVO">
+   		select * from beautyrequest where uid=#{uid} and choose_check = 1
+   	</select>
+   	
+   	<select id="beautyCount" resultType="int">
+   		select count(*) from beautyrequest where uid=#{uid} and isDelete = 0;
+   	</select>
+   	
+   	<select id="beautyTotalCount" resultType="int">
+   		select count(*) from beautyrequest where isDelete = 0;
+   	</select>
+   	
+   	<update id="bisDeleteUpdate">
+   		update beautyrequest set isDelete = 1 where brno=#{brno};
+   	</update>
+   	
+   	<update id="bChooseUpdate">
+   		update beautyrequest set choose_check = 1 where brno=#{brno};
+   	</update>
+   	
+   	<select id="brno" resultType="int">
+   		select brno from beautyrequest where uid=#{uid} and isDelete = 0;
+   	</select>
+   	
+</mapper>

@@ -1,0 +1,262 @@
+@CHARSET "EUC-KR";
+
+/*------------------<name>------------------------*/
+#title{
+	font-size: 18pt;
+	font-weight: 600;
+}
+
+#loginfrm{
+	width: 960px;
+	margin: 0px auto;
+	text-align: center;
+	margin-top: 100px; 
+}
+#loginfrm input[type="text"], input[type="password"]{
+	width: 250px;
+	border-radius: 15px;
+	border: #BFC1B9 1px solid;
+	outline-color: #A7CA37;
+	padding: 13px 10px 13px 10px;
+	margin-bottom: 10px;
+}
+#loginfrm input[type="submit"]{
+	border: none;
+	background-color: #A7CA37;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 900px;
+	color: white;
+	cursor: pointer;
+	width: 250px;
+	height: 40px;
+	margin-bottom: 10px;
+}
+
+#idcontrolbox{
+	width:220px;
+
+}
+#idcontrolbox a{
+	margin-right: 20px;
+	font-size: small;
+	color: #586153;
+	opacity: 0.8;
+}
+#idcontrolbox a:hover{
+	opacity: 1;
+}
+
+#kakaologin{
+	border: none;
+	background-color: #F7E600;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 900px;
+	color: #3A1D1D;
+	cursor: pointer;
+	width: 250px;
+	height: 40px;
+	margin-bottom: 10px;
+}
+
+#kakaologin:hover{
+	opacity: 0.8
+}
+
+#loginfrm input[type="submit"]:hover{
+	background-color: 7F9730;
+}
+
+/*------------------<usertype>------------------------*/
+.register_page{
+	width: 960px;
+	margin: 0px auto;;
+	text-align: center;
+	margin-top: 100px; 
+
+}
+#register_boxes{
+		margin-bottom: 400;
+}
+.register_box{
+	float: left;
+	width: 290px;
+	height: 190px;
+	background-color: #A7CA37;
+	padding: 10px 0px 10px 0px;
+	margin: 10px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+.register_box:hover{
+	background-color: 7F9730;
+}
+.register_box p{
+	font-size: large;	
+}
+
+/*-------------------------<회원가입>-----------------*/
+#regi tr, td{
+	border: none;
+	padding: 15px;
+}
+#regi input[type="text"], input[type="password"]{
+	width: 250px;
+	border-radius: 15px;
+	border: #BFC1B9 1px solid;
+	outline-color: #A7CA37;
+	padding: 13px 10px 13px 10px;
+	margin-bottom: 10px;
+}
+#regi input[type="number"], input[type="date"]{
+	border-radius: 15px;
+	border: #BFC1B9 1px solid;
+	outline-color: #A7CA37;
+	padding: 13px 10px 13px 10px;
+	margin-bottom: 10px;
+}
+
+#regi input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+   	-webkit-appearance: none;
+   	margin: 0;
+}
+
+#regi .smallbtn{
+	border: none;
+	background-color: #A7CA37;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	padding: 10px;
+	margin-left: 5px;
+}
+#regi [type="radio"]{
+	display:none;
+}
+#regi [type="radio"]+label{
+	display: inline-block;
+	cursor: pointer;
+	padding: 10px 0px 10px 0px;
+ 	width: 80px;
+    border: 1px solid #A7CA37;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+    border-radius: 10px;
+}
+#regi [type="radio"]+label{
+	background-color: white;
+    color: #A7CA37;
+}
+#regi [type="radio"]:checked+label{
+	 background-color: #A7CA37;
+    color: white;
+}
+
+/*-------------<병원등록<------------------------*/
+.register_page{
+	width: 960px;
+	margin: 0px auto;;
+	text-align: center;
+	margin-top: 100px; 
+
+}
+#register_boxes{
+		margin-bottom: 400;
+}
+.register_box{
+	float: left;
+	width: 290px;
+	height: 190px;
+	background-color: #A7CA37;
+	margin: 10px;
+	padding-top: 100px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+.register_box:hover{
+	background-color: 7F9730;
+}
+.register_box p{
+	font-size: large;	
+}
+
+/*-------------------------<회원가입>-----------------*/
+#hospitalregi tr, td{
+	border: none;
+	padding: 15px;
+}
+#hospitalregi input[type="text"]{
+	width: 250px;
+	border-radius: 5px;
+	border: #BFC1B9 1px solid;
+	outline-color: #A7CA37;
+	padding: 20px 10px 20px 10px;
+	margin-bottom: 10px;
+}
+#hospitalregi textarea{
+	border-radius: 5px;
+	border: #BFC1B9 1px solid;
+	outline-color: #A7CA37;
+	padding: 20px 10px 20px 10px;
+	margin-bottom: 10px;
+}
+#hospitalregi input[type="number"], input[type="time"]{
+	border-radius: 5px;
+	border: #BFC1B9 1px solid;
+	outline-color: #A7CA37;
+	padding: 20px 10px 20px 10px;
+	margin-bottom: 10px;
+}
+
+#hospitalregi input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+   	-webkit-appearance: none;
+   	margin: 0;
+}
+
+#hospitalregi .smallbtn{
+	border: none;
+	background-color: #A7CA37;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+	padding: 10px;
+	margin-left: 5px;
+}
+
+/*-----------------<submit버튼 클릭>----------------*/
+#submitbtn{
+	margin-top: 30px;
+}
+#submitbtn input[type="submit"]{
+	border: none;
+	background-color: #A7CA37;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 900px;
+	color: white;
+	cursor: pointer;
+	padding: 0px 20px 0px 20px;
+	height: 40px;
+	margin-right: 10px;
+}
+#submitbtn input[type="submit"]:hover{
+	background-color: 7F9730;
+}
+#submitbtn input[type="reset"]{
+	border: none;
+	border: 1px solid #A7CA37;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 900px;
+	background-color: white;
+	color: #A7CA37;
+	cursor: pointer;
+	padding: 0px 20px 0px 20px;
+	height: 40px;
+}
+#submitbtn input[type="reset"]:hover{
+	background-color: DEFA81;'
+}

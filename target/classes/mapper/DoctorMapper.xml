@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.DoctorMapper">
+    <select id="hospitalList" resultType="com.example.domain.DoctorVO">
+        select * from doctor
+    </select>
+    <select id="hospital" resultType="com.example.domain.DoctorVO">
+        select * from doctor where dno=#{dno}
+    </select>
+    <insert id="inserthostpital"> 
+    	insert into doctor(id, dname, dimage, dlicense, open, o_break, c_break, close, dtel, dinfo, dzipcode, daddress1, daddress2) 
+    	values(#{id}, #{dname}, #{dimage}, #{dlicense}, #{open}, #{o_break}, #{c_break},#{close}, #{dtel}, #{dinfo}, #{dzipcode}, #{daddress1}, #{daddress2})
+    </insert>
+    <update id="updatehospital">
+    	update doctor set dname=#{dname}, dimage=#{dimage}, dlicense=#{dlicense}, open=#{open}, o_break=#{o_break}, c_break=#{c_break}, close=#{close}, dtel=#{dtel}, dinfo=#{dinfo}, dzipcode=#{dzipcode}, daddress1=#{daddress1}, daddress2=#{daddress2}
+    </update>
+    <delete id="deletehospital"></delete>
+   	<select id="selectDno" resultType="int">
+		select dno from doctor where id=#{id}
+	</select>
+</mapper>

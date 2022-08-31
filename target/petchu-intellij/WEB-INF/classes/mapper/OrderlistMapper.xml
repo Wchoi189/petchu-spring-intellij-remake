@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.OrderlistMapper">
+    <select id="list" resultType="com.example.domain.OrderlistVO"><!-- vo 안만들면 Hashmap로 만들면됨 -->
+        select * from orderlist
+        order by odate desc
+        limit #{pageStart}, #{perPageNum}
+    </select>
+    <select id="read" resultType="com.example.domain.OrderlistVO">
+    	select  * from porderlist where pno=#{pno} and bno=#{bno}
+   </select>
+   <select id="count" resultType="int">
+   		select count(*) from orderlist
+   </select>
+   <select id="join" resultType="com.example.domain.OrderlistVO">
+    select o.*, p.pname, p.pimage from orderlist o, shopproduct p
+	where o.pno=p.pno
+	limit #{pageStart}, #{perPageNum}
+    </select>
+</mapper>

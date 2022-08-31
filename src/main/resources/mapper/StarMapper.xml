@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.StarMapper">
+	<select id="list" resultType="com.example.domain.StarVO"> <!-- 리뷰 전체 리스트 출력 -->
+        select *, round(ratingAvg, 1) from review
+    </select>
+    
+    <insert id="insert"> <!-- 리뷰 등록 -->
+    	insert into review(pno, rtitle, delivery_review, review, rdetailrate1, rdetailrate2, rdetailrate3, rimage1, rimage2, rimage3, star) 
+    	values(#{pno}, #{rtitle}, #{delivery_review}, #{review}, #{rdetailrate1}, #{rdetailrate2}, #{rdetailrate3}, #{rimage1}, #{rimage2}, #{rimage3}, #{star}) 
+    </insert>
+    
+    <delete id="delete"> <!-- 리뷰 삭제 -->
+    	delete from review where rid=#{rid} and pno=#{pno}
+    </delete>
+    
+    <update id="update"> <!-- 리뷰 수정 -->
+    	update review set rtitle=#{rtitle}, rdate=#{rdate}, rdetailrate1=#{rdetailrate1}, rdetailrate2=#{rdetailrate2}, rdetailrate3=#{rdetailrate3}, star=#{star}, review =#{review}, delivery_review=#{delivery_review}, rimage1=#{rimage1}, rimage2=#{rimage2}, rimage3=#{rimage3} where rid=#{rid};
+    </update>
+    
+    <select id="helpCount" resultType="double"> <!-- 댓글이 추천된 수 -->
+    	select helpcount from review where rid=#{rid};
+    </select>
+    
+    <update id="updateHelpcount"> <!-- 댓글 추천시 추천수 +1 -->
+    	update review set helpcount=helpcount+1 where rid=#{rid}
+    </update>
+    
+    <update id="updateHelpcountCancel"> <!-- 댓글 추천 취소시 추천수 -1 -->
+    	update review set helpcount=helpcount-1 where rid=#{rid}
+    </update>
+    
+    <select id="ratingAvg" resultType="double"> <!-- 평균 평점 계산 -->
+    	select avg(star) from review where pno = #{pno}
+    </select>
+    
+    <update id="updateRating"> <!-- 평균평점 DB에 입력 -->
+    	update review set ratingAvg = #{ratingAvg} where pno = #{pno}
+    </update>
+</mapper>

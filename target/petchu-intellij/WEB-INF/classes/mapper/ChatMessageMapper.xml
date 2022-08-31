@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.ChatMessageMapper">
+    <select id="print" resultType="com.example.domain.ChatMessageVO">
+        select * from chatMessage where crno=#{crno} order by regdate
+    </select>
+    <select id="receinfo" resultType="com.example.domain.ChatMessageVO">
+    	select dname, nick, dno from view_chat where crno=#{crno}
+    </select>
+    <insert id="send">
+    	insert chatMessage(message, id, receiver, dno, crno, send) values(#{message}, #{id}, #{receiver},#{dno}, #{crno}, #{send})
+    </insert>
+    <select id="chatList" resultType="com.example.domain.ChatMessageVO">
+        select * from view_chat where id=#{id} or receiver=#{id} order by regdate desc
+    </select>
+    <update id="readdate">
+    	update chatmessage set readdate=now() where crno=#{crno} and receiver=#{id}
+    </update>
+    <select id="notread" resultType="int">
+    	select count(*) from chatmessage where readdate is null and crno=#{crno} and receiver=#{id}
+    </select>
+    <select id="notreadall" resultType="int">
+    	select count(*) from chatmessage where readdate is null and receiver=#{id}
+    </select>
+</mapper>

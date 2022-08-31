@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.CashhistoryMapper">
+    <select id="readCH" resultType="com.example.domain.CashhistoryVO">
+        select * from cashhistory where id=#{id} order by regdate desc
+    </select>
+    <insert id="insertCH">
+    	insert into cashhistory(id, amount, content) values (#{id}, #{amount}, #{content})
+    </insert>
+</mapper>

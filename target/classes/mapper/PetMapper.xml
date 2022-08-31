@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.PetMapper">
+    <select id="readPetList" resultType="com.example.domain.PetVO">
+        select * from pet where id=#{id}
+    </select>
+    <select id="readPet" resultType="com.example.domain.PetVO">
+        select * from pet where pno=#{pno}
+    </select>
+    <insert id="insertPet">
+    	insert into pet(pname, pimage, pcate, pweight, pgender, pspaying, page, pbreed, id)
+    	 values (#{pname}, #{pimage}, #{pcate}, #{pweight}, #{pgender}, #{pspaying}, #{page}, #{pbreed}, #{id})
+    </insert>
+    <delete id="deletePet">
+    	delete from pet where pno=#{pno}
+    </delete>
+    <update id="updatePet">
+    	update pet 
+    	set pname=#{pname}, pcate=#{pcate}, pweight=#{pweight}, pgender=#{pgender}, pspaying=#{pspaying}, page=#{page}, pbreed=#{pbreed}, pimage=#{pimage}
+    	where pno=#{pno}
+    </update>
+</mapper>

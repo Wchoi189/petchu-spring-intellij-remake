@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.UserMapper">
+	<insert id="insert">
+		insert into user
+		(id,pass,name,image,nick,tel,gender,birthday,email,zipcode,address1,address2,type)
+		values
+		(#{id},#{pass},#{name},#{image},#{nick},#{tel},#{gender},#{birthday},#{email},#{zipcode},#{address1},#{address2},#{type})
+	</insert> 
+	<select id="read" resultType="com.example.domain.UserVO">
+		select
+		*,date_format(birthday,'%Y-%m-%d') date from user where id=#{id}
+	</select>
+	<select id="list" resultType="com.example.domain.UserVO">
+		select * from user
+		<if test="keyword != null">
+			where name like concat('%',#{keyword},'%')
+			or email like concat('%',#{keyword},'%')
+			or id like concat('%',#{keyword},'%')
+			or nick like concat('%',#{keyword},'%')
+			or birthday like concat('%',#{keyword},'%')
+		</if>
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	<select id="userCount" resultType="int">
+		select count(*) from user
+	</select>
+	<update id="update">
+		update user
+		set name=#{name}, nick=#{nick},
+		tel=#{tel}, birthday=#{birthday},
+		gender=#{gender}, email=#{email},
+		zipcode=#{zipcode},
+		address1=#{address1}, address2=#{address2},
+		image=#{image}
+		where id=#{id}
+	</update>
+	<update id="updatepass">
+		update user
+		set pass=#{pass}
+		where id=#{id}
+	</update>
+	<update id="userDelete">
+		update user
+		set isDelete=1
+		where id=#{id}
+	</update>
+	<update id="updatePoint">
+		update user set point=point+#{amount} where id=#{id};
+	</update>
+	<select id="pointRead" resultType="int">
+		select point from user where id=#{id}
+	</select>
+	<select id="typechk" resultType="String">
+		select type from user where id=#{id}
+	</select>
+	<select id="cashRead" resultType="int">
+		select cash from user where id=#{id}
+	</select>
+	<update id="updateCash">
+		update user set cash=cash+#{amount} where id=#{id};
+	</update>
+	<select id="chartPrice" resultType="hashmap"> 
+		select uid, sum(point) point, sum(sum) sum, sum(point+sum) total
+		from user_order
+		group by uid
+	</select>
+	<select id="chartDate" resultType="hashmap"> 
+		select date_format(paydate,'%Y-%m-%d') fdate, sum(point) point, sum(sum) sum, sum(point+sum) total
+		from user_order
+		group by fdate
+	</select>
+
+</mapper>

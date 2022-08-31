@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.DoctorRequestMapper">
+
+    <select id="RequestList" resultType="com.example.domain.DoctorRequestVO">
+    	select * from doctor_request;
+    </select>
+	<insert id="replyRequest">
+		insert into doctor_request(drdisease, drcontent, drfile, drprice, pno, dno) values (#{drdisease}, #{drcontent}, #{drfile}, #{drprice}, #{pno}, #{dno})
+	</insert>
+    <select id="resultRequestList" resultType="com.example.domain.DoctorRequestVO">
+    	select * from resultRequ where id=#{id}
+    </select>
+        <select id="resultRequest" resultType="com.example.domain.DoctorRequestVO">
+    	select * from resultRequ where drno=#{drno}
+    </select>
+</mapper>

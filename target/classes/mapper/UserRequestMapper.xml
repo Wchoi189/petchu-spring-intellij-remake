@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.UserRequestMapper">
+    <insert id="sendRequest">
+        insert into user_request(d1, d2, d3, d4, d5, d_etc, dvedio, dimg1, dimg2, dimg3, dimg4, pno) values (#{d1}, #{d2}, #{d3}, #{d4}, #{d5}, #{d_etc}, #{dvedio}, #{dimg1}, #{dimg2}, #{dimg3}, #{dimg4}, #{pno})
+    </insert>
+    <select id="RequestList" resultType="com.example.domain.UserRequestVO">
+    	select * from allrequinfo order by rno desc
+    </select>
+    <select id="receRequest" resultType="com.example.domain.UserRequestVO">
+    	select * from allrequinfo where rno=#{rno}
+    </select>
+    <select id="chkRequest" resultType="com.example.domain.UserRequestVO">
+    	select * from user_request where is_checked=0 and pno=#{pno}
+    </select>
+    <update id="updatechk">
+    	update user_request set is_checked=1 where rno=#{rno}
+    </update>
+    <select id="regdatechk" resultType="com.example.domain.UserRequestVO">
+    	select * from user_request where pno=#{pno} and date(now())-date(regdate) &lt; 3
+    </select>
+</mapper>

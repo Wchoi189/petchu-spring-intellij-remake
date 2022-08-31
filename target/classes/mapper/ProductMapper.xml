@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.ProductMapper">
+    <insert id="insert" >
+        insert into shopproduct(pname, pimage, pprice, pbrand, pcontents, pcate2, pcate3, pcate4, pmaker) 
+        values(#{pname}, #{pimage}, #{pprice}, #{pbrand}, #{pcontents}, #{pcate2}, #{pcate3}, #{pcate4}, #{pmaker})
+    </insert>
+    <select id="check" resultType="com.example.domain.ProductVO">
+    	select * from shopproduct
+    	where pno = #{pno}
+    </select>
+    <select id="list" resultType="com.example.domain.ProductVO">
+    	select * from shopproduct
+    	order by pno desc
+    	limit #{pageStart}, #{perPageNum}
+    </select>
+    <select id="count" resultType="int">
+    	select count(*) from shopproduct
+    </select>
+    <update id="qntUpdate"> 
+    	update shopproduct set pqantity=#{qnt} where pno=#{code} 
+    </update>
+    <update id="adminUpdate" >
+        update shopproduct
+        set pname = #{pname}, pprice = #{pprice}, pbrand = #{pbrand}, pcontents = #{pcontents}, pcate1 = #{pcate1}, pcate2 = #{pcate2}, pcate3 = #{pcate3}, pcate4 = #{pcate4}, pmaker = #{pmaker}, pqantity = #{pqantity}
+        where pno=#{pno}
+    </update>
+    <select id="read" resultType="com.example.domain.ProductVO">
+    	select * from shopproduct
+    	where pno=#{pno}
+    </select>
+    <select id="order_count" resultType="int">
+    	select count(*) from user_order
+    </select>
+     <select id="order_list" resultType="com.example.domain.ProductVO">
+    	select u.uono, u.uid, u.orno, u.sum, u.point, u.paydate, u.omessage, o.zipcode, o.address1, o.address2, receiver, tel
+		from user_order u, orderlist o
+		where u.orno=o.orno
+		GROUP BY uono
+		order by uono desc
+    	limit #{pageStart}, #{perPageNum}
+    </select>
+    <update id="order_state_update">
+        update user_order set state=#{state} where uono = #{uono}
+    </update>
+</mapper>

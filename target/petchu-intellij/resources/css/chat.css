@@ -1,0 +1,130 @@
+@CHARSET "EUC-KR";
+
+body{
+	background-color: #c9e17b;
+	padding: 0px;
+	margin: 0px;
+}
+#message{
+	margin-bottom: 100px;
+}
+#chatbox{
+    padding: 10px;
+    padding-left: 30px;
+    margin: 20px 20px 20px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: white;
+    line-height: 20px;
+    box-shadow: 2px 2px 6px #bcc3a7;
+}
+#chatbox:hover{
+    background-color: #f9fdee;
+}
+#chatbox #dname{    
+	font-size: large;
+    font-weight: 900;
+}
+#chatbox #fregdate{
+    font-size: small;
+    color: #96a996;
+    float: right;
+    position: relative;
+    bottom: 86px;
+    right: 10px;
+}
+}
+
+/*---------------room.jsp-----------------*/
+#navi {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+td{
+	vertical-align: middle;
+}
+#hosname{
+	margin-top: 50px;
+	color: white;
+	font-size: 20px;
+}
+#menubar{
+	width: 100%;
+	height:  67px;
+	background-color: #A7CA37;
+}
+.all{
+	width: 100%;
+	height: 90px;
+	margin-bottom: 30px;
+	line-height: 11px;
+}
+#line{
+	
+	
+}
+
+.messagebox{
+	display: inline-block;
+	padding: 15px;
+	margin: 15px 5px 5px 5px;
+	border-radius: 10px;
+	background-color: white;
+	max-width: 300px;
+}
+.messagebox.right{
+	float: right;
+	margin-right: 15px;
+	background-color: #ffd74c;;
+}
+.messagebox.left{
+	margin-left: 15px;
+}
+
+.date{
+	position: relative;
+	top: 2px;
+	font-size: 13px;
+	color: #737e5f;
+}
+.date.left{
+	margin-left: 20px;
+}
+.date.right{
+    max-width: 192px;
+    top: 66px;
+    left: 215px;
+    text-align: right;
+
+}
+.id.right {display:none;}
+.id.left{
+	font-weight: 900;
+	margin-left: 20px;
+}
+.readdate.left{
+	display:none;
+}
+.readdate.right{
+	font-size: small;
+	color: #737e5f;
+    float: right;
+    margin-top: 47px;
+}
+#sendbox{
+	background-color: white;
+   	position: fixed;
+   	bottom: 0px;
+   	width: 100%;
+}
+#txtMessage{
+	width: 100%;
+   	height: 90px;
+   	border: none;
+   	padding: 20px;
+   	resize:none;
+}
+#txtMessage:focus{
+	outline:none;
+}

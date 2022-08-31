@@ -1,0 +1,273 @@
+@charset "UTF-8";
+
+
+/* api_search.jsp */
+/* 상품등록 */
+#api_container{
+	overflow:hidden;
+	width:900px;
+	margin:0px auto;
+	}
+
+.api_box {
+	float:left; 
+	width:200px; 
+	height:300px; 
+	margin-left:10px; 
+	padding:5px; 
+	margin-bottom:10px;
+	overflow:hidden;
+	border:2px solid gray;
+	border-radius:10px; 
+	text-align:center;
+	}
+	
+.name {
+	width:200px; 
+	font-size:12px;}
+
+.title{
+	white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    width:200px;
+}
+.price{
+color:red;
+}
+
+#pageBtn{
+	position: relative;
+	right: 0px;
+	bottom: 0px;
+	width:500px;
+	height:200px;
+	text-align:center;
+}
+/* item per page style option */
+.holder {
+    margin:15px 0;
+}
+.holder a {
+    font-size:12px;
+    cursor:pointer;
+    margin:0 5px;
+    color:#333;
+}
+.holder a:hover {
+    background-color:#222;
+    color:#fff;
+}
+.holder a.jp-previous {
+    margin-right:15px;
+}
+.holder a.jp-next {
+    margin-left:15px;
+}
+.holder a.jp-current,a.jp-current:hover {
+    color:#FF4242;
+    font-weight:bold;
+}
+.holder a.jp-disabled,a.jp-disabled:hover {
+    color:#bbb;
+}
+.holder a.jp-current,a.jp-current:hover,.holder a.jp-disabled,a.jp-disabled:hover {
+    cursor:default;
+    background:none;
+}
+.holder span {
+    margin:0 5px;
+}
+#display_number {
+    float:right;
+    margin-right:10px;
+}
+#display_label{
+    margin-right: 5px;
+}
+
+/* 상품목록 list.jsp*/
+	.list_box {float:left; 
+	width:200px; 
+	height:250px; 
+	margin-left:10px; 
+	padding:5px; 
+	margin-bottom:40px;
+	overflow:hidden;
+}
+	#list_tbl{
+	width:900px; 
+	margin:0px auto;
+	text-align:center;
+	border:1px solid black;
+	}
+	
+	.list_content{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 300px;
+    display: block;
+    overflow: hidden;
+    text-align:center;
+	}
+	
+	
+/* 상품등록버턴	 */	
+.btnins{
+   background-color: #F5A40D;
+   color: #ffffff;
+   border-radius: 15px;
+   margin:20px;
+}
+
+#api_search {
+	margin:0px auto;
+	margin-top:40px;
+	display:block;
+}
+
+/* 회원가입 */
+.register_page{
+	display:flex;
+	justify-content:center;
+	margin:0px auto;
+	vertical-align:top;
+}
+.h2_center{
+	font-size:20px;
+	text-align:center;
+	font-family: 'Gothic A1', sans-serif;
+	font-weight:100;
+}
+.register_box{	
+	height:350px;
+	width: 250px;
+	border: 3px solid #d2d4d6;
+	padding:10px;
+	margin: 10px 10px;
+	text-align:center;
+	display: inline-block; 
+}
+
+.register_boxes{
+	vertical-align:top;
+	whitespace:nowrap;
+	margin:0px auto;
+	width:900px;
+	height:360px;
+	text-align:center;	
+}
+
+/* register box buttons */
+.box_header{
+	text-size: 40px;
+	color:#08a8a8;
+	}
+
+ .btn-grad {background-image: linear-gradient(to right, #00C9FF 0%, #92FE9D  51%, #00C9FF  100%)}
+ .btn-grad {
+    margin: 10px auto;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 20px;
+    display: block;
+    border:none;
+  }
+
+  .btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+
+body{
+  background: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+/* payment page */
+#page_cart{
+	width:960px;
+}
+
+.customer_info{
+	width:940px;
+}
+
+ .customer_table{
+	width:920px;
+}
+
+.ctitle{
+	width:300px;
+}
+
+/* 결제신청 페이지 */
+.payment_btm{
+margin:0px auto;
+text-align:center;	
+}
+
+.tealBig{
+	margin:0px auto;
+	padding:15px 80px;
+	background-color:#A7CA37;
+	color:white;
+	border:none;
+	font-size:20px;
+}
+
+.tealSmall{
+	margin:0px auto;
+	padding:10px 40px;
+	background-color:#A7CA37;
+	color:white;
+	border:none;
+	border-radius:10px;
+	font-size:20px;
+}
+
+.point_col2{
+color:#A7CA37;
+font-weight:900;
+}
+
+.payment_col2{
+color:#A7CA37;
+font-weight:900;
+font-size:25px;
+}
+
+#pay_status{
+	margin:0px auto;
+	text-align:center;
+	margin-bottom:20px;
+	width:900px;
+}
+
+.teal_text{
+color:#A7CA37;
+font-weight:300;
+}
+
+.btn_container{
+margin-top:50px;
+width:900px;
+}
+
+.point_col4{
+height:20px;
+}
+
+.formdivider{
+position:relative;
+right: 22px;
+margin-top:20px;
+}

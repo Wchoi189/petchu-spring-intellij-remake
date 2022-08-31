@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RecruitMapper">
+	<insert id="insert" >
+       insert into recruit(id,bno,type,contents)
+       
+	   values(#{id}, #{bno}, #{type}, #{contents}) 
+    </insert>
+    
+	<select id="list" resultType="com.example.domain.RecruitVO">
+		select * from recruit order by bno desc
+	</select>
+	 <update id="update"> 
+    	update recruit set contents=#{contents} where bno=#{bno} 
+    </update>
+    <delete id="delete">
+    	delete from recruit where bno=#{bno}
+    </delete>
+    <select id="read" resultType="com.example.domain.RecruitVO">
+    	select * from recruit where bno=#{bno}
+    </select>
+</mapper>
+    

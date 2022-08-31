@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.HoschoolMapper">
+    <select id="list" resultType="com.example.domain.ReserveVO">
+<!--       	select * from serviceco -->
+<!--       	where (sccate='유치원' or sccate='호텔') and isDelete=0 -->
+		SELECT * 
+        FROM (
+			select A.*, count(B.rno) as cnt
+			from serviceco A left join reserve B
+			on A.scno = B.scno 
+
+				and (
+				    #{checkin} between B.checkin and B.checkout
+				    or #{checkout} between B.checkin and B.checkout
+				    or B.checkin between #{checkin} and #{checkout}
+				    or B.checkout between #{checkin} and #{checkout}
+				)
+
+			WHERE A.isDelete = 0
+			and (A.sccate='유치원' or A.sccate='호텔')
+			group by scno
+			) t
+		WHERE t.cnt &lt; 10 
+		<if test="keyword != null">
+			and (scname like concat('%',#{keyword},'%')
+			or scaddress1 like concat('%',#{keyword},'%')
+			or tag like concat('%',#{keyword},'%'))
+		</if>
+		<if test="sort == 'rowPrice'">
+			order by scprice
+		</if>
+		<if test="sort == 'higPrice'">
+			order by scprice desc
+		</if>
+    </select>
+    
+    <select id="myList" resultType="com.example.domain.ServiceVO">
+      		select *
+			from serviceco 
+			where id=#{id}
+			order by scno desc
+    </select>
+    <update id="serviceDelete">
+		update serviceco
+		set isDelete=1
+		where scno=#{scno}
+	</update>
+    <insert id="insert">
+    	insert into serviceco (id,sccate, scname, scimage, sclicense, sctel, sczipcode, scaddress1, scaddress2, sconeline, scdetail_description, opentime, breaktime, closetime, scprice, bgimage, tag)
+    	values (#{id}, #{sccate}, #{scname}, #{scimage}, #{sclicense}, #{sctel}, #{sczipcode}, #{scaddress1}, #{scaddress2}, #{sconeline} ,#{scdetail_description},#{opentime},#{breaktime},#{closetime},#{scprice},#{bgimage}, #{tag})
+    </insert>
+    <update id="update">
+    	update serviceco set
+		id=#{id},sccate=#{sccate}, scname=#{scname}, scimage=#{scimage}, sclicense=#{sclicense},
+		sctel=#{sctel}, sczipcode=#{sczipcode}, scaddress1=#{scaddress1}, scaddress2=#{scaddress2},
+		sconeline=#{sconeline}, scdetail_description=#{scdetail_description},
+		opentime=#{opentime}, breaktime=#{breaktime}, closetime=#{closetime}, 
+		scprice=#{scprice}, bgimage=#{bgimage}, tag=#{tag}
+		where scno=#{scno}    	
+    </update>
+    <insert id="addinfo">
+    	insert into reserve(totRoom)
+    	values(#{totRoom})
+    	where scno=#{scno}
+    </insert>
+    <select id="chkscno" resultType="com.example.domain.ReserveVO">
+      	select max(scno) from serviceco
+    </select>
+    <select id="read" resultType="com.example.domain.ReserveVO">
+    	select *
+		from serviceco 
+		where scno=#{scno}
+    </select>
+    <insert id="rateInsert">
+    	insert into rate (id, scno, rate, comments) 
+    	values (#{id}, #{scno}, #{rate}, #{comments})
+    </insert>
+    <select id="reviewList" resultType="com.example.domain.RateVO">
+    	select * from rate where scno=#{scno}
+	    order by rno desc limit #{start},#{perPageNum}
+    </select>
+    <select id="reviewCount" resultType="int">
+    	select count(*) from rate where scno=#{scno}
+    </select>
+	<select id="avgRate" resultType="com.example.domain.RateVO">
+		select scno, format(avg(rate),1) avgrate from rate group by scno
+	</select>
+	<select id="avgRateRead" resultType="double">
+		select format(avg(rate),1) avgrate from rate where scno=#{scno}
+	</select>
+	<select id="reviewAllCount" resultType="int">
+		select count(*) from reserve where scno=#{scno} and id=#{id} and now() &lt; DATE_ADD(reserveDate, INTERVAL 1 DAY) and isDel=0
+	</select>
+	<select id="reviewWriteCount" resultType="int">
+		select count(*) from rate where scno=#{scno} and id=#{id}
+	</select>
+</mapper>
