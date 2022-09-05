@@ -8,21 +8,29 @@ import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.ReviewVO;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping("/review")
 public class ReviewController {
+
+	private static final Logger logger  = LoggerFactory.getLogger(ReviewController.class);
 	@Autowired
 	ReviewDAO dao;
 	
@@ -120,9 +128,11 @@ public class ReviewController {
 		
 		
 		@PostMapping("/insert")
-		public String insert(ReviewVO vo,MultipartHttpServletRequest multi, String uid)throws Exception{
-			System.out.println(vo.getUid()+"ㅅㅂ진짜 이게 말이 되냐고");
+		public String insert(ReviewVO vo, MultipartHttpServletRequest multi, String uid, Integer pno){
+			System.out.println(vo.getUid()+"이게 말이 되냐고");
+
 			vo.setUid(uid);
+			vo.setPno(pno);
 			int result = dao.user_review_count(uid, vo.getBno());
 			System.out.println(vo.toString()+"\n"+result+"<<<<<<<<<<<<");
 			if(result>0){
@@ -130,34 +140,41 @@ public class ReviewController {
 				return  "redirect:insert";	//값이 1개 이상일 때
 			}
 //			System.out.println(vo.toString()+"\ntttttttttttteeeeeeeeeest======="+vo.getUid());
-			
-			List<MultipartFile> fileList = multi.getFiles("uploadFile");
+
+			List<MultipartFile> fileList = multi.getFiles("file_input");
+
 			int i=0;
 			if(fileList.size()!=0){
 				for(MultipartFile mf : fileList){
 					String image = "review/shopproduct/" + System.currentTimeMillis() + "_" + mf.getOriginalFilename();
-					
-					mf.transferTo(new File(path + image));
-					i++;
-					System.out.println("갸아아아아아아악" + image + ":" + i + "번째");
-					if(i==1){
-						vo.setRimage1(image);
-					}
-					if(i==2){
-						vo.setRimage2(image);
-					}
-					if(i==3){
-						vo.setRimage3(image);
+
+					try {
+						mf.transferTo(new File(path + image));
+						i++;
+						System.out.println("갸아아아아아아악" + image + ":" + i + "번째");
+						if(i==1){
+							vo.setRimage1(image);
+						}
+						if(i==2){
+							vo.setRimage2(image);
+						}
+						if(i==3){
+							vo.setRimage3(image);
+						}
+						dao.insert(vo);
+						System.out.println(vo.toString());
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
 				}
 			}
-			
-			dao.insert(vo);
-			System.out.println(vo.toString());
+
 //			return "0개";
+
+
 			return "redirect:/review/list";
-			
 		}
+
 	//orderlist/review 목록 json 데이터 생성
 	@RequestMapping("/reviewable.json")
 	@ResponseBody //데이터를 리턴

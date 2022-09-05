@@ -1,9 +1,17 @@
 package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
+import java.util.List;
 
+@Getter
+@Setter
+@ToString
 public class ReviewVO extends OrderlistVO{
 	private int rid;//리뷰번호
 	private String rtitle; //한줄요약
@@ -11,14 +19,17 @@ public class ReviewVO extends OrderlistVO{
 	private String review; //리뷰 내용
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date rdate; //리뷰작성시간
-	private String rimage1; 
+	private String rimage1;
 	private String rimage2; //상품이미지
 	private String rimage3;
 	private int helpcount; // 도움되면 증가
 	private int pno; //상품번호
 	private String uid; //유저아이디
 	private int bno;
-	public int getRid() {
+	private List<MultipartFile> MultipartFile;
+	private Object formData;
+
+/*	public int getRid() {
 		return rid;
 	}
 	public String getRimage3() {
@@ -95,7 +106,7 @@ public class ReviewVO extends OrderlistVO{
 		return "ReviewVO [rid=" + rid + ", rtitle=" + rtitle + ", star=" + star + ", review=" + review + ", rdate="
 				+ rdate + ", rimage1=" + rimage1 + ", rimage2=" + rimage2 + ", helpcount=" + helpcount + ", pno=" + pno
 				+ ", uid=" + uid + ", bno=" + bno + "]";
-	}
+	}*/
 	
 
 	

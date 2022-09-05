@@ -98,7 +98,7 @@
 		<p><a href="/reserve/comReserveList?id=${id}"> · 우리업체 예약리스트</a></p>
 		</div>
 	</c:if>
-	<p><a href="#">후기관리</a></p>
+	<p><a href="/review/list">후기관리</a></p>
 	<p><a href="#">포인트관리</a></p>
 	<p><a href="/user/passchk?id=${vo.id }">비밀번호 변경</a></p>
 	<p><a href="/user/deletechk?id=${vo.id }">회원탈퇴</a></p>

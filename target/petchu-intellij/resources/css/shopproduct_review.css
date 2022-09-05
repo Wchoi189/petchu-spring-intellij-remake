@@ -1,7 +1,6 @@
 /* 리뷰작성 페이지 */
 .insert_page {
     width: 800px;
-    display: column;
 }
 .pname{
     display: flex;
@@ -194,6 +193,12 @@
 
 }
 
+.textarea_2{
+   /* position: relative;
+
+    right: 20px;*/
+    margin-right: 30px;
+}
 .word_count{
     font-size: 16px;
     color: black;
@@ -224,10 +229,11 @@
 textarea[name=rtitle],textarea[name=review]{
     resize: none;
 }
-.r_photo {
+.review-photo-area {
 /*    display: flex;
     flex-direction: row;*/
-    height: 310px;
+    height: fit-content;
+    margin-bottom: 30px;
     width: 100%;
     /*   border:3px solid pink; */
 /*    justify-content: center;
@@ -245,6 +251,7 @@ textarea[name=rtitle],textarea[name=review]{
 }
 .rtitleh3{
     float:left;
+    padding-left: 30px;
 }
 .summary_container {
     display: flex;
@@ -290,14 +297,10 @@ textarea[name=rtitle],textarea[name=review]{
     text-align: right;
     position: relative;
     bottom: 20px;
-}
-/* small box, right side */
-.word_count2_container{
+    right: 30px;
     display: inline-block;
-    /*   border: 1px solid red; */
     width: 50px;
     height: 30px;
-
 }
 
 .box {
@@ -323,8 +326,12 @@ textarea[name=rtitle],textarea[name=review]{
 }*/
 /* 버턴 */
 /* 등록버턴 */
+input[name="file_input"]{
+   /* visibility: hidden ;*/
+    display: none;
+}
 
-.review_file_upload-btn {
+.review_file_upload-btn{
     width: 100px;
     height: 32px;
     padding: 0;
@@ -375,6 +382,14 @@ textarea[name=rtitle],textarea[name=review]{
 /*    display: flex;
     justify-content: flex-end;*/
 }
+ul.review_file_list_ul {
+    position: relative;
+    float: right;
+}
+.file_list_li,.file_list_li_div{
+    display: table;
+    margin-bottom: 10px;
+}
 .page_heading img, .page_title_span_wrap{
     vertical-align: middle;
 }
@@ -404,6 +419,12 @@ textarea[name=rtitle],textarea[name=review]{
     vertical-align: middle;
 
 }
+.attachment_caption_container textarea{
+    border: none;
+    padding: 5px;
+    height: available;
+    box-sizing: content-box;
+}
 .attachment_caption_right{
     display: table-cell;
     vertical-align: middle;
@@ -418,16 +439,13 @@ textarea[name=rtitle],textarea[name=review]{
     text-align: center;
 }
 .my-review_thumbnail{
-    width: 70px;
-    height: 70px;
+    width: 66.7px;
+    height: 66.7px;
     object-fit: contain;
-}
-.my-review_thumbnail .my-review_image{
-    width: 68px;
-    height: 68px;
+    overflow: hidden;
 }
 .attachment_caption_container{
-    width: 68px;
+    width: 66.7px;
 }
 /* 취소버턴 */
 .review_btn {

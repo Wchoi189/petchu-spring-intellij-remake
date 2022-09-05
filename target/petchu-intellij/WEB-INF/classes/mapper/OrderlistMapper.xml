@@ -10,7 +10,7 @@
     <select id="read" resultType="com.example.domain.OrderlistVO">
     	select o.*, p.pimage, p.pname
     	from orderlist o, shopproduct p
-    	where o.pno=#{pno} and o.bno=#{bno}
+    	where o.pno=#{pno} and o.pno=p.pno and o.bno=#{bno}
         order by o.odate desc
         limit 1
    </select>
