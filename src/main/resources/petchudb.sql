@@ -12,33 +12,105 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Dumping database structure for petchudb
+CREATE DATABASE IF NOT EXISTS `petchudb` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `petchudb`;
+
+-- Dumping structure for table petchudb.beautyrequest
+CREATE TABLE IF NOT EXISTS `beautyrequest` (
+  `brno` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(200) NOT NULL,
+  `nick` varchar(100) DEFAULT NULL,
+  `sccate` varchar(10) DEFAULT '미용',
+  `bdate` date DEFAULT NULL,
+  `pcate` char(3) DEFAULT NULL,
+  `beauty_classification` varchar(20) DEFAULT NULL,
+  `weight` varchar(20) DEFAULT NULL,
+  `age` varchar(20) DEFAULT NULL,
+  `last_beautydate` varchar(20) DEFAULT NULL,
+  `service_place` varchar(20) DEFAULT NULL,
+  `wish_date` varchar(50) DEFAULT NULL,
+  `wish_local1` varchar(100) DEFAULT NULL,
+  `wish_local2` varchar(100) DEFAULT NULL,
+  `detailed_matters` varchar(500) DEFAULT NULL,
+  `isDelete` int(11) DEFAULT 0,
+  `choose_check` int(11) DEFAULT 0,
+  PRIMARY KEY (`brno`),
+  KEY `uid` (`uid`),
+  CONSTRAINT `beautyrequest_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.beautyrequest: ~3 rows (approximately)
 /*!40000 ALTER TABLE `beautyrequest` DISABLE KEYS */;
-REPLACE INTO `beautyrequest` (`brno`, `uid`, `nick`, `sccate`, `bdate`, `pcate`, `beauty_classification`, `weight`, `age`, `last_beautydate`, `service_place`, `wish_date`, `wish_local1`, `wish_local2`, `detailed_matters`, `isDelete`, `choose_check`) VALUES
+INSERT INTO `beautyrequest` (`brno`, `uid`, `nick`, `sccate`, `bdate`, `pcate`, `beauty_classification`, `weight`, `age`, `last_beautydate`, `service_place`, `wish_date`, `wish_local1`, `wish_local2`, `detailed_matters`, `isDelete`, `choose_check`) VALUES
 	(5, 'user01', '홍길동', '미용', '2022-05-19', '강아지', '전체미용', '7~10kg', '10살이상', '3달 내외', '개인 미용실', '일주 이내', '경기도', '부천시', '안녕하세요', 1, 0),
 	(6, 'user01', '홍길동', '미용', '2022-05-19', '강아지', '목욕', '4~7kg', '1~9살', '1달 내외', '집(출장 서비스)', '가능한 빨리 진행', '경기도', '부천시', '품종은 포메라니안, 병력은 없고 온순해요', 1, 0),
 	(7, 'user01', '홍길동', '미용', NULL, '강아지', '부분미용', '7~10kg', '1~9살', '1달 내외', '개인 미용실', '일주 이내', '경기도', '부천시', '', 1, 0);
 /*!40000 ALTER TABLE `beautyrequest` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.cashhistory
+CREATE TABLE IF NOT EXISTS `cashhistory` (
+  `chno` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(200) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `content` varchar(1000) DEFAULT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`chno`),
+  KEY `id` (`id`),
+  CONSTRAINT `cashhistory_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.cashhistory: ~3 rows (approximately)
 /*!40000 ALTER TABLE `cashhistory` DISABLE KEYS */;
-REPLACE INTO `cashhistory` (`chno`, `id`, `amount`, `content`, `regdate`) VALUES
+INSERT INTO `cashhistory` (`chno`, `id`, `amount`, `content`, `regdate`) VALUES
 	(1, 'user01', 20000, '캐쉬 충전', '2022-05-06 15:49:39'),
 	(2, 'user01', 20000, '캐쉬 충전', '2022-05-06 15:53:34'),
 	(3, 'user01', 1000, '캐쉬 충전', '2022-05-06 15:55:24');
 /*!40000 ALTER TABLE `cashhistory` ENABLE KEYS */;
 
--- Dumping data for table petchudb.chartdata: ~0 rows (approximately)
+-- Dumping structure for table petchudb.chartdata
+CREATE TABLE IF NOT EXISTS `chartdata` (
+  `dname` varchar(200) NOT NULL,
+  `lowprice` int(11) DEFAULT NULL,
+  `highprice` int(11) DEFAULT NULL,
+  `avgprice` double DEFAULT NULL,
+  PRIMARY KEY (`dname`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- Dumping data for table petchudb.chartdata: ~3 rows (approximately)
 /*!40000 ALTER TABLE `chartdata` DISABLE KEYS */;
-REPLACE INTO `chartdata` (`dname`, `lowprice`, `highprice`, `avgprice`) VALUES
+INSERT INTO `chartdata` (`dname`, `lowprice`, `highprice`, `avgprice`) VALUES
 	('건강검진(기본)', 50000, 180500, 350000),
 	('백신 접종', 10000, 30000, 60000),
 	('중성화', 100000, 294264, 531500);
 /*!40000 ALTER TABLE `chartdata` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.chatmessage
+CREATE TABLE IF NOT EXISTS `chatmessage` (
+  `meno` int(11) NOT NULL AUTO_INCREMENT,
+  `message` varchar(10000) NOT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  `readdate` datetime DEFAULT NULL,
+  `id` varchar(200) NOT NULL,
+  `dno` int(11) DEFAULT NULL,
+  `crno` int(11) NOT NULL,
+  `receiver` varchar(200) DEFAULT NULL,
+  `send` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`meno`),
+  KEY `crno` (`crno`),
+  KEY `id` (`id`),
+  KEY `dno` (`dno`),
+  KEY `receiver` (`receiver`),
+  CONSTRAINT `chatmessage_ibfk_1` FOREIGN KEY (`crno`) REFERENCES `chatroom` (`crno`),
+  CONSTRAINT `chatmessage_ibfk_2` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
+  CONSTRAINT `chatmessage_ibfk_3` FOREIGN KEY (`dno`) REFERENCES `doctor` (`dno`),
+  CONSTRAINT `chatmessage_ibfk_4` FOREIGN KEY (`receiver`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.chatmessage: ~5 rows (approximately)
 /*!40000 ALTER TABLE `chatmessage` DISABLE KEYS */;
-REPLACE INTO `chatmessage` (`meno`, `message`, `regdate`, `readdate`, `id`, `dno`, `crno`, `receiver`, `send`) VALUES
+INSERT INTO `chatmessage` (`meno`, `message`, `regdate`, `readdate`, `id`, `dno`, `crno`, `receiver`, `send`) VALUES
 	(135, '도움이 필요해요!', '2022-05-19 10:41:53', '2022-05-19 10:42:23', 'user01', 5, 25, 'doctor1', 1),
 	(136, '도와주세요 ', '2022-05-19 10:42:01', '2022-05-19 10:42:23', 'user01', 5, 25, 'doctor1', 1),
 	(137, '무슨 일을 도와드릴까요?', '2022-05-19 10:42:01', '2022-05-19 10:42:45', 'doctor1', 5, 25, 'user01', 0),
@@ -46,19 +118,63 @@ REPLACE INTO `chatmessage` (`meno`, `message`, `regdate`, `readdate`, `id`, `dno
 	(139, '네 열심히 시연하십시오', '2022-05-19 10:42:32', '2022-05-19 10:42:45', 'doctor1', 5, 25, 'user01', 0);
 /*!40000 ALTER TABLE `chatmessage` ENABLE KEYS */;
 
--- Dumping data for table petchudb.chatroom: ~0 rows (approximately)
+-- Dumping structure for table petchudb.chatroom
+CREATE TABLE IF NOT EXISTS `chatroom` (
+  `crno` int(11) NOT NULL AUTO_INCREMENT,
+  `doctorid` varchar(200) DEFAULT NULL,
+  `userid` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`crno`),
+  KEY `userid` (`userid`),
+  KEY `doctorid` (`doctorid`),
+  CONSTRAINT `chatroom_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`),
+  CONSTRAINT `chatroom_ibfk_2` FOREIGN KEY (`doctorid`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
+
+-- Dumping data for table petchudb.chatroom: ~1 rows (approximately)
 /*!40000 ALTER TABLE `chatroom` DISABLE KEYS */;
-REPLACE INTO `chatroom` (`crno`, `doctorid`, `userid`) VALUES
+INSERT INTO `chatroom` (`crno`, `doctorid`, `userid`) VALUES
 	(25, 'doctor1', 'user01');
 /*!40000 ALTER TABLE `chatroom` ENABLE KEYS */;
+
+-- Dumping structure for table petchudb.chkrequ
+CREATE TABLE IF NOT EXISTS `chkrequ` (
+  `chkno` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(200) DEFAULT NULL,
+  `rno` int(11) DEFAULT NULL,
+  PRIMARY KEY (`chkno`),
+  KEY `id` (`id`),
+  KEY `rno` (`rno`),
+  CONSTRAINT `chkrequ_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
+  CONSTRAINT `chkrequ_ibfk_2` FOREIGN KEY (`rno`) REFERENCES `user_request` (`rno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table petchudb.chkrequ: ~0 rows (approximately)
 /*!40000 ALTER TABLE `chkrequ` DISABLE KEYS */;
 /*!40000 ALTER TABLE `chkrequ` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.cleaningrequest
+CREATE TABLE IF NOT EXISTS `cleaningrequest` (
+  `crno` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(200) NOT NULL,
+  `nick` varchar(100) DEFAULT NULL,
+  `sccate` varchar(10) DEFAULT '홈클리닝',
+  `cdate` date DEFAULT NULL,
+  `building_classification` varchar(10) NOT NULL,
+  `house_size` varchar(20) NOT NULL,
+  `wish_date` varchar(20) NOT NULL,
+  `wish_local1` varchar(100) NOT NULL,
+  `wish_local2` varchar(100) NOT NULL,
+  `hope_matters` varchar(500) DEFAULT NULL,
+  `isDelete` int(11) DEFAULT 0,
+  `choose_check` int(11) DEFAULT 0,
+  PRIMARY KEY (`crno`),
+  KEY `uid` (`uid`),
+  CONSTRAINT `cleaningrequest_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.cleaningrequest: ~14 rows (approximately)
 /*!40000 ALTER TABLE `cleaningrequest` DISABLE KEYS */;
-REPLACE INTO `cleaningrequest` (`crno`, `uid`, `nick`, `sccate`, `cdate`, `building_classification`, `house_size`, `wish_date`, `wish_local1`, `wish_local2`, `hope_matters`, `isDelete`, `choose_check`) VALUES
+INSERT INTO `cleaningrequest` (`crno`, `uid`, `nick`, `sccate`, `cdate`, `building_classification`, `house_size`, `wish_date`, `wish_local1`, `wish_local2`, `hope_matters`, `isDelete`, `choose_check`) VALUES
 	(1, 'user01', '홍길동', '홈클리닝', '2022-05-13', '아파트', '10평대', '협의', '경기도', '부천시', '냄새 제거 및 살균 소독 원해요!', 1, 1),
 	(2, 'user01', '홍길동', '홈클리닝', '2022-05-15', '아파트', '10평 미만', '협의', '경기도', '수원시', '하하하하하하하', 1, 0),
 	(3, 'user01', '홍길동', '홈클리닝', '2022-05-15', '아파트', '10평 미만', '협의', '경기도', '수원시', '테스트트트트', 1, 0),
@@ -75,9 +191,30 @@ REPLACE INTO `cleaningrequest` (`crno`, `uid`, `nick`, `sccate`, `cdate`, `build
 	(14, 'user01', '홍길동', '홈클리닝', NULL, '아파트', '10평 미만', '가능한 빨리', '경기도', '부천시', 'ggg', 0, 0);
 /*!40000 ALTER TABLE `cleaningrequest` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.doctor
+CREATE TABLE IF NOT EXISTS `doctor` (
+  `dno` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(200) DEFAULT NULL,
+  `dname` varchar(500) NOT NULL,
+  `dimage` varchar(1000) DEFAULT NULL,
+  `dlicense` varchar(1000) NOT NULL,
+  `open` time DEFAULT NULL,
+  `o_break` time DEFAULT NULL,
+  `c_break` time DEFAULT NULL,
+  `close` time DEFAULT NULL,
+  `dtel` varchar(200) NOT NULL,
+  `dinfo` varchar(1000) NOT NULL,
+  `dzipcode` varchar(20) DEFAULT NULL,
+  `daddress1` varchar(200) DEFAULT NULL,
+  `daddress2` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`dno`),
+  KEY `id` (`id`),
+  CONSTRAINT `doctor_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.doctor: ~5 rows (approximately)
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-REPLACE INTO `doctor` (`dno`, `id`, `dname`, `dimage`, `dlicense`, `open`, `o_break`, `c_break`, `close`, `dtel`, `dinfo`, `dzipcode`, `daddress1`, `daddress2`) VALUES
+INSERT INTO `doctor` (`dno`, `id`, `dname`, `dimage`, `dlicense`, `open`, `o_break`, `c_break`, `close`, `dtel`, `dinfo`, `dzipcode`, `daddress1`, `daddress2`) VALUES
 	(3, 'doctor2', '아프리카 동물의료센터', NULL, ' ', '09:00:00', '13:00:00', '14:00:00', '20:00:00', '0507-1327-7583', '토, 일 영업합니다.', '21323', '인천 부평구 장제로340번길 5', '3층 아프리카 동물의료센터'),
 	(4, 'doctor3', '학익동물병원', '  ', ' ', '09:30:00', '13:00:00', '14:00:00', '21:00:00', '032-868-2626', '인천시 남구 학익동 학익사거리 학익정형외과 건물 1층입니다', '22202', '인천미추홀구 한나루로 379', '제중빌딩 1층'),
 	(5, 'doctor1', '하인츠동물병원', NULL, '  ', '10:00:00', '13:00:00', '14:00:00', '19:00:00', '032-204-7707', '하인츠 동물병원은 능력있는 의사와 능숙한 간호사와 미용사가 함께하는 수술전문, 내과심화진료전문 병원입니다.', '22188', '인천미추홀구 독배로 305', '이한프라자 2층'),
@@ -85,25 +222,66 @@ REPLACE INTO `doctor` (`dno`, `id`, `dname`, `dimage`, `dlicense`, `open`, `o_br
 	(8, 'test1', '인천24시스카이동물메디컬센터', NULL, '  ', '09:00:00', NULL, NULL, '21:00:00', '032-715-7959', '정상진료시간을 제외하고도 연중무휴로 운영합니다.', '21555', '인천 남동구 남동대로 799번길 8', '구월지엘시티푸르지오 C동 3층');
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.doctor_request
+CREATE TABLE IF NOT EXISTS `doctor_request` (
+  `drno` int(11) NOT NULL AUTO_INCREMENT,
+  `drdisease` varchar(1000) NOT NULL,
+  `drcontent` varchar(10000) NOT NULL,
+  `drfile` varchar(3000) DEFAULT NULL,
+  `drprice` int(11) DEFAULT 0,
+  `pno` int(11) DEFAULT NULL,
+  `ddate` datetime DEFAULT current_timestamp(),
+  `dno` int(11) DEFAULT NULL,
+  `sel` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`drno`),
+  KEY `dno` (`dno`),
+  KEY `pno` (`pno`),
+  CONSTRAINT `doctor_request_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `doctor` (`dno`),
+  CONSTRAINT `doctor_request_ibfk_2` FOREIGN KEY (`pno`) REFERENCES `pet` (`pno`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.doctor_request: ~3 rows (approximately)
 /*!40000 ALTER TABLE `doctor_request` DISABLE KEYS */;
-REPLACE INTO `doctor_request` (`drno`, `drdisease`, `drcontent`, `drfile`, `drprice`, `pno`, `ddate`, `dno`, `sel`) VALUES
+INSERT INTO `doctor_request` (`drno`, `drdisease`, `drcontent`, `drfile`, `drprice`, `pno`, `ddate`, `dno`, `sel`) VALUES
 	(19, '아프겠네요', '안타깝습니다.', 'request/doctor/1652918558684_icon_doctor.png', 1000000, 27, '2022-05-19 09:02:39', 5, 0),
 	(20, '오심', '시연중입니다', 'request/doctor/1652924428915_1650368725915_29861536784.20211127234804.jpg', 100000, 29, '2022-05-19 10:40:28', 3, 0),
 	(21, '아프겠네요 ㅠㅠ', '시연중입니다', 'request/doctor/1652924473476_icon_company.png', 10000, 29, '2022-05-19 10:41:14', 5, 0);
 /*!40000 ALTER TABLE `doctor_request` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.faq
+CREATE TABLE IF NOT EXISTS `faq` (
+  `fno` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `contents` varchar(10000) DEFAULT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`fno`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.faq: ~3 rows (approximately)
 /*!40000 ALTER TABLE `faq` DISABLE KEYS */;
-REPLACE INTO `faq` (`fno`, `title`, `contents`, `regdate`) VALUES
+INSERT INTO `faq` (`fno`, `title`, `contents`, `regdate`) VALUES
 	(1, '안녕하세요 Pet-chu입니다', '반려동물의 생활과 건강을 생각합니다', '2022-04-19 10:27:24'),
 	(2, '오픈기념 이벤트', '지금 회원가입하면 5%세일 쿠폰 증정!!', '2022-04-19 10:33:19'),
 	(3, 'Pet-chu는 어떻게 읽나요?', 'pet-chu는 \'펫츄\' 혹은 \'펫치유\'라고 읽습니다.', '2022-04-19 11:25:56');
 /*!40000 ALTER TABLE `faq` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.hcheck
+CREATE TABLE IF NOT EXISTS `hcheck` (
+  `hno` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(200) NOT NULL,
+  `rid` int(11) NOT NULL,
+  `hdate` datetime DEFAULT current_timestamp(),
+  `helpcheck` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`hno`),
+  KEY `rid` (`rid`),
+  KEY `uid` (`uid`),
+  CONSTRAINT `hcheck_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `review` (`rid`) ON DELETE CASCADE,
+  CONSTRAINT `hcheck_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.hcheck: ~5 rows (approximately)
 /*!40000 ALTER TABLE `hcheck` DISABLE KEYS */;
-REPLACE INTO `hcheck` (`hno`, `uid`, `rid`, `hdate`, `helpcheck`) VALUES
+INSERT INTO `hcheck` (`hno`, `uid`, `rid`, `hdate`, `helpcheck`) VALUES
 	(78, 'admin1', 83, '2022-05-02 06:05:20', 1),
 	(91, 'user01', 182, '2022-05-18 19:31:45', 1),
 	(92, 'user01', 182, '2022-05-18 19:31:45', 1),
@@ -111,13 +289,61 @@ REPLACE INTO `hcheck` (`hno`, `uid`, `rid`, `hdate`, `helpcheck`) VALUES
 	(100, 'user01', 183, '2022-09-05 23:08:42', 1);
 /*!40000 ALTER TABLE `hcheck` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.lessonrequest
+CREATE TABLE IF NOT EXISTS `lessonrequest` (
+  `lrno` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(200) NOT NULL,
+  `nick` varchar(100) DEFAULT NULL,
+  `sccate` varchar(10) DEFAULT '레슨',
+  `ddate` date DEFAULT NULL,
+  `lesson_classification` varchar(20) NOT NULL,
+  `lesson_goal` varchar(20) NOT NULL,
+  `lesson_method` varchar(20) NOT NULL,
+  `age` varchar(20) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `wish_gender` varchar(10) NOT NULL,
+  `wish_date` varchar(50) NOT NULL,
+  `wish_time` varchar(30) NOT NULL,
+  `wish_local1` varchar(20) NOT NULL,
+  `wish_local2` varchar(20) NOT NULL,
+  `lesson_place` varchar(20) NOT NULL,
+  `detailed_matters` varchar(500) DEFAULT NULL,
+  `isDelete` int(11) DEFAULT 0,
+  `choose_check` int(11) DEFAULT 0,
+  PRIMARY KEY (`lrno`),
+  KEY `uid` (`uid`),
+  CONSTRAINT `lessonrequest_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.lessonrequest: ~0 rows (approximately)
 /*!40000 ALTER TABLE `lessonrequest` DISABLE KEYS */;
 /*!40000 ALTER TABLE `lessonrequest` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.orderlist
+CREATE TABLE IF NOT EXISTS `orderlist` (
+  `uid` varchar(200) DEFAULT NULL,
+  `odate` datetime DEFAULT current_timestamp(),
+  `pno` int(11) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `zipcode` varchar(20) DEFAULT NULL,
+  `address1` varchar(200) DEFAULT NULL,
+  `address2` varchar(200) DEFAULT NULL,
+  `receiver` varchar(100) DEFAULT NULL,
+  `tel` varchar(200) DEFAULT NULL,
+  `orno` varchar(200) DEFAULT NULL,
+  `bno` int(11) NOT NULL AUTO_INCREMENT,
+  `isDelete` int(11) DEFAULT 0,
+  PRIMARY KEY (`bno`),
+  KEY `order_userid_fk` (`uid`),
+  KEY `pno` (`pno`),
+  CONSTRAINT `order_userid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`),
+  CONSTRAINT `orderlist_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`),
+  CONSTRAINT `orderlist_ibfk_2` FOREIGN KEY (`pno`) REFERENCES `shopproduct` (`pno`)
+) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.orderlist: ~161 rows (approximately)
 /*!40000 ALTER TABLE `orderlist` DISABLE KEYS */;
-REPLACE INTO `orderlist` (`uid`, `odate`, `pno`, `amount`, `zipcode`, `address1`, `address2`, `receiver`, `tel`, `orno`, `bno`, `isDelete`) VALUES
+INSERT INTO `orderlist` (`uid`, `odate`, `pno`, `amount`, `zipcode`, `address1`, `address2`, `receiver`, `tel`, `orno`, `bno`, `isDelete`) VALUES
 	('admin1', '2022-04-27 08:41:38', 170, 2, '21632', '인천 남동구 남동대로239번길 72-29', '205호', '김지용', '010-9321-8888', '2214141335', 1, 0),
 	('admin1', '2022-04-27 08:41:38', 133, 1, '21632', '인천 남동구 남동대로239번길 72-29', '205호', '김지용', '010-9321-8888', '2214141335', 2, 0),
 	('admin1', '2022-04-27 08:41:38', 142, 3, '21632', '인천 남동구 남동대로239번길 72-29', '205호', '김지용', '010-9321-8888', '2214141335', 3, 0),
@@ -281,9 +507,27 @@ REPLACE INTO `orderlist` (`uid`, `odate`, `pno`, `amount`, `zipcode`, `address1`
 	('user01', '2022-09-04 11:54:48', 232, 7, '34672', '대전 동구 판교1길 4', '1402호', '현빈', '01098452124', '1662260088107user01', 163, 0);
 /*!40000 ALTER TABLE `orderlist` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.pet
+CREATE TABLE IF NOT EXISTS `pet` (
+  `pno` int(11) NOT NULL AUTO_INCREMENT,
+  `pname` varchar(200) NOT NULL,
+  `pimage` varchar(1000) DEFAULT NULL,
+  `pcate` varchar(200) DEFAULT NULL,
+  `pcate_1` varchar(100) DEFAULT NULL,
+  `pweight` int(11) DEFAULT NULL,
+  `pgender` varchar(10) DEFAULT NULL,
+  `pspaying` varchar(20) DEFAULT NULL,
+  `page` int(11) DEFAULT NULL,
+  `pbreed` varchar(200) DEFAULT NULL,
+  `id` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`pno`),
+  KEY `id` (`id`),
+  CONSTRAINT `pet_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.pet: ~6 rows (approximately)
 /*!40000 ALTER TABLE `pet` DISABLE KEYS */;
-REPLACE INTO `pet` (`pno`, `pname`, `pimage`, `pcate`, `pcate_1`, `pweight`, `pgender`, `pspaying`, `page`, `pbreed`, `id`) VALUES
+INSERT INTO `pet` (`pno`, `pname`, `pimage`, `pcate`, `pcate_1`, `pweight`, `pgender`, `pspaying`, `page`, `pbreed`, `id`) VALUES
 	(27, '홍익포메', 'pet/1652847674208_pome.jpg', '강아지', NULL, 3, '여', 'Y', 3, '포메라니안', 'user01'),
 	(28, '뭉치', 'pet/1652850292312_1650368840501_82362455338.2.jpg', '강아지', NULL, 4, '남', 'Y', 4, '믹스견', 'user04'),
 	(29, '홍주름', 'pet/1652848035336_spin.png', '고양이', NULL, 5, '남', 'Y', 5, '스핑크스', 'user01'),
@@ -292,9 +536,21 @@ REPLACE INTO `pet` (`pno`, `pname`, `pimage`, `pcate`, `pcate_1`, `pweight`, `pg
 	(32, '큐리', 'pet/1652892569165_molu.png', '고양이', NULL, 8, '여', 'Y', 7, '메인쿤', 'user02');
 /*!40000 ALTER TABLE `pet` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.pointhistory
+CREATE TABLE IF NOT EXISTS `pointhistory` (
+  `phno` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(200) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `content` varchar(1000) DEFAULT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`phno`),
+  KEY `id` (`id`),
+  CONSTRAINT `pointhistory_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.pointhistory: ~18 rows (approximately)
 /*!40000 ALTER TABLE `pointhistory` DISABLE KEYS */;
-REPLACE INTO `pointhistory` (`phno`, `id`, `amount`, `content`, `regdate`) VALUES
+INSERT INTO `pointhistory` (`phno`, `id`, `amount`, `content`, `regdate`) VALUES
 	(123, 'user01', 18006, '쇼핑몰 구매 포인트 적립', '2022-05-18 13:40:53'),
 	(124, 'user01', 2250, '쇼핑몰 구매 포인트 적립', '2022-05-18 13:43:44'),
 	(125, 'user01', -3840, '쇼핑몰 구매 포인트 사용', '2022-05-18 19:35:58'),
@@ -315,9 +571,25 @@ REPLACE INTO `pointhistory` (`phno`, `id`, `amount`, `content`, `regdate`) VALUE
 	(142, 'user01', 13950, '쇼핑몰 구매 포인트 적립', '2022-09-04 11:54:48');
 /*!40000 ALTER TABLE `pointhistory` ENABLE KEYS */;
 
--- Dumping data for table petchudb.porderlist: ~161 rows (approximately)
+-- Dumping structure for table petchudb.porderlist
+CREATE TABLE IF NOT EXISTS `porderlist` (
+  `uid` mediumtext DEFAULT NULL,
+  `odate` datetime DEFAULT NULL,
+  `pno` int(11) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `zipcode` mediumtext DEFAULT NULL,
+  `address1` mediumtext DEFAULT NULL,
+  `address2` mediumtext DEFAULT NULL,
+  `receiver` mediumtext DEFAULT NULL,
+  `tel` mediumtext DEFAULT NULL,
+  `orno` mediumtext DEFAULT NULL,
+  `bno` int(11) DEFAULT NULL,
+  `isDelete` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table petchudb.porderlist: ~160 rows (approximately)
 /*!40000 ALTER TABLE `porderlist` DISABLE KEYS */;
-REPLACE INTO `porderlist` (`uid`, `odate`, `pno`, `amount`, `zipcode`, `address1`, `address2`, `receiver`, `tel`, `orno`, `bno`, `isDelete`) VALUES
+INSERT INTO `porderlist` (`uid`, `odate`, `pno`, `amount`, `zipcode`, `address1`, `address2`, `receiver`, `tel`, `orno`, `bno`, `isDelete`) VALUES
 	('admin1', '2022-04-27 08:41:38', 170, 2, '21632', '인천 남동구 남동대로239번길 72-29', '205호', '김지용', '010-9321-8888', '2214141335', 1, 0),
 	('admin1', '2022-04-27 08:41:38', 133, 1, '21632', '인천 남동구 남동대로239번길 72-29', '205호', '김지용', '010-9321-8888', '2214141335', 2, 0),
 	('admin1', '2022-04-27 08:41:38', 142, 3, '21632', '인천 남동구 남동대로239번길 72-29', '205호', '김지용', '010-9321-8888', '2214141335', 3, 0),
@@ -480,9 +752,24 @@ REPLACE INTO `porderlist` (`uid`, `odate`, `pno`, `amount`, `zipcode`, `address1
 	('user01', '2022-09-02 22:12:14', 1297, 3, '11919', '경기 구리시 동구릉로53번길 103', '1402호', '현빈', '010-9845-2124', '1662124334092user01', 162, 0);
 /*!40000 ALTER TABLE `porderlist` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.rate
+CREATE TABLE IF NOT EXISTS `rate` (
+  `rno` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(200) DEFAULT NULL,
+  `scno` int(11) DEFAULT NULL,
+  `rate` int(11) DEFAULT NULL,
+  `comments` varchar(2000) DEFAULT NULL,
+  `revDate` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`rno`),
+  KEY `id` (`id`),
+  KEY `scno` (`scno`),
+  CONSTRAINT `rate_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
+  CONSTRAINT `rate_ibfk_2` FOREIGN KEY (`scno`) REFERENCES `serviceco` (`scno`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.rate: ~33 rows (approximately)
 /*!40000 ALTER TABLE `rate` DISABLE KEYS */;
-REPLACE INTO `rate` (`rno`, `id`, `scno`, `rate`, `comments`, `revDate`) VALUES
+INSERT INTO `rate` (`rno`, `id`, `scno`, `rate`, `comments`, `revDate`) VALUES
 	(1, 'user04', 39, 5, '사장님 친절하시고 깨끗한 편입니다 . 애용할게요 ~', '2022-05-10 13:11:48'),
 	(2, 'user05', 39, 4, '사장님 친절하시고 시설도 괜찮은데 연락이 잘 안되는 점이 좀 아쉽습니다 ㅠㅠ', '2022-05-10 13:11:48'),
 	(3, 'user06', 39, 3, '예약도 힘들고 이용이 좀 불편하네요 ......', '2022-05-10 13:11:48'),
@@ -518,31 +805,108 @@ REPLACE INTO `rate` (`rno`, `id`, `scno`, `rate`, `comments`, `revDate`) VALUES
 	(36, 'user01', 39, 4, '시연중입니다.', '2022-05-19 10:49:13');
 /*!40000 ALTER TABLE `rate` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.recruit
+CREATE TABLE IF NOT EXISTS `recruit` (
+  `id` varchar(200) NOT NULL,
+  `bno` int(11) NOT NULL AUTO_INCREMENT,
+  `regdate` datetime DEFAULT current_timestamp(),
+  `contents` varchar(5000) DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`bno`),
+  KEY `id` (`id`),
+  CONSTRAINT `recruit_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.recruit: ~3 rows (approximately)
 /*!40000 ALTER TABLE `recruit` DISABLE KEYS */;
-REPLACE INTO `recruit` (`id`, `bno`, `regdate`, `contents`, `type`) VALUES
+INSERT INTO `recruit` (`id`, `bno`, `regdate`, `contents`, `type`) VALUES
 	('user01', 8, '2022-05-04 09:46:49', '펫시터 구합니다', '구인'),
 	('user07', 14, '2022-05-04 15:11:07', '내일 급하게 펫시터 구합니다 5시부터 ', '구인'),
 	('user04', 18, '2022-05-04 15:44:13', '5월 19일 돌봐줄 사람 구해요', '구인');
 /*!40000 ALTER TABLE `recruit` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.recruitreply
+CREATE TABLE IF NOT EXISTS `recruitreply` (
+  `id` varchar(200) NOT NULL,
+  `rno` int(11) NOT NULL AUTO_INCREMENT,
+  `bno` int(11) DEFAULT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  `reply` varchar(5000) DEFAULT NULL,
+  PRIMARY KEY (`rno`),
+  KEY `id` (`id`),
+  KEY `bno` (`bno`),
+  CONSTRAINT `recruitreply_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
+  CONSTRAINT `recruitreply_ibfk_2` FOREIGN KEY (`bno`) REFERENCES `recruit` (`bno`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.recruitreply: ~2 rows (approximately)
 /*!40000 ALTER TABLE `recruitreply` DISABLE KEYS */;
-REPLACE INTO `recruitreply` (`id`, `rno`, `bno`, `regdate`, `reply`) VALUES
+INSERT INTO `recruitreply` (`id`, `rno`, `bno`, `regdate`, `reply`) VALUES
 	('user01', 1, 18, '2022-05-09 10:01:56', '제가 하겠습니다'),
 	('user02', 2, 18, '2022-05-09 10:49:05', '저도 가능합니다');
 /*!40000 ALTER TABLE `recruitreply` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.reserve
+CREATE TABLE IF NOT EXISTS `reserve` (
+  `rno` int(11) NOT NULL AUTO_INCREMENT,
+  `scno` int(11) DEFAULT NULL,
+  `id` varchar(200) DEFAULT NULL,
+  `checkin` datetime NOT NULL,
+  `checkout` datetime NOT NULL,
+  `reserveDate` datetime DEFAULT current_timestamp(),
+  `request` varchar(1000) DEFAULT NULL,
+  `userName` varchar(20) DEFAULT NULL,
+  `userTel` varchar(20) DEFAULT NULL,
+  `isEdit` int(11) DEFAULT 0,
+  `isDel` int(11) DEFAULT 0,
+  PRIMARY KEY (`rno`),
+  KEY `scno` (`scno`),
+  KEY `id` (`id`),
+  CONSTRAINT `reserve_ibfk_1` FOREIGN KEY (`scno`) REFERENCES `serviceco` (`scno`),
+  CONSTRAINT `reserve_ibfk_2` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.reserve: ~2 rows (approximately)
 /*!40000 ALTER TABLE `reserve` DISABLE KEYS */;
-REPLACE INTO `reserve` (`rno`, `scno`, `id`, `checkin`, `checkout`, `reserveDate`, `request`, `userName`, `userTel`, `isEdit`, `isDel`) VALUES
+INSERT INTO `reserve` (`rno`, `scno`, `id`, `checkin`, `checkout`, `reserveDate`, `request`, `userName`, `userTel`, `isEdit`, `isDel`) VALUES
 	(46, 39, 'user04', '2022-05-25 00:00:00', '2022-05-30 00:00:00', '2022-05-19 09:19:18', '수정합니다', '이수정', '01012345678', 0, 2),
 	(47, 39, 'user01', '2022-05-24 00:00:00', '2022-05-25 00:00:00', '2022-05-19 10:48:50', '수정하겠습니다', '현빈', '01098452124', 0, 2);
 /*!40000 ALTER TABLE `reserve` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.review
+CREATE TABLE IF NOT EXISTS `review` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  `rtitle` varchar(200) DEFAULT NULL,
+  `rdetailrate1` double DEFAULT 0,
+  `rdetailrate2` double DEFAULT 0,
+  `rdetailrate3` double DEFAULT 0,
+  `star` double DEFAULT 0,
+  `review` varchar(1000) DEFAULT NULL,
+  `delivery_review` varchar(500) DEFAULT NULL,
+  `rdate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `rimage1` varchar(1000) DEFAULT NULL,
+  `rimage2` varchar(1000) DEFAULT NULL,
+  `rimage3` varchar(1000) DEFAULT NULL,
+  `helpcount` int(11) unsigned DEFAULT 0,
+  `pno` int(11) DEFAULT NULL,
+  `uid` varchar(200) DEFAULT NULL,
+  `ratingAvg` decimal(2,1) DEFAULT NULL,
+  `scno` int(11) DEFAULT NULL,
+  `bno` int(11) DEFAULT NULL,
+  `chk` int(11) DEFAULT 1,
+  PRIMARY KEY (`rid`),
+  KEY `pno` (`pno`),
+  KEY `uid` (`uid`),
+  KEY `scno` (`scno`),
+  KEY `bno` (`bno`),
+  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`pno`) REFERENCES `shopproduct` (`pno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `review_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `review_ibfk_3` FOREIGN KEY (`scno`) REFERENCES `serviceco` (`scno`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.review: ~84 rows (approximately)
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-REPLACE INTO `review` (`rid`, `rtitle`, `rdetailrate1`, `rdetailrate2`, `rdetailrate3`, `star`, `review`, `delivery_review`, `rdate`, `rimage1`, `rimage2`, `rimage3`, `helpcount`, `pno`, `uid`, `ratingAvg`, `scno`, `bno`, `chk`) VALUES
+INSERT INTO `review` (`rid`, `rtitle`, `rdetailrate1`, `rdetailrate2`, `rdetailrate3`, `star`, `review`, `delivery_review`, `rdate`, `rimage1`, `rimage2`, `rimage3`, `helpcount`, `pno`, `uid`, `ratingAvg`, `scno`, `bno`, `chk`) VALUES
 	(83, '1', 0, 2, 0, 4, '1', '1', '2022-04-27 16:41:21', '', '', '', 1, 127, NULL, 4.0, NULL, NULL, 1),
 	(84, '123', 1, 0, 0, 5, '123', '123', '2022-04-27 16:41:41', '', '', '', 0, 127, NULL, 4.0, NULL, NULL, 1),
 	(85, '테스트', 0, 0, 0, 5, '리뷰데이터', NULL, '2022-04-28 09:41:08', '/doll.jpg', NULL, NULL, 0, 130, NULL, NULL, NULL, NULL, 1),
@@ -629,9 +993,32 @@ REPLACE INTO `review` (`rid`, `rtitle`, `rdetailrate1`, `rdetailrate2`, `rdetail
 	(222, 'sdf', 0, 0, 0, 0, '좋아요', NULL, '2022-09-05 22:29:07', 'review/shopproduct/1662384547467_img051.jpg', NULL, NULL, 0, 1148, 'user01', NULL, NULL, 158, 1);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.rinfo
+CREATE TABLE IF NOT EXISTS `rinfo` (
+  `rid` int(11) DEFAULT NULL,
+  `rtitle` mediumtext DEFAULT NULL,
+  `rdetailrate1` double DEFAULT NULL,
+  `rdetailrate2` double DEFAULT NULL,
+  `rdetailrate3` double DEFAULT NULL,
+  `star` double DEFAULT NULL,
+  `review` mediumtext DEFAULT NULL,
+  `delivery_review` mediumtext DEFAULT NULL,
+  `rdate` timestamp NULL DEFAULT NULL,
+  `rimage1` mediumtext DEFAULT NULL,
+  `rimage2` mediumtext DEFAULT NULL,
+  `rimage3` mediumtext DEFAULT NULL,
+  `helpcount` int(11) DEFAULT NULL,
+  `pno` int(11) DEFAULT NULL,
+  `uid` mediumtext DEFAULT NULL,
+  `ratingAvg` decimal(2,1) DEFAULT NULL,
+  `scno` int(11) DEFAULT NULL,
+  `bno` int(11) DEFAULT NULL,
+  `chk` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='copy of review table';
+
 -- Dumping data for table petchudb.rinfo: ~88 rows (approximately)
 /*!40000 ALTER TABLE `rinfo` DISABLE KEYS */;
-REPLACE INTO `rinfo` (`rid`, `rtitle`, `rdetailrate1`, `rdetailrate2`, `rdetailrate3`, `star`, `review`, `delivery_review`, `rdate`, `rimage1`, `rimage2`, `rimage3`, `helpcount`, `pno`, `uid`, `ratingAvg`, `scno`, `bno`, `chk`) VALUES
+INSERT INTO `rinfo` (`rid`, `rtitle`, `rdetailrate1`, `rdetailrate2`, `rdetailrate3`, `star`, `review`, `delivery_review`, `rdate`, `rimage1`, `rimage2`, `rimage3`, `helpcount`, `pno`, `uid`, `ratingAvg`, `scno`, `bno`, `chk`) VALUES
 	(83, '1', 0, 2, 0, 4, '1', '1', '2022-04-27 16:41:21', '', '', '', 1, 127, NULL, 4.0, NULL, NULL, 1),
 	(84, '123', 1, 0, 0, 5, '123', '123', '2022-04-27 16:41:41', '', '', '', 0, 127, NULL, 4.0, NULL, NULL, 1),
 	(85, '테스트', 0, 0, 0, 5, '리뷰데이터', NULL, '2022-04-28 09:41:08', '/doll.jpg', NULL, NULL, 0, 130, NULL, NULL, NULL, NULL, 1),
@@ -722,9 +1109,36 @@ REPLACE INTO `rinfo` (`rid`, `rtitle`, `rdetailrate1`, `rdetailrate2`, `rdetailr
 	(211, 'Good!', 0, 0, 0, 5, 'Good!', NULL, '2022-05-19 09:02:41', 'review/shopproduct/1652918561220_darinka-kievskaya-ff221Bu56mI-unsplash.jpg', NULL, NULL, 0, 705, 'user01', NULL, NULL, 128, 1);
 /*!40000 ALTER TABLE `rinfo` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.serviceco
+CREATE TABLE IF NOT EXISTS `serviceco` (
+  `scno` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(200) NOT NULL,
+  `sccate` varchar(10) DEFAULT NULL,
+  `scname` varchar(100) NOT NULL,
+  `scimage` varchar(300) DEFAULT NULL,
+  `sclicense` varchar(300) NOT NULL,
+  `sctel` varchar(100) NOT NULL,
+  `sczipcode` varchar(15) NOT NULL,
+  `scaddress1` varchar(100) NOT NULL,
+  `scaddress2` varchar(100) NOT NULL,
+  `sconeline` varchar(50) NOT NULL,
+  `scdetail_description` varchar(1000) NOT NULL,
+  `opentime` varchar(20) DEFAULT NULL,
+  `breaktime` varchar(20) DEFAULT NULL,
+  `closetime` varchar(20) DEFAULT NULL,
+  `scprice` int(11) DEFAULT 0,
+  `bgimage` varchar(300) DEFAULT NULL,
+  `tag` varchar(2000) DEFAULT NULL,
+  `isDelete` int(11) DEFAULT 0,
+  `employed_count` int(11) DEFAULT 0,
+  PRIMARY KEY (`scno`),
+  KEY `id` (`id`),
+  CONSTRAINT `serviceco_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.serviceco: ~13 rows (approximately)
 /*!40000 ALTER TABLE `serviceco` DISABLE KEYS */;
-REPLACE INTO `serviceco` (`scno`, `id`, `sccate`, `scname`, `scimage`, `sclicense`, `sctel`, `sczipcode`, `scaddress1`, `scaddress2`, `sconeline`, `scdetail_description`, `opentime`, `breaktime`, `closetime`, `scprice`, `bgimage`, `tag`, `isDelete`, `employed_count`) VALUES
+INSERT INTO `serviceco` (`scno`, `id`, `sccate`, `scname`, `scimage`, `sclicense`, `sctel`, `sczipcode`, `scaddress1`, `scaddress2`, `sconeline`, `scdetail_description`, `opentime`, `breaktime`, `closetime`, `scprice`, `bgimage`, `tag`, `isDelete`, `employed_count`) VALUES
 	(21, 'user06', '미용', '탐라 펫뷰티', NULL, '545364564', '', '63503', '제주특별자치도 서귀포시 대정읍 대한로 632', '12312', '안녕하세요', '상세설명을 입력해 주세요', '오전 9시', '오후 12시~1시', '오후 8시', 98700, NULL, NULL, 0, 0),
 	(27, 'user04', '홈클리닝', '클린펫', NULL, '1234-5678', '01053819685', '14464', '경기 부천시 성오로78번길 46', '1동 408호', '성실합니다', '성실히 하겠습니다', '오전 9시', '오후 12시~1시', '오후 8시', 15000, NULL, '#위생관리 ', 0, 0),
 	(28, 'user05', '레슨', '레스으은', NULL, '123456789', '01053819685', '14464', '경기 부천시 성오로78번길 46', '방배아파트 1동 408호', '친절한 엽쌤', '안녕하세요 교육생의 눈높이에 맞는 다양한 레슨을 하고 있습니다', '오전 9시', '오후 12시~1시', '오후 8시', 0, NULL, '#종일반 ,#애견훈련 ', 0, 0),
@@ -740,9 +1154,33 @@ REPLACE INTO `serviceco` (`scno`, `id`, `sccate`, `scname`, `scimage`, `sclicens
 	(47, 'user06', '홈클리닝', '탐라 펫클리닝', 'pet/1652921848616_1650368840501_82362455338.2.jpg', '123456789', '01053819685', '05693', '서울 송파구 가락로 2', '가락동', '정설을 다하겠습니다', '당신의 반려동물의 보금자리를 깨끗하게 만들어 드립니다', '오전 9시', '오후 12시~1시', '오후 8시', 10000, 'pet/1652921848618_1650372680151_11702957084.11.jpg', '#펫수영장 ,#단독실 ', 0, 0);
 /*!40000 ALTER TABLE `serviceco` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.serviceestimate
+CREATE TABLE IF NOT EXISTS `serviceestimate` (
+  `seno` int(11) NOT NULL AUTO_INCREMENT,
+  `scno` int(11) DEFAULT NULL,
+  `scname` varchar(200) DEFAULT NULL,
+  `brno` int(11) DEFAULT NULL,
+  `crno` int(11) DEFAULT NULL,
+  `lrno` int(11) DEFAULT NULL,
+  `sedate` datetime DEFAULT current_timestamp(),
+  `price` int(11) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `secheck` int(11) DEFAULT 0,
+  `failcheck` int(11) DEFAULT 0,
+  PRIMARY KEY (`seno`),
+  KEY `brno` (`brno`),
+  KEY `crno` (`crno`),
+  KEY `lrno` (`lrno`),
+  KEY `scno` (`scno`),
+  CONSTRAINT `serviceestimate_ibfk_1` FOREIGN KEY (`brno`) REFERENCES `beautyrequest` (`brno`),
+  CONSTRAINT `serviceestimate_ibfk_2` FOREIGN KEY (`crno`) REFERENCES `cleaningrequest` (`crno`),
+  CONSTRAINT `serviceestimate_ibfk_3` FOREIGN KEY (`lrno`) REFERENCES `lessonrequest` (`lrno`),
+  CONSTRAINT `serviceestimate_ibfk_4` FOREIGN KEY (`scno`) REFERENCES `serviceco` (`scno`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.serviceestimate: ~12 rows (approximately)
 /*!40000 ALTER TABLE `serviceestimate` DISABLE KEYS */;
-REPLACE INTO `serviceestimate` (`seno`, `scno`, `scname`, `brno`, `crno`, `lrno`, `sedate`, `price`, `description`, `secheck`, `failcheck`) VALUES
+INSERT INTO `serviceestimate` (`seno`, `scno`, `scname`, `brno`, `crno`, `lrno`, `sedate`, `price`, `description`, `secheck`, `failcheck`) VALUES
 	(1, 27, '클린펫', NULL, 1, NULL, '2022-05-13 13:31:49', 150000, '반려동물 가정을 위한 청소업체입니다. 반려동물로 인해 더러워진 고객님의 집을 새것처럼 만들어 드려요^^ 가격은 협의 가능합니다.', 1, 0),
 	(2, 27, '클린펫', NULL, 3, NULL, '2022-05-15 23:12:17', 150000, '안녕하세요', 0, 0),
 	(3, 27, '클린펫', NULL, 4, NULL, '2022-05-16 09:27:21', 900000, '테스트중입니다', 0, 0),
@@ -757,9 +1195,24 @@ REPLACE INTO `serviceestimate` (`seno`, `scno`, `scname`, `brno`, `crno`, `lrno`
 	(12, 27, '클린펫', NULL, 14, NULL, '2022-05-19 10:46:50', 10000, '시연중입니다.', 0, 0);
 /*!40000 ALTER TABLE `serviceestimate` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.shopcart
+CREATE TABLE IF NOT EXISTS `shopcart` (
+  `cno` int(11) NOT NULL AUTO_INCREMENT,
+  `pno` int(11) DEFAULT NULL,
+  `uid` varchar(200) DEFAULT NULL,
+  `amount` int(11) DEFAULT 0,
+  `chk` int(11) DEFAULT 1,
+  PRIMARY KEY (`cno`),
+  UNIQUE KEY `uid` (`uid`,`pno`),
+  KEY `pno` (`pno`),
+  CONSTRAINT `cart_userid_fk` FOREIGN KEY (`uid`) REFERENCES `user` (`id`),
+  CONSTRAINT `shopcart_ibfk_1` FOREIGN KEY (`pno`) REFERENCES `shopproduct` (`pno`),
+  CONSTRAINT `shopcart_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.shopcart: ~17 rows (approximately)
 /*!40000 ALTER TABLE `shopcart` DISABLE KEYS */;
-REPLACE INTO `shopcart` (`cno`, `pno`, `uid`, `amount`, `chk`) VALUES
+INSERT INTO `shopcart` (`cno`, `pno`, `uid`, `amount`, `chk`) VALUES
 	(48, 131, 'user05', 9, 1),
 	(49, 135, 'user05', 1, 0),
 	(51, 141, 'user05', 2, 1),
@@ -779,9 +1232,28 @@ REPLACE INTO `shopcart` (`cno`, `pno`, `uid`, `amount`, `chk`) VALUES
 	(242, 1148, 'user02', 1, 0);
 /*!40000 ALTER TABLE `shopcart` ENABLE KEYS */;
 
--- Dumping data for table petchudb.shopproduct: ~1 rows (approximately)
+-- Dumping structure for table petchudb.shopproduct
+CREATE TABLE IF NOT EXISTS `shopproduct` (
+  `pno` int(11) NOT NULL AUTO_INCREMENT,
+  `pname` varchar(500) NOT NULL,
+  `pprice` int(11) DEFAULT 1000000,
+  `pbrand` varchar(200) DEFAULT NULL,
+  `pmaker` varchar(200) DEFAULT NULL,
+  `pcontents` varchar(10000) DEFAULT NULL,
+  `prate` int(11) DEFAULT 0,
+  `pimage` varchar(1000) DEFAULT NULL,
+  `pcate2` varchar(200) DEFAULT NULL,
+  `pcate3` varchar(300) DEFAULT NULL,
+  `pcate4` varchar(400) DEFAULT NULL,
+  `pqantity` int(11) DEFAULT 100,
+  `pisdelete` tinyint(1) DEFAULT NULL,
+  `sellcount` int(11) DEFAULT 100,
+  PRIMARY KEY (`pno`)
+) ENGINE=InnoDB AUTO_INCREMENT=1353 DEFAULT CHARSET=utf8mb3;
+
+-- Dumping data for table petchudb.shopproduct: ~1,071 rows (approximately)
 /*!40000 ALTER TABLE `shopproduct` DISABLE KEYS */;
-REPLACE INTO `shopproduct` (`pno`, `pname`, `pprice`, `pbrand`, `pmaker`, `pcontents`, `prate`, `pimage`, `pcate2`, `pcate3`, `pcate4`, `pqantity`, `pisdelete`, `sellcount`) VALUES
+INSERT INTO `shopproduct` (`pno`, `pname`, `pprice`, `pbrand`, `pmaker`, `pcontents`, `prate`, `pimage`, `pcate2`, `pcate3`, `pcate4`, `pqantity`, `pisdelete`, `sellcount`) VALUES
 	(126, '웰스비 그레인프리 강아지 유기농 샘플 알러지 가수분해 사료', 45400, '웰스비', '', NULL, 0, 'https://shopping-phinf.pstatic.net/main_1597809/15978095859.20220215165849.jpg', '강아지', '강아지 사료', '건식사료', 98, NULL, 165),
 	(127, '펫원 더마독 관절 체중조절 강아지사료', 29000, '더마독', '펫원', NULL, 0, 'https://shopping-phinf.pstatic.net/main_1933080/19330803748.20220413143115.jpg', '강아지', '강아지 사료', '건식사료', 100, NULL, 105),
 	(128, '마이펫닥터 시그니처 유기농 알러제닉 눈물 사료', 17000, '마이펫닥터', '', NULL, 0, 'https://shopping-phinf.pstatic.net/main_2640626/26406266522.20210318125034.jpg', '강아지', '강아지 사료', '건식사료', 100, NULL, 110),
@@ -1855,9 +2327,23 @@ REPLACE INTO `shopproduct` (`pno`, `pname`, `pprice`, `pbrand`, `pmaker`, `pcont
 	(1352, 'NOW 그레인프리 스몰브리드 어덜트', 20290, 'NOW', '펫큐리안', NULL, 0, 'https://shopping-phinf.pstatic.net/main_1232582/12325828530.20210121101943.jpg', '반려동물', '강아지 사료/건식사료', '건식사료', 100, NULL, 100);
 /*!40000 ALTER TABLE `shopproduct` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.tbl_board
+CREATE TABLE IF NOT EXISTS `tbl_board` (
+  `bno` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(1000) NOT NULL,
+  `content` text DEFAULT NULL,
+  `writer` varchar(50) NOT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  `updatedate` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`bno`),
+  KEY `writer` (`writer`),
+  CONSTRAINT `tbl_board_ibfk_1` FOREIGN KEY (`writer`) REFERENCES `tbl_user` (`uid`),
+  CONSTRAINT `tbl_board_ibfk_2` FOREIGN KEY (`writer`) REFERENCES `tbl_user` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.tbl_board: ~7 rows (approximately)
 /*!40000 ALTER TABLE `tbl_board` DISABLE KEYS */;
-REPLACE INTO `tbl_board` (`bno`, `title`, `content`, `writer`, `regdate`, `updatedate`) VALUES
+INSERT INTO `tbl_board` (`bno`, `title`, `content`, `writer`, `regdate`, `updatedate`) VALUES
 	(1, '스프링 기초와 원리를 알아보자', '스프링이란? 스프링 프레임워크는 자바 진영의 웹 프레임워크이다. EJB라는 겨울을 넘어 새로운 시작이라는 뜻으로 시작된 스프링은 현재는 다양한 생태계를 구축하고 있다.', 'fiom', '2022-04-18 12:52:25', '2022-04-18 12:52:25'),
 	(2, '객체 지향 프로그래밍(OOP)', '객체 지향 프로그래밍(Object Oriented Programming)은 컴퓨터 프로그래밍의 패러다임 중 하나이다.', 'beagel', '2022-04-18 12:52:25', '2022-04-18 12:52:25'),
 	(3, '스프링 학습을 포기하는 이유', '많은 개발자 분들이 취업이나 실무에서 필요해서 스프링 공부를 시작합니다. 그런데 막상 공부를 시작해보면, 스프링은 너무 거대해서 어디서부터 어떻게 학습해야 할지 막막합니다. 마치 넓은 마다 한가운데 길을 잃고 혼자 덩그러니 떠 있는 돛단배 같은 기분이 듭니다.', 'shiba dog', '2022-04-18 12:52:25', '2022-04-18 12:52:25'),
@@ -1867,9 +2353,24 @@ REPLACE INTO `tbl_board` (`bno`, `title`, `content`, `writer`, `regdate`, `updat
 	(8, '동물학대 안 돼', '20일 오전 서울 종로구 이순신 장군 동상 앞에서 한국동물보호연합 회원들이 동물학대 강력처벌을 촉구하는 퍼포먼스를 하고 있다. 2022.4.20/뉴스1', 'greyhound', '2022-04-20 16:50:24', '2022-04-20 16:50:24');
 /*!40000 ALTER TABLE `tbl_board` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.tbl_message
+CREATE TABLE IF NOT EXISTS `tbl_message` (
+  `mno` int(11) NOT NULL AUTO_INCREMENT,
+  `receiver` varchar(20) NOT NULL,
+  `sender` varchar(20) NOT NULL,
+  `message` text DEFAULT NULL,
+  `senddate` datetime DEFAULT current_timestamp(),
+  `readdate` datetime DEFAULT NULL,
+  PRIMARY KEY (`mno`),
+  KEY `receiver` (`receiver`),
+  KEY `sender` (`sender`),
+  CONSTRAINT `tbl_message_ibfk_1` FOREIGN KEY (`receiver`) REFERENCES `tbl_user` (`uid`),
+  CONSTRAINT `tbl_message_ibfk_2` FOREIGN KEY (`sender`) REFERENCES `tbl_user` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.tbl_message: ~8 rows (approximately)
 /*!40000 ALTER TABLE `tbl_message` DISABLE KEYS */;
-REPLACE INTO `tbl_message` (`mno`, `receiver`, `sender`, `message`, `senddate`, `readdate`) VALUES
+INSERT INTO `tbl_message` (`mno`, `receiver`, `sender`, `message`, `senddate`, `readdate`) VALUES
 	(1, 'chihuahua', 'greyhound', '치와와 다움주월요요일 질료와주시면 안될까요?', '2022-04-21 13:34:56', '2022-04-25 16:27:24'),
 	(2, 'greyhound', 'chihuahua', '네 알겠습니다. 월요일에 갈게요', '2022-04-21 13:34:56', NULL),
 	(3, 'chihuahua', 'greyhound', '네 다움주워용일에 봽게습니다.', '2022-04-21 13:34:56', '2022-04-25 14:03:34'),
@@ -1880,9 +2381,22 @@ REPLACE INTO `tbl_message` (`mno`, `receiver`, `sender`, `message`, `senddate`, 
 	(21, 'greyhound', 'chihuahua', '네', '2022-04-22 15:19:53', '2022-04-25 11:41:53');
 /*!40000 ALTER TABLE `tbl_message` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.tbl_reply
+CREATE TABLE IF NOT EXISTS `tbl_reply` (
+  `rno` int(11) NOT NULL AUTO_INCREMENT,
+  `bno` int(11) NOT NULL,
+  `reply` varchar(1000) NOT NULL,
+  `replyer` varchar(50) NOT NULL,
+  `replyDate` datetime DEFAULT current_timestamp(),
+  `updateDate` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`rno`),
+  KEY `bno` (`bno`),
+  CONSTRAINT `tbl_reply_ibfk_1` FOREIGN KEY (`bno`) REFERENCES `tbl_board` (`bno`)
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.tbl_reply: ~80 rows (approximately)
 /*!40000 ALTER TABLE `tbl_reply` DISABLE KEYS */;
-REPLACE INTO `tbl_reply` (`rno`, `bno`, `reply`, `replyer`, `replyDate`, `updateDate`) VALUES
+INSERT INTO `tbl_reply` (`rno`, `bno`, `reply`, `replyer`, `replyDate`, `updateDate`) VALUES
 	(1, 1, '비숑님 도대머리입니다.', 'The Bichon', '2022-04-21 14:24:42', '2022-04-21 14:24:42'),
 	(2, 1, '네!!!', 'The Bichon', '2022-04-21 14:24:42', '2022-04-21 14:24:42'),
 	(3, 1, '제가 대머리라고요?', 'The Bichon', '2022-04-21 14:24:42', '2022-04-21 14:24:42'),
@@ -1965,9 +2479,22 @@ REPLACE INTO `tbl_reply` (`rno`, `bno`, `reply`, `replyer`, `replyDate`, `update
 	(98, 1, '...', 'The Bichon', '2022-04-21 14:24:56', '2022-04-21 14:24:56');
 /*!40000 ALTER TABLE `tbl_reply` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.tbl_user
+CREATE TABLE IF NOT EXISTS `tbl_user` (
+  `uid` varchar(20) NOT NULL,
+  `upass` varchar(200) NOT NULL,
+  `uname` varchar(20) NOT NULL,
+  `point` int(11) DEFAULT 0,
+  `image` varchar(200) DEFAULT NULL,
+  `zipcode` varchar(10) DEFAULT NULL,
+  `address1` varchar(200) DEFAULT NULL,
+  `address2` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.tbl_user: ~11 rows (approximately)
 /*!40000 ALTER TABLE `tbl_user` DISABLE KEYS */;
-REPLACE INTO `tbl_user` (`uid`, `upass`, `uname`, `point`, `image`, `zipcode`, `address1`, `address2`) VALUES
+INSERT INTO `tbl_user` (`uid`, `upass`, `uname`, `point`, `image`, `zipcode`, `address1`, `address2`) VALUES
 	('beagel', 'pass', '비글', 30, NULL, NULL, NULL, NULL),
 	('chihuahua', 'pass', '치와와', 50, NULL, NULL, NULL, NULL),
 	('dachshund', 'pass', '닥스후트', 40, NULL, NULL, NULL, NULL),
@@ -1981,9 +2508,31 @@ REPLACE INTO `tbl_user` (`uid`, `upass`, `uname`, `point`, `image`, `zipcode`, `
 	('whippet', 'pass', '휘핏', 30, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `tbl_user` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` varchar(200) NOT NULL,
+  `pass` varchar(500) NOT NULL,
+  `image` varchar(1000) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `nick` varchar(100) NOT NULL,
+  `tel` varchar(200) NOT NULL,
+  `birthday` datetime DEFAULT current_timestamp(),
+  `gender` varchar(10) DEFAULT NULL,
+  `email` varchar(200) NOT NULL,
+  `zipcode` varchar(20) DEFAULT NULL,
+  `address1` varchar(200) DEFAULT NULL,
+  `address2` varchar(200) DEFAULT NULL,
+  `pname` varchar(200) DEFAULT NULL,
+  `cash` int(11) DEFAULT 0,
+  `point` int(11) DEFAULT 0,
+  `type` varchar(10) DEFAULT '일반',
+  `isDelete` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.user: ~19 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-REPLACE INTO `user` (`id`, `pass`, `image`, `name`, `nick`, `tel`, `birthday`, `gender`, `email`, `zipcode`, `address1`, `address2`, `pname`, `cash`, `point`, `type`, `isDelete`) VALUES
+INSERT INTO `user` (`id`, `pass`, `image`, `name`, `nick`, `tel`, `birthday`, `gender`, `email`, `zipcode`, `address1`, `address2`, `pname`, `cash`, `point`, `type`, `isDelete`) VALUES
 	('admin1', '$2a$10$T/LSLM7RSLWtV1auWHL3J./IeDjf/JBTVqRPWTVbqLYsc6E9q2Lpq', 'product/1650119816786_img03.png', '박병철', '관리자', '01084215645', '2021-11-09 00:00:00', '남', 'bungchul@petchu.com', '21632', '인천 남동구 남동대로239번길 72-29', '205호', NULL, 0, 28653, '관리', 0),
 	('asdf', '$2a$10$.PfPGTosqe7.obCoxJ/wq.IC98.6KlbkxgDlwQM4O9ZRkk2YzGDmC', 'photo/1650440256895_icon_faq.png', 'aweg', 'aefae', '01049841182', '2022-04-18 00:00:00', '여', 'doctor3@gamil.com', '01822', '서울 노원구 노원로1가길 10', '123', NULL, 0, 0, '일반', 1),
 	('blue', '$2a$10$xgZi7Yw7uuIY6urjbaSUy.qTuTj04s0jrWBs7ay8paXSiHseaqVYe', 'photo/1650268027606_img23.jpg', '동덕이', '덕돌이', '123-123-1232', '2022-04-19 00:00:00', '여', 'dsds@petchu.com', '08386', '서울 구로구 구로동로 2', '111', NULL, 0, 0, '일반', 1),
@@ -2005,9 +2554,24 @@ REPLACE INTO `user` (`id`, `pass`, `image`, `name`, `nick`, `tel`, `birthday`, `
 	('ㅇㄹㅎㄴㅇㄹㅎ', '$2a$10$ljeBa5HJNzLYq8Wa5cfLLeqsZzHuTz7FfXsOkTbQezddemMR/9zcu', 'photo/1650544444533_1649938648218_1649050072589_img08.png', 'ㄹㅇㄴㅎㄴㄱㄷ', 'ㄴㅇㄹㅎㄴㅇㄹ', '01042181151', '2021-12-08 00:00:00', '남', 'aeknf@naver.com', '04778', '서울 성동구 아차산로 2-1', 'asge', NULL, 0, 0, '일반', 1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.user_order
+CREATE TABLE IF NOT EXISTS `user_order` (
+  `uono` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(200) DEFAULT NULL,
+  `orno` varchar(200) DEFAULT NULL,
+  `point` int(11) DEFAULT NULL,
+  `sum` int(11) DEFAULT NULL,
+  `paydate` datetime DEFAULT current_timestamp(),
+  `omessage` text DEFAULT NULL,
+  `state` int(11) DEFAULT 0,
+  PRIMARY KEY (`uono`),
+  KEY `uid` (`uid`),
+  CONSTRAINT `user_order_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2011476 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.user_order: ~64 rows (approximately)
 /*!40000 ALTER TABLE `user_order` DISABLE KEYS */;
-REPLACE INTO `user_order` (`uono`, `uid`, `orno`, `point`, `sum`, `paydate`, `omessage`, `state`) VALUES
+INSERT INTO `user_order` (`uono`, `uid`, `orno`, `point`, `sum`, `paydate`, `omessage`, `state`) VALUES
 	(2011411, 'user01', '2214141335', 0, 220000, '2022-05-10 23:56:36', NULL, 0),
 	(2011412, 'user01', '1652192762563user01', 5300, 206300, '2022-05-10 23:56:36', NULL, 0),
 	(2011413, 'user01', '1652194228238user01', 25000, 63000, '2022-05-10 23:56:36', NULL, 0),
@@ -2074,9 +2638,34 @@ REPLACE INTO `user_order` (`uono`, `uid`, `orno`, `point`, `sum`, `paydate`, `om
 	(2011475, 'user01', '1662260088107user01', 0, 139500, '2022-09-04 11:54:48', '문 앞ㅁ 나두세요', 2);
 /*!40000 ALTER TABLE `user_order` ENABLE KEYS */;
 
+-- Dumping structure for table petchudb.user_request
+CREATE TABLE IF NOT EXISTS `user_request` (
+  `rno` int(11) NOT NULL AUTO_INCREMENT,
+  `d1` tinyint(1) DEFAULT NULL,
+  `d2` tinyint(1) DEFAULT NULL,
+  `d3` tinyint(1) DEFAULT NULL,
+  `d4` tinyint(1) DEFAULT NULL,
+  `d5` tinyint(1) DEFAULT 0,
+  `d_etc` varchar(10000) NOT NULL,
+  `dvedio` varchar(1000) DEFAULT NULL,
+  `dimg1` varchar(1000) DEFAULT NULL,
+  `dimg2` varchar(1000) DEFAULT NULL,
+  `dimg3` varchar(1000) DEFAULT NULL,
+  `pno` int(11) DEFAULT NULL,
+  `dno` int(11) DEFAULT NULL,
+  `dimg4` varchar(1000) DEFAULT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  `is_checked` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`rno`),
+  KEY `pno` (`pno`),
+  KEY `dno` (`dno`),
+  CONSTRAINT `user_request_ibfk_1` FOREIGN KEY (`pno`) REFERENCES `pet` (`pno`),
+  CONSTRAINT `user_request_ibfk_2` FOREIGN KEY (`dno`) REFERENCES `doctor` (`dno`)
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb3;
+
 -- Dumping data for table petchudb.user_request: ~2 rows (approximately)
 /*!40000 ALTER TABLE `user_request` DISABLE KEYS */;
-REPLACE INTO `user_request` (`rno`, `d1`, `d2`, `d3`, `d4`, `d5`, `d_etc`, `dvedio`, `dimg1`, `dimg2`, `dimg3`, `pno`, `dno`, `dimg4`, `regdate`, `is_checked`) VALUES
+INSERT INTO `user_request` (`rno`, `d1`, `d2`, `d3`, `d4`, `d5`, `d_etc`, `dvedio`, `dimg1`, `dimg2`, `dimg3`, `pno`, `dno`, `dimg4`, `regdate`, `is_checked`) VALUES
 	(79, 1, 0, 0, 0, 0, ' 구토를 합니다 ㅠㅠ', NULL, 'request/user/1652918371800_icon_cat_snack.png', 'request/user/1652918371809_icon_cleaning.png', 'request/user/1652918371811_icon_cleaning2.png', 27, NULL, NULL, '2022-05-19 08:59:32', NULL),
 	(80, 1, 0, 0, 0, 0, '구토를 합니다 ㅠㅠ', NULL, 'request/user/1652924405106_icon_cat_snack.png', 'request/user/1652924405110_icon_cleaning.png', 'request/user/1652924405111_icon_cleaning2.png', 29, NULL, NULL, '2022-05-19 10:40:06', NULL);
 /*!40000 ALTER TABLE `user_request` ENABLE KEYS */;
