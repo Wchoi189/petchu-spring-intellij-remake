@@ -25,7 +25,7 @@
 	background-color: #A7CA37;
 	border-radius: 10px;
 	font-size: 15px;
-	font-weight: 900px;
+	font-weight: 900;
 	color: white;
 	cursor: pointer;
 	width: 250px;
@@ -52,7 +52,7 @@
 	background-color: #F7E600;
 	border-radius: 10px;
 	font-size: 15px;
-	font-weight: 900px;
+	font-weight: 900;
 	color: #3A1D1D;
 	cursor: pointer;
 	width: 250px;
@@ -65,19 +65,19 @@
 }
 
 #loginfrm input[type="submit"]:hover{
-	background-color: 7F9730;
+	background-color: #7F9730;
 }
 
 /*------------------<usertype>------------------------*/
 .register_page{
 	width: 960px;
-	margin: 0px auto;;
+	margin: 0px auto;
 	text-align: center;
 	margin-top: 100px; 
 
 }
 #register_boxes{
-		margin-bottom: 400;
+		margin-bottom: 400px;
 }
 .register_box{
 	float: left;
@@ -90,7 +90,7 @@
 	cursor: pointer;
 }
 .register_box:hover{
-	background-color: 7F9730;
+	background-color: #7F9730;
 }
 .register_box p{
 	font-size: large;	
@@ -164,7 +164,7 @@
 
 }
 #register_boxes{
-		margin-bottom: 400;
+		margin-bottom: 400px;
 }
 .register_box{
 	float: left;
@@ -177,7 +177,7 @@
 	cursor: pointer;
 }
 .register_box:hover{
-	background-color: 7F9730;
+	background-color: #7F9730;
 }
 .register_box p{
 	font-size: large;	
@@ -235,7 +235,7 @@
 	background-color: #A7CA37;
 	border-radius: 10px;
 	font-size: 15px;
-	font-weight: 900px;
+	font-weight: 900;
 	color: white;
 	cursor: pointer;
 	padding: 0px 20px 0px 20px;
@@ -243,14 +243,14 @@
 	margin-right: 10px;
 }
 #submitbtn input[type="submit"]:hover{
-	background-color: 7F9730;
+	background-color: #7F9730;
 }
 #submitbtn input[type="reset"]{
 	border: none;
 	border: 1px solid #A7CA37;
 	border-radius: 10px;
 	font-size: 15px;
-	font-weight: 900px;
+	font-weight: 900;
 	background-color: white;
 	color: #A7CA37;
 	cursor: pointer;
@@ -258,5 +258,5 @@
 	height: 40px;
 }
 #submitbtn input[type="reset"]:hover{
-	background-color: DEFA81;'
+	background-color: #DEFA81;'
 }

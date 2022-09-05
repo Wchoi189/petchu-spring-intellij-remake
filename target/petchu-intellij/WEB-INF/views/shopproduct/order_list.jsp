@@ -59,7 +59,7 @@
 		color:blue;
 	}
 	.delState{	/* 	이놈 어떻게 해도 가운데정렬 안됨ㅅㅂ */
-		font-size: 20;
+		font-size: 20px;
  	  	margin-left: 30%;
 	}
 </style>

@@ -54,7 +54,7 @@
 .buttonb {
     position: relative;
     margin: 0px auto;
-    bottom: 160;
+    bottom: 160px;
     /* left: 40%; */
     display: none;
     border-radius: 10px;
@@ -137,9 +137,7 @@
 	height : 350px;
 	text-align: left;
 }
-.show {
-	display:;
-}
+
 
 .rad {
 	margin-left : 45px;

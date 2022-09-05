@@ -1,13 +1,13 @@
 package com.example.dao;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.example.domain.Criteria;
 import com.example.domain.shopcartVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class shopcartDAOImpl implements shopcartDAO{
@@ -83,7 +83,7 @@ public class shopcartDAOImpl implements shopcartDAO{
 
 	@Override
 	public void sell_update(int amount, int pno) {
-		//��������
+		//수량증가
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("amount", amount);
 		map.put("pno", pno);

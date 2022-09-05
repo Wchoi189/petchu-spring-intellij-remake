@@ -225,7 +225,7 @@ span.tag {
 	display: flex;
 	flex-direction: column;
 	align-content: center;
-	margin-left: 10px 0px 0px 10;
+	margin: 10px 0px 0px 10px;
 	width: 670px;
 	min-height: 300px;
 	/* background-color: #d5fc58; */
@@ -281,7 +281,7 @@ span.tag {
 
 .prame_price {
 	/* border: 1px solid blue; */
-	width: block;
+
 	width: fit-content;
 	height: fit-content;
 }
@@ -335,10 +335,10 @@ span.tag {
     height: 45px;
     border: none;
     padding: 8px 12px 8px 12px;
-    background-color: A7CA37;
+    background-color: #A7CA37;
     border-radius: 10px;
     font-size: 15px;
-    font-weight: 900px;
+    font-weight: 900;
     color: white;
     cursor: pointer;
     margin-left: 10px;

@@ -75,7 +75,7 @@
            $(".button").on("click", ".btn_insert", function(){
            var pno = $(this).closest(".whole").find(".pno").val();
            var bno = $(this).closest(".whole").find(".bno").val();
-           location.href="insert?pno=" + pno + "&bno=" +bno;	
+           location.href="insert?pno=" + pno + "&bno=" +bno;
         })
 
 	

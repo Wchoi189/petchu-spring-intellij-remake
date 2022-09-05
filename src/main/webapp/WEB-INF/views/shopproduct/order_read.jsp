@@ -529,7 +529,7 @@ td {
 							}
 						});
 				}else if(result == 0){	//리뷰가 0이라면 값을 가지고 이동
-					location.href="/review/insert?pno="+pno+"&bno="+bno;
+					location.href="/review/insert-review?pno="+pno+"&bno="+bno;
 				}
 			}
 		});

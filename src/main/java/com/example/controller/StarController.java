@@ -1,12 +1,9 @@
 package com.example.controller;
 
-import java.util.HashMap;
-import java.util.Locale;
-
-import com.example.service.StarService;
 import com.example.dao.ServiceEstimateDAO;
 import com.example.dao.StarDAO;
 import com.example.domain.StarVO;
+import com.example.service.StarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Locale;
+
 @Controller
 @RequestMapping("/star")
-public class StarController { //���� ��Ʈ�ѷ�
+public class StarController { //리뷰 컨트롤러
 	@Autowired
 	StarDAO sdao;
 	

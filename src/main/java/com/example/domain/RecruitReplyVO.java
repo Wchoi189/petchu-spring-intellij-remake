@@ -1,8 +1,8 @@
 package com.example.domain;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 
 public class RecruitReplyVO extends RecruitVO{
  private int rno;

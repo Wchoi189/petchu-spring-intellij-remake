@@ -1,12 +1,12 @@
 package com.example.dao;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.example.domain.ChatMessageVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class ChatMessageDAOImpl implements ChatMessageDAO{
@@ -32,7 +32,7 @@ public class ChatMessageDAOImpl implements ChatMessageDAO{
 	}
 
 	@Override
-	public Object receinfo(int crno) {
+	public ChatMessageVO receinfo(int crno) {
 		return session.selectOne(namespace + ".receinfo", crno);
 	}
 

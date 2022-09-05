@@ -1,8 +1,8 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.domain.PetVO;
+
+import java.util.List;
 
 public interface PetDAO {
 	public List<PetVO> readPetList(String id);

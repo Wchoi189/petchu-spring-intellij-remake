@@ -1,11 +1,5 @@
 package com.example.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
 import com.example.dao.ProductDAO;
 import com.example.dao.UserDAO;
 import com.example.domain.Criteria;
@@ -20,6 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Controller
 @RequestMapping ("/product")
@@ -97,8 +97,8 @@ public class ProductController {
 	
 	@RequestMapping("/shop.json")
 	@ResponseBody
-	public String shop(String query ,int page){
-		return NaverAPI.connection(query,page);
+	public String shop(String query ,int page, String display){
+		return NaverAPI.connection(query, page, display);
 	}
 	
 	@RequestMapping("/list.json")
@@ -120,7 +120,7 @@ public class ProductController {
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	@ResponseBody
 	public void insert(ProductVO vo){
-		//�̹��� �� pc�� ī��
+		//이미지 내 pc로 카피
 		/*
 		String str = vo.getPimage();
 		String fileName = str.substring(str.lastIndexOf("/")+1);
@@ -133,7 +133,7 @@ public class ProductController {
 			vo.setPimage("product/" + fileName);
 			dao.insert(vo);
 		} catch (Exception e) {
-			System.out.println("����: " + e.toString());
+			System.out.println("오류: " + e.toString());
 		}
 		*/
 		dao.insert(vo);

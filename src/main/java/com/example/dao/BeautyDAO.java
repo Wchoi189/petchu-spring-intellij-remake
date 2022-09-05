@@ -4,8 +4,6 @@ import com.example.domain.BeautyRequestVO;
 
 import java.util.List;
 
-
-
 public interface BeautyDAO {
 	public void beautyInsert(BeautyRequestVO vo);
 	public List<BeautyRequestVO> beautyList();

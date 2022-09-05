@@ -19,7 +19,7 @@
       <div class="line">
      <div class="p_info">
         <div class="p-img">
-          <img src={{pimage}} width=80 height=80/>
+          <img src={{pimage}} width=80 height=80 />
         </div>
         <div class="pname">
           <div id="name">{{pname}}</div>
@@ -27,7 +27,7 @@
       </div><!--p_info-->
        <div class="button">
          <div class="buttons">
-           <input type="submit" class="btnsubmit" rid="{{rid}}" value="수정">
+           <input type="submit" class="btnsubmit" rid="{{rid}}" value="수정" />
            <input type="reset"  class="btndelete" rid="{{rid}}" value="삭제">
          </div>
        </div>
@@ -115,8 +115,8 @@ var page=${param.page ==null ? 1:param.page};
 				 
 				 var rate = $('#reviewpage .rate');
 					rate.each(function(){
-						var tagetscore = $(this).attr("data-rate");
-						$(this).find('.fa-solid').css({color:'#D3D3D3'});
+                        let tagetscore = $(this).attr("data-rate");
+                        $(this).find('.fa-solid').css({color:'#D3D3D3'});
 						$(this).find('.fa-solid:nth-child(-n+' + tagetscore + ')').css({color:'#F08d28'});
 					});
 				$(".rimage1").each(function(){

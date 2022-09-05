@@ -1,13 +1,13 @@
 package com.example.dao;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.example.domain.Criteria;
 import com.example.domain.OrderlistVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class OrderlistDAOImpl implements OrderlistDAO {
@@ -16,7 +16,7 @@ public class OrderlistDAOImpl implements OrderlistDAO {
 	SqlSession session;
 	String namespace="com.example.mapper.OrderlistMapper";
 	
-	@Override //������  
+	@Override //재정의  
 	public List<OrderlistVO> list(Criteria cri) {
 		return session.selectList(namespace + ".list", cri);
 	}

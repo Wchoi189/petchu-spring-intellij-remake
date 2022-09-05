@@ -1,6 +1,4 @@
 package com.example.controller;
- 
-import java.util.HashMap;
 
 import com.example.dao.FaqDAO;
 import com.example.domain.Criteria;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/faq")
@@ -20,7 +19,7 @@ public class FaqController {
 	@Autowired
 	FaqDAO dao;
 	
-	//���������
+	//목록페이지
 	@RequestMapping("/list")
 	public String list(Model model, Criteria cri){
 		cri.setPerPageNum(5);
@@ -51,14 +50,14 @@ public class FaqController {
 
 		return map;
 	}
-	//�Խñ��Է�ȭ��
+	//게시글입력화면
 	@RequestMapping("/insert")
 	public String insert(Model model){
 		model.addAttribute("pageName", "faq/insert.jsp");
 		return "/home";
 	}
 	
-	//�Խñ��Է�
+	//게시글입력
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insertPost(FaqVO vo){
 		dao.insert(vo);

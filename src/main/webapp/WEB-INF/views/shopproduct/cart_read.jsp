@@ -328,7 +328,7 @@
 					}
 				})
 				//.chk가 모두 체크되어있을 경우 chkAll 체크 (.chk length와 .chk:checked length가 동일한 경우)
-				if($('input[class=bigCheckbox_item]:checked').length==$('.bigCheckbox_item').length){
+/*				if($('input[class=bigCheckbox_item]:checked').length==$('.bigCheckbox_item').length){
 					if($('.bigCheckbox_item').length==0){
 						 swal({
 						  	 title:"",
@@ -338,7 +338,7 @@
 					}else{
 						$("#chk_all").attr("checked", "checked");
 					}
-				}
+				}*/
 				//입장시 몇 개 선택되어 있는지 표시
 				checked = 0;
 				chk_all = $(".bigCheckbox_item").length;

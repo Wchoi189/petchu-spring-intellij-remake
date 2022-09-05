@@ -1,14 +1,14 @@
 package com.example.domain;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.util.Date;
+
 public class OrderlistVO extends shopproductVO {
-	private int bno; //orderlist�� ��ȣ
-	private String uid; //�������̵�
-	private int pno; //��ǰ��ȣ �̰� �ȵ�
-	private int amount;//�� ����
+	private int bno; //orderlist의 번호
+	private String uid; //유저아이디
+	private int pno; //상품번호 이게 안됨
+	private int amount;//총 갯수
 	private int final_price;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date odate;

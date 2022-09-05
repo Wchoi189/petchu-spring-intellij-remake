@@ -1,8 +1,8 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.domain.StarVO;
+
+import java.util.List;
 
 public interface StarDAO {
 	public List<StarVO> list();

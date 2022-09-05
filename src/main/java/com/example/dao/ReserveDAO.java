@@ -1,8 +1,8 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.domain.ReserveVO;
+
+import java.util.List;
 
 public interface ReserveDAO {
 	public List<ReserveVO> list(String id);

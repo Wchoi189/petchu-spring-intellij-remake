@@ -1,11 +1,5 @@
 package com.example.controller;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.util.HashMap;
-
-import javax.annotation.Resource;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,17 +11,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.annotation.Resource;
+import java.io.File;
+import java.nio.file.Files;
+import java.util.HashMap;
+
 @Controller
 public class FileController {
 	@Resource(name = "uploadPath")
 	String path;
 
-	// �̹������� �������� ���
+	// 이미지파일 브라우저에 출력
 	@RequestMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> display(String fileName) throws Exception {
 		ResponseEntity<byte[]> result = null;
-		// display fileName�� �ִ� ���
+		// display fileName이 있는 경우
 		if (!fileName.equals("")) {
 			System.out.println("......" + path);
 			File file = new File(path + fileName);
@@ -44,7 +43,7 @@ public class FileController {
 	public HashMap<String,Object> updatePost(MultipartHttpServletRequest multi) throws Exception{
 		HashMap<String, Object> map=new HashMap<>();
 		MultipartFile file=multi.getFile("upload");
-		//���Ͼ��ε�
+		//파일업로드
 		if(!file.isEmpty()) {
 			String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 			file.transferTo(new File(path + "ckupload/" + fileName));

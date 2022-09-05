@@ -8,7 +8,7 @@ public interface ChatMessageDAO {
 	public List<ChatMessageVO> print(int crno);
 	public void send(ChatMessageVO vo);
 	public List<ChatMessageVO> chatList(String id);
-	public Object receinfo(int crno);
+	public ChatMessageVO receinfo(int crno);
 	public void readdate(int crno, String id);
 	public int notread(int crno, String id);
 	public int notreadall(String id);

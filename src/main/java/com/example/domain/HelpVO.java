@@ -1,10 +1,10 @@
 package com.example.domain;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class HelpVO extends StarVO { //�����õ �ߺ�üũ  DB
+import java.util.Date;
+
+public class HelpVO extends StarVO { //댓글추천 중복체크  DB
 	private int hno;
 	private String uid;
 	private int rid;

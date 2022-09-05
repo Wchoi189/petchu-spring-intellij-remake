@@ -1,11 +1,6 @@
 package com.example.controller;
 
 
-
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import com.example.dao.ChatMessageDAO;
 import com.example.dao.ChatRoomDAO;
 import com.example.dao.UserDAO;
@@ -17,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("chat")
@@ -52,8 +49,7 @@ public class ChatController {
 	@ResponseBody
 	@RequestMapping("/message.json")
 	public List<ChatMessageVO> messageList(int crno){
-		List<ChatMessageVO> print = mdao.print(crno);
-		return print;
+		return mdao.print(crno);
 	}
 	
 	@ResponseBody

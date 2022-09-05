@@ -1,19 +1,11 @@
 package com.example.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
 import com.example.dao.*;
 import com.example.domain.*;
 import com.example.service.kakaoAPI;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -31,9 +23,14 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
@@ -42,16 +39,16 @@ public class UserController {
 	UserDAO dao;
 
 	@Autowired
-    PetDAO pdao;
+	PetDAO pdao;
 	
 	@Autowired
 	BeautyDAO bdao;
 	
 	@Autowired
-    CleaningDAO cdao;
+	CleaningDAO cdao;
 	
 	@Autowired
-    LessonDAO ldao;
+	LessonDAO ldao;
 	
 	@Resource(name = "uploadPath")
 	String path;
@@ -259,8 +256,8 @@ public class UserController {
 		UserVO vo = dao.read(id);
 
 		if (vo != null) {
-			//if (vo.getPass().equals(pass)) {
-			if (passEncoder.matches(pass, vo.getPass())) {
+			if (vo.getPass().equals(pass)) {
+			/*if (passEncoder.matches(pass, vo.getPass())) {*/
 				if(vo.getIsDelete()==1){
 					result = 3;
 				}else{
@@ -303,17 +300,17 @@ public class UserController {
 	}
 	//포인트 관리
 	@Autowired
-    PointhistoryDAO phdao;
+	PointhistoryDAO phdao;
 	
 	@ResponseBody
 	@RequestMapping(value="/updatepoint")
-	public void updatePoint(PointhistoryVO vo, int amount, HttpSession session){
+	public void updatePoint(PointhistoryVO vo,int amount, HttpSession session){
 		dao.updatePoint(amount, session.getAttribute("id").toString());
 		phdao.insertPH(vo);
 	}
 	
 	@Autowired
-    CashhistoryDAO chdao;
+	CashhistoryDAO chdao;
 	
 	@ResponseBody
 	@RequestMapping(value="/updatecash", method=RequestMethod.POST)

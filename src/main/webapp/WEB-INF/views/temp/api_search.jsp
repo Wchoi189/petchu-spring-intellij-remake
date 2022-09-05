@@ -2,41 +2,45 @@
 	pageEncoding="UTF-8"%>
 <link href="/resources/wb.css" rel="stylesheet" >
 
-
 <div id="page">
 	<h1>API 쇼핑 검색</h1>
 	
-	<!-- 검색창 -->
-	<form name="frm"
-		style="width: 960px; margin: 0px auto; margin-bottom: 10px">
-		<input type="text" name="query">
-		<button type="submit">검색</button>
-		검색수: <span id="count"></span> 건
-	</form>
-	
-	<!-- Nº of items per page form -->
-	<form id="display_number">
-	    <label id="display_label">items per page: </label>
-	    <select>
-	        <option>20</option>
-	        <option>30</option>
-	        <option>50</option>
-	        <option>100</option>
-	    </select>
-	</form>
 
 <!-- navigation holder -->
-<div class="holder">
-</div>
-	<div id="api_checkbox" style="margin:20px;">
-		<input type='checkbox' name='prd' value='selectall' onclick='selectAll(this)'/><b>전부선택</b><button style="margin-left:20px;" class="btnins">선택상품저장</button>
+
+<div class="top-menu-wrap">
+	<!-- 검색창 -->
+	<div id="search-box">
+		<input type="text" name="query" id="query">
+		<button class="api-search-btn">검색</button>
+		검색수: <span class="count"></span> 건
 	</div>
-	
+
+	<!-- Nº of items per page form -->
+
+		<div id="display_number">
+			<label id="display_label">페이지 당 항목: </label>
+			<select>
+				<option>20</option>
+				<option>30</option>
+				<option>50</option>
+				<option>100</option>
+			</select>
+		</div>
+
+
+	<%--전부 선택 체크 박스--%>
+	<div>
+		<div id="api_checkbox" style="margin:20px;">
+			<input type='checkbox' name='prd' value='selectall' onclick='selectAll(this)'/><b>전부선택</b><button style="margin-left:20px;" class="btnins">선택상품저장</button>
+		</div>
+	</div>
+</div>
+
 	<div id="api_container">
 	<div id="api_div" style="width:960px"></div>
-	
-	<script id="temp" type="text/x-handlebards-template">
-		{{#each items}}				
+	<script id="temp" type="text/x-handlebars-template">
+		{{#each items}}
 			<div class="api_box">
 				<div class="number"><input type="checkbox" class="chk" name="prd"></div>
 				<div style="margin:0px auto;text-align:center;"><img src="{{image}}" width=120 height=120 class="image"></div>
@@ -46,19 +50,18 @@
 				<div class="category1" category1="{{category1}}" category2="{{category2}}">{{category1}}/{{category2}}</div>
 				<div class="category3" category3="{{category3}}" category4="{{category4}}">{{category3}}/{{category4}}</div>
 				<div class="price">{{display lprice}}</div>
-				
 			</div>
 		{{/each}}
-</script>
-	
-	 	<div id="pageBtn" style="margin:50px auto;text-align:center; width:900px;">
-	 		<button id="prev">이전</button>
+	</script>
+	</div><%--api container--%>
+
+	<div id="pageBtn">
+	 		<button class="prev">이전</button>
 	 		<span id="curpage"></span>
-	 		<button id="next">다음</button>
-	 	</div>
+	 		<button class="next">다음</button>
+	</div><%--page button container--%>
 	
-	</div>
- </div>
+ </div> <%--page--%>
 
 <script>
 	Handlebars.registerHelper("display", function(lprice) {
@@ -70,7 +73,6 @@
 </script>
 
 <script>
-
 //초기 페이지
 
 var query="강아지 사료";
@@ -85,25 +87,24 @@ $("select").on("change",function(){
 });
 
 //Button:Prev
-$("#prev").on("click",function(){
+$(".prev").on("click",function(){
 	page--;
 	getList();
 });
 
 //Button:Next
-$("#next").on("click",function(){
+$(".next").on("click",function(){
 	page++;
 	getList();
 });
 
-//검색어 입력
-$(frm).on("submit", function(e) {
-	e.preventDefault();
-	query = $(frm.query).val();
+
+/* 검색 */
+document.querySelector(".api-search-btn").addEventListener('click',()=>{
+	query = document.querySelector('#query').value;
+	alert("query"+query)
 	getList();
-});
-
-
+})
 
 
 //List. API Search
@@ -122,24 +123,31 @@ function getList() {
 			success : function(data) {
 				var template = Handlebars.compile($("#temp").html());
 				$("#api_div").html(template(data));
+
 				var total=data.total;
 				var lastPage=Math.ceil(total/display);
-				
+				console.log(data)
+				console.log(total)
 				//현제 페이지
 				$("#curpage").html(page+"/"+lastPage);
 				var lastPage=Math.ceil(total/data.display);
-				$("#count").html(total);
-				
+
+		/*		$("#count").html(total);*/
+				document.querySelector(".count").innerHTML = total;
 				//페이지 버턴(한계)
 				if(page==1){
-					$("#prev").attr("disabled",true);
+					$(".prev").attr("disabled",true);
+					$(".prev").addClass('disabled')
 				}else{
-					$("#prev").attr("disabled",false);
+					$(".prev").attr("disabled",false);
+					$(".prev").removeClass('disabled')
 				}
 				if(page==lastPage){
-					$("#next").attr("disabled",true);
+					$(".next").attr("disabled",true);
+					$(".prev").addClass('disabled')
 				}else{
-					$("#next").attr("disabled",false);
+					$(".next").attr("disabled",false);
+					$(".next").removeClass("disabled",false);
 				}
 				}
 			});
@@ -180,7 +188,7 @@ function getList() {
 	 		var pcate4 = row.find(".category3").attr("category4"); 
 			var pimage = row.find(".image").attr('src');
 			//태그 제거
-			var pname = orgText .replace(/(<([^>]+)>)/ig,"");
+			var pname =orgText.replace(/(<([^>]+)>)/ig,"");
 			//숫자 '0' 짤림 방지 
  			var intPrice = parseInt(pprice.split(',').join(''));
 			var chk = document.querySelector(".chk");
@@ -205,13 +213,7 @@ function getList() {
 			});
 		});
 	});
-	
-		//검색어 입력
-		$(frm).on("submit", function(e) {
-			e.preventDefault();
-			query = $(frm.query).val();
-			getList();
-		});
+
 
 		//페이지번호를 클릭한 경우
 		$(".pagination").on("click", "a", function(e){

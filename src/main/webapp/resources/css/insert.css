@@ -45,7 +45,7 @@
 .p_info{
   /*border:2px solid green;*/
   display:flex;
-  justify-content: flex-start
+  justify-content: flex-start;
   object-fit: scale-down;
 }
 #p_img{

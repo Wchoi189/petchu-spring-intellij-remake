@@ -1,11 +1,11 @@
 package com.example.domain;
 
 public class Criteria {
-	private int page; //����������
-	private int perPageNum; //�������� ��� �����ͼ�
-	private String searchType; //�˻�Ű
-	private String keyword; //�˻���
-	private String sort; //����
+	private int page; //현재페이지
+	private int perPageNum; //한페이지 출력 데이터수
+	private String searchType; //검색키
+	private String keyword; //검색어
+	private String sort; //정렬
 
 	public String getSort() {
 		return sort;
@@ -24,7 +24,7 @@ public class Criteria {
 		this.perPageNum = perPageNum;
 	}
 
-	// 1�������� ��� pageStart�� 0
+	// 1페이지인 경우 pageStart는 0
 	public int getPageStart() {
 		return (this.page - 1) * perPageNum;
 	}

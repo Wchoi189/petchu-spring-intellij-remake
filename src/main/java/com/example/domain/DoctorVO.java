@@ -1,8 +1,7 @@
 package com.example.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class DoctorVO extends UserVO{
 	private int dno;

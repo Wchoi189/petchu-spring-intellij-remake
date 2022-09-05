@@ -1,14 +1,9 @@
 package com.example.controller;
 
-import java.io.File;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
 import com.example.dao.*;
+import com.example.domain.DoctorVO;
 import com.example.domain.ServiceEstimateVO;
 import com.example.domain.UserRequestVO;
-import com.example.domain.DoctorVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.util.List;
 
 @Controller
 @RequestMapping("/request")
@@ -27,14 +25,14 @@ public class RequestController {
 	String  path;
 		
 	@Autowired
-    UserRequestDAO dao;
+	UserRequestDAO dao;
 	
 	@Autowired
 	DoctorDAO ddao;
 
-	//����Ʈ �߰�
+	//포인트 추가
 	@Autowired
-    PointhistoryDAO phdao;
+	PointhistoryDAO phdao;
 	
 	@Autowired
 	UserDAO udao;
@@ -43,7 +41,7 @@ public class RequestController {
 	BeautyDAO bdao;
 	
 	@Autowired
-    CleaningDAO cdao;
+	CleaningDAO cdao;
 	
 	@Autowired
 	LessonDAO ldao;
@@ -52,7 +50,7 @@ public class RequestController {
 	ServiceCoDAO scdao;
 	
 	@Autowired
-    ServiceEstimateDAO sedao;
+	ServiceEstimateDAO sedao;
 	
 	@RequestMapping(value="/send", method=RequestMethod.POST)
 	public String send(UserRequestVO vo, HttpSession session, MultipartHttpServletRequest multi) throws Exception{
@@ -64,7 +62,7 @@ public class RequestController {
 				
 				mf.transferTo(new File(path + image));
 				i++;
-				System.out.println("���ƾƾƾƾƾƾ�" + image + ":" + i + "��°");
+				System.out.println("갸아아아아아아악" + image + ":" + i + "번째");
 				if(i==1){
 					vo.setDimg1(image);
 				}
@@ -82,11 +80,11 @@ public class RequestController {
 		
 		dao.sendRequest(vo);
 		
-/*		//����Ʈ�߰�
+/*		//포인트추가
 		PointhistoryVO phvo = new PointhistoryVO();
 		phvo.setId(session.getAttribute("id").toString());
 		phvo.setAmount(500);
-		phvo.setContent("�������ۼ�");
+		phvo.setContent("견적서작성");
 		
 		udao.updatePoint(500, session.getAttribute("id").toString());
 		phdao.insertPH(phvo);*/
@@ -103,7 +101,7 @@ public class RequestController {
 		return "/home";
 	}
 	
-	//���� ��û�� ����Ʈ
+	//서비스 요청서 리스트
 	@RequestMapping(value="/servicelist")
 	public String serviceRequestList(Model model, HttpSession session){
 		model.addAttribute("beautyList", bdao.beautyList());
@@ -113,7 +111,7 @@ public class RequestController {
 		return "/home";
 	}
 	
-	//��û�� ��
+	//요청서 수
 	@ResponseBody
 	@RequestMapping(value="/servicecount", method=RequestMethod.POST)
 	public int serviceTotalCount(Model model, HttpSession session){
@@ -135,7 +133,7 @@ public class RequestController {
 	}
 	
 	@Autowired
-    DoctorRequestDAO drdao;
+	DoctorRequestDAO drdao;
 	
 	@RequestMapping(value="/result")
 	public String resultRequestList(Model model, HttpSession session){
@@ -147,7 +145,7 @@ public class RequestController {
 		return "/home";
 	}
 	
-	//ä��
+	//채택
 	@ResponseBody
 	@RequestMapping("/bchoose")
 	public void beutyChoose(int seno, int brno){
@@ -175,7 +173,7 @@ public class RequestController {
 		sedao.lfailCheckUpdate(lrno);
 	}
 	
-	// �̿� ������ ����Ʈ
+	// 미용 견적서 리스트
 	@RequestMapping("/belist.json")
 	@ResponseBody
 	public List<ServiceEstimateVO> belistJson(int brno){
@@ -183,7 +181,7 @@ public class RequestController {
 		return list;
 	}
 	
-	// �̿� �������� ��ü ����
+	// 미용 견적서별 업체 정보
 	@RequestMapping("/beread")
 	public String beautyEstimateRead(int brno, int scno, Model model, HttpSession session){
 		model.addAttribute("bvo", sedao.beautyEstimateRead(brno, scno));
@@ -191,7 +189,7 @@ public class RequestController {
 		return "/home";
 	}
 	
-	// ȨŬ���� ������ ����Ʈ
+	// 홈클리닝 견적서 리스트
 	@RequestMapping("/celist.json")
 	@ResponseBody
 	public List<ServiceEstimateVO> celistJson(int crno){
@@ -199,7 +197,7 @@ public class RequestController {
 		return list;
 	}
 	
-	// ȨŬ���� �������� ��ü ����
+	// 홈클리닝 견적서별 업체 정보
 	@RequestMapping("/ceread")
 	public String cleanEstimateRead(int crno, int scno, Model model, HttpSession session){
 		model.addAttribute("cvo", sedao.cleanEstimateRead(crno, scno));
@@ -208,7 +206,7 @@ public class RequestController {
 	}
 	
 	
-	// ���� ������ ����Ʈ
+	// 레슨 견적서 리스트
 	@RequestMapping("/lelist.json")
 	@ResponseBody
 	public List<ServiceEstimateVO> lelistJson(int lrno){
@@ -216,7 +214,7 @@ public class RequestController {
 		return list;
 	}
 	
-	//���� �������� ��ü ����
+	//레슨 견적서별 업체 정보
 	@RequestMapping("/leread")
 	public String lessonEstimateRead(int lrno, int scno, Model model, HttpSession session){
 		model.addAttribute("lvo", sedao.lessonEstimateRead(lrno, scno));

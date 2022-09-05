@@ -9,24 +9,24 @@ import java.util.Map;
 
 public class NaverAPI {
 
-    public static String connection(String query,int page){
-        String clientId = "DC8ojH4p4RE2lMhourmV"; //���ø����̼� Ŭ���̾�Ʈ ���̵�"
-        String clientSecret = "1KTqGCjPFg"; //���ø����̼� Ŭ���̾�Ʈ ��ũ����"
+    public static String connection(String query,int page, String display){
+        String clientId = "DC8ojH4p4RE2lMhourmV"; //애플리케이션 클라이언트 아이디값"
+        String clientSecret = "1KTqGCjPFg"; //애플리케이션 클라이언트 시크릿값"
 
 
       String text=query;
       int sdf = page;
-      int start = sdf*10;//���� ������ ��ư �ϳ� ���� ������ 10���� ����
+      int start = sdf*10;//시작 페이지 버튼 하나 누를 때마다 10개씩 증가
         try {
         text= URLEncoder.encode(text, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("�˻��� ���ڵ� ����",e);
+            throw new RuntimeException("검색어 인코딩 실패",e);
         }
 
         
         String apiURL = "https://openapi.naver.com/v1/search/shop.json?query=" + text
-        		+"&start=" + start;    // json ���
-        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml ���
+       +"&start=" + start + "&display="+display;    // json 결과
+        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
 
 
         Map<String, String> requestHeaders = new HashMap<>();
@@ -50,13 +50,13 @@ public class NaverAPI {
 
 
             int responseCode = con.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) { // ���� ȣ��
+            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
                 return readBody(con.getInputStream());
-            } else { // ���� �߻�
+            } else { // 에러 발생
                 return readBody(con.getErrorStream());
             }
         } catch (IOException e) {
-            throw new RuntimeException("API ��û�� ���� ����", e);
+            throw new RuntimeException("API 요청과 응답 실패", e);
         } finally {
             con.disconnect();
         }
@@ -68,9 +68,9 @@ public class NaverAPI {
             URL url = new URL(apiUrl);
             return (HttpURLConnection)url.openConnection();
         } catch (MalformedURLException e) {
-            throw new RuntimeException("API URL�� �߸��Ǿ����ϴ�. : " + apiUrl, e);
+            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
         } catch (IOException e) {
-            throw new RuntimeException("������ �����߽��ϴ�. : " + apiUrl, e);
+            throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
         }
     }
 
@@ -97,7 +97,7 @@ public class NaverAPI {
 
             return responseBody.toString();
         } catch (IOException e) {
-            throw new RuntimeException("API ������ �дµ� �����߽��ϴ�.", e);
+            throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
         }
     }
 }

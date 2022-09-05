@@ -97,7 +97,7 @@
 												alt="Kakao Link button" />
 											</a>
 										</div>
-										<div style="display: relative; top: 5px;">
+										<div style="position: relative; top: 5px;">
 											<img alt="facebook_like"
 												src="/resources/icon_menu/facebook_like.jpeg" width=70 />
 										</div>
@@ -228,7 +228,7 @@
 				</div>
 			</div>
 			
-			<div style="text-align:center;">
+			<div style="text-align:center; margin: 40px 0px" >
 				<img src="${vo.pcontents}">
 			</div>
 			
@@ -771,7 +771,7 @@ console.log(pprice);
 	
 </script>
 <script type="text/javascript">
-Kakao.init('5c9e09df993f534bf4a2916f4cf43cdd');
+Kakao.init('7c5327ca759881dfb2041b2386d02623');
   Kakao.Link.createDefaultButton({
 
 	  container: '#create-kakao-link-btn',

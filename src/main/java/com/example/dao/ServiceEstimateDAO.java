@@ -4,10 +4,8 @@ import com.example.domain.ServiceEstimateVO;
 
 import java.util.List;
 
-
-
 public interface ServiceEstimateDAO {
-	//ä��
+	//채택
 	public void secheckUpdate(int seno);
 	
 	public void bfailCheckUpdate(int brno);
@@ -16,14 +14,14 @@ public interface ServiceEstimateDAO {
 	
 	public void lfailCheckUpdate(int lrno);
 	
-	//�ߺ�üũ
+	//중복체크
 	public int overlabCheck(ServiceEstimateVO vo);
 	
 	public int overlabCheck2(ServiceEstimateVO vo);
 	
 	public int overlabCheck3(ServiceEstimateVO vo);
 	
-	//�̿�
+	//미용
 	public void binsert(ServiceEstimateVO vo);
 	
 	public List<ServiceEstimateVO> blist(int scno);
@@ -32,7 +30,7 @@ public interface ServiceEstimateDAO {
 	
 	public ServiceEstimateVO beautyEstimateRead(int brno, int scno);
 	
-	//Ȩ Ŭ����
+	//홈 클리닝
 	public void cinsert(ServiceEstimateVO vo);
 	
 	public List<ServiceEstimateVO> crnolist(int crno);
@@ -40,14 +38,14 @@ public interface ServiceEstimateDAO {
 	public ServiceEstimateVO cleanEstimateRead(int crno, int scno);
 	
 	
-	//����
+	//레슨
 	public void linsert(ServiceEstimateVO vo);
 	
 	public List<ServiceEstimateVO> lrnolist(int lrno);
 	
 	public ServiceEstimateVO lessonEstimateRead(int lrno, int scno);
 	
-	//���� �� ������ ����
+	//내가 쓴 견적서 보기
 	
 	public List<ServiceEstimateVO> beautyViewList(int scno);
 	public ServiceEstimateVO beautyViewRead(ServiceEstimateVO vo);

@@ -1,8 +1,8 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.domain.DoctorVO;
+
+import java.util.List;
 
 public interface DoctorDAO {
 	public List<DoctorVO> hospitalList();

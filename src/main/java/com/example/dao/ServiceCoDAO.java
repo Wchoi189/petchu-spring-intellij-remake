@@ -4,14 +4,12 @@ import com.example.domain.ServiceCoVO;
 
 import java.util.List;
 
-
-
 public interface ServiceCoDAO {
 	public List<ServiceCoVO>list(String id);
 	
 	public void insert(ServiceCoVO vo);
 	
-	public Object read (int scno);
+	public ServiceCoVO read (int scno);
 	
 	public void update(ServiceCoVO vo);
 

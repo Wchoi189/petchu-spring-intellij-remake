@@ -1,8 +1,8 @@
 package com.example.domain;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 
 public class shopcartVO {
 	private int cno;
@@ -38,15 +38,15 @@ public class shopcartVO {
 	private int state;
 	////////////////////
 	////review/////////
-	private int rid;//�����ȣ
-	private String rtitle; //���ٿ��
-	private double star; //��
-	private String review; //���� ����
+	private int rid;//리뷰번호
+	private String rtitle; //한줄요약
+	private double star; //별
+	private String review; //리뷰 내용
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
-	private Date rdate; //�����ۼ��ð�
+	private Date rdate; //리뷰작성시간
 	private String rimage1; 
-	private String rimage2; //��ǰ�̹���
-	private int helpcount; // ����Ǹ� ����
+	private String rimage2; //상품이미지
+	private int helpcount; // 도움되면 증가
 
 	
 	

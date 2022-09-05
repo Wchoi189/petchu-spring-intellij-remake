@@ -3,6 +3,9 @@
 
 /* api_search.jsp */
 /* 상품등록 */
+#page{
+	margin: 0px auto;
+}
 #api_container{
 	overflow:hidden;
 	width:900px;
@@ -38,12 +41,61 @@ color:red;
 }
 
 #pageBtn{
-	position: relative;
-	right: 0px;
-	bottom: 0px;
-	width:500px;
-	height:200px;
+	margin-top: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width:100%;
+	height: 100px;
+	height:fit-content;
 	text-align:center;
+}
+#curpage{
+	padding : 10px;
+}
+.prev, .next{
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	border: 1px solid #9EBA42;
+	text-align: left;
+	vertical-align: top;
+	padding: calc(.875rem - 3px) 63px calc(.875rem - 3px) 15px;
+	background-color: #00000000;
+	font-size: 14px;
+	letter-spacing: 0.16px;
+	min-height: 20px;
+	line-height: 1.29;
+	color: #9EBA42;
+	font-weight: 400;
+	transition: background 70ms cubic-bezier(0,0,.38,.9),box-shadow 70ms cubic-bezier(0,0,.38,.9),border-color 70ms cubic-bezier(0,0,.38,.9),outline 70ms cubic-bezier(0,0,.38,.9);
+
+}
+.next:hover {
+	background-color: #9EBA42;
+	color: #fff;
+}
+.prev:hover {
+	background-color: #9EBA42;
+	color: #fff;
+}
+.disabled{
+	background-color: #9EBA42;
+	color: #fff;
+}
+.top-menu-wrap{
+	border-radius: 10px;
+	height: 70px;
+	width: 960px;
+	background-color: #9EBA42;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0px 0px 50px 20px;
+}
+#search-box{
+	margin-left: 10px;
+	width: fit-content;
 }
 /* item per page style option */
 .holder {

@@ -1,9 +1,5 @@
 package com.example.controller;
 
-import java.util.HashMap;
-
-import javax.servlet.http.HttpSession;
-
 import com.example.dao.ReserveDAO;
 import com.example.dao.ServiceCoDAO;
 import com.example.dao.UserDAO;
@@ -14,6 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+
 @Controller
 @RequestMapping("/reserve")
 public class ReserveController {

@@ -1,5 +1,4 @@
 package com.example.controller;
-import java.util.HashMap;
 
 import com.example.dao.RecruitDAO;
 import com.example.domain.Criteria;
@@ -11,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/recruit")
@@ -51,7 +52,7 @@ public class RecruitController {
 	
 	
 	
-	//���������
+	//목록페이지
 		@RequestMapping("/list")
 		public String list(Model model, Criteria cri){
 			cri.setPerPageNum(5);

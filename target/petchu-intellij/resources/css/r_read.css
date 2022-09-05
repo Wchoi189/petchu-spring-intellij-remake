@@ -52,7 +52,7 @@
   
 }
 hr{
-  width: 960;
+  width: 960px;
   color: gray;
 }
 .r_info{
@@ -102,7 +102,7 @@ hr{
 }
 
 .rating2 .star {
-	width: 100;
+	width: 100px;
 	overflow: hidden;
 }
 

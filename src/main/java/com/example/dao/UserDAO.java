@@ -1,10 +1,10 @@
 package com.example.dao;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.example.domain.Criteria;
 import com.example.domain.UserVO;
+
+import java.util.HashMap;
+import java.util.List;
 
 public interface UserDAO {
 	public void insert(UserVO vo);

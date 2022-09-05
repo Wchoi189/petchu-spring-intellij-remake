@@ -14,7 +14,7 @@ public class ProductVO {
 	private String pimage;
 	private String pmaker;
 	private int pqantity;
-	//order_list vo �߰� => ���������� ���� �Ϻη� extends ��� ����
+	//order_list vo 추가 => 오류방지를 위해 일부러 extends 사용 안함
 	private String uono;
 	private String orno;
 	private String uid;

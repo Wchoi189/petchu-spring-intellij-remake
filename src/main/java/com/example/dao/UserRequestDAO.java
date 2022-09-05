@@ -1,9 +1,8 @@
 package com.example.dao;
 
-import java.util.List;
-
-
 import com.example.domain.UserRequestVO;
+
+import java.util.List;
 
 public interface UserRequestDAO {
 	public void sendRequest(UserRequestVO vo);
@@ -12,6 +11,4 @@ public interface UserRequestDAO {
 	public List<UserRequestVO> chkRequest(int pno);
 	public void updatechk(int rno);
 	public List<UserRequestVO> regdatechk(int pno);
-
-
 }

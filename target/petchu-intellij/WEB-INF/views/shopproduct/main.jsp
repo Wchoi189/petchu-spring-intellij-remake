@@ -26,13 +26,7 @@
 		<div class="categoryBody">
 			<div class="category_select">
 				<div><button class="goAll">전체</button></div>
-				<!--메뉴 간격(space)-->
-				<div>
-					<span><img
-						src="/resources/icon_menu/content_select_middle_icon.png"
-						style="width: 37px; height: 97px; position: relative;"></span>
-				</div>
-				
+
 				<!-- 1. 공양이 -->
 				<div class="category_cat select">
 					<input type="radio" name="animal" value="고양이" id="cat"><label
@@ -271,7 +265,7 @@
 				<h2 style="font-size: 30px; margin-bottom:0px;">주간 상품</h2>
 			</div>
 			<div
-				style="padding: 50px 0px; width: 1000x; height: 270px; background-color: white;">
+				style="padding: 50px 0px; width: 1000px; height: 270px; background-color: white;">
 				
 				<!-- AJAX -->
 				<div class="slick-slider-best"></div>
@@ -300,7 +294,7 @@
 			<div style="text-align:center;">
 				<h2 style="font-size: 30px; margin-bottom:0px;">오늘의 상품</h2></div>
 			<div
-				style="padding: 50px 0px; width: 1000x; height: 270px; background-color: white;">
+				style="padding: 50px 0px; width: 1000px; height: 270px; background-color: white;">
 				
 				<!-- AJAX -->
 				<div class="slick-slider-today"></div>
@@ -344,10 +338,12 @@
 			type : "get",
 			url : "/shopproduct/main.json",
 			dataType : "json",
-			success : function(data) {
+			success : function(data1) {
+				console.log("오늘의..")
+				console.log(data1)
 				destroyToday();
 				var template = Handlebars.compile($("#temp2").html());
-				$(".slick-slider-today").html(template(data));
+				$(".slick-slider-today").html(template(data1));
 				applyToday();
 				getNumberFormat();
 			}

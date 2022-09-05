@@ -1,8 +1,6 @@
 package com.example.controller;
 
 
-import java.io.File;
-import javax.annotation.Resource;
 import com.example.dao.PetDAO;
 import com.example.domain.PetVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.annotation.Resource;
+import java.io.File;
 
 @Controller
 @RequestMapping("/mypet")

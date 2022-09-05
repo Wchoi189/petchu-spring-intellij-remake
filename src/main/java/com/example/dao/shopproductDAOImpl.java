@@ -1,8 +1,5 @@
 package com.example.dao;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.example.domain.Criteria;
 import com.example.domain.shopcartVO;
 import com.example.domain.shopproductVO;
@@ -10,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.List;
 @Repository
 public class shopproductDAOImpl implements shopproductDAO{
 
@@ -18,22 +17,22 @@ public class shopproductDAOImpl implements shopproductDAO{
 	
 	String namespace="com.example.mapper.shopproductMapper";
 
-	//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½)
+	//»óÇ° Á¤º¸ (ÃßÈÄ ¼öÁ¤ ÇÊ¿ä)
 	public List<shopproductVO> list() {
 		return session.selectList(namespace+".list");
 	}
 
-	//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//»óÇ° Á¤º¸ ÆäÀÌÁö
 	@Override
 	public shopproductVO read(int pno) {
 		return session.selectOne(namespace+".read", pno);
 	}
 
-	//Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//Ä«Å×°í¸® ¼³Á¤ ÈÄ ÇÊÅÍ¸µµÈ »óÇ°¸ñ·Ï ÆäÀÌÁö
 	@Override
 	public List<shopproductVO> contents_list(String selectCate, String selectCate2, String selectCate3, Criteria cri) {
 		HashMap<String, Object> map = new HashMap<>();
-		//Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+		//Ä«Å×°í¸® Á¤º¸¸¦ °¡Áö°í ÀÌµ¿
 		map.put("selectCate", selectCate);
 		map.put("selectCate2", selectCate2);
 		map.put("selectCate3", selectCate3);
@@ -42,7 +41,7 @@ public class shopproductDAOImpl implements shopproductDAO{
 		return session.selectList(namespace+".contents_list", map);
 	}
 
-	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
+	//ÁÖ¹®¸ñ·Ï
 		@Override
 		public shopcartVO cart_read(String uid) {
 			return session.selectOne(namespace+".cart_read", uid);

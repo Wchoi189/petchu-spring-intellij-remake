@@ -1,13 +1,11 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.domain.ServiceCoVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import java.util.List;
 
 
 @Repository
@@ -28,7 +26,7 @@ public class ServiceCoDAOImpl implements ServiceCoDAO{
 	}
 
 	@Override
-	public Object read(int scno) {
+	public ServiceCoVO read(int scno) {
 		return session.selectOne(namespace+".read",scno);
 	}
 

@@ -1,9 +1,9 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.domain.Criteria;
 import com.example.domain.ProductVO;
+
+import java.util.List;
 
 public interface ProductDAO {
 	public void insert (ProductVO vo);

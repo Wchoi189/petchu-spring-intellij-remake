@@ -4,8 +4,6 @@ import com.example.domain.LessonRequestVO;
 
 import java.util.List;
 
-
-
 public interface LessonDAO {
 	public void lessonInsert(LessonRequestVO vo);
 	public List<LessonRequestVO> lessonList();

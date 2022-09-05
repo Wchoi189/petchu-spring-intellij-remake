@@ -42,10 +42,10 @@
 	 		<span id="curpage"></span>
 	 		<button id="next">다음</button>
 	 	</div>
-	
+
 	</div>
  </div>
- 
+
  <nav aria-label="...">
   <ul class="pagination">
     <li class="page-item disabled">

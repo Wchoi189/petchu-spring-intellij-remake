@@ -1,13 +1,13 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.domain.Criteria;
 import com.example.domain.OrderlistVO;
 
+import java.util.List;
+
 public interface OrderlistDAO {
-	public List<OrderlistVO> list(Criteria cri);
-	public OrderlistVO read(int pno,int bno);
-	public int count(Criteria cri);
-	public List<OrderlistVO> join(Criteria cri);
+	List<OrderlistVO> list(Criteria cri);
+	OrderlistVO read(int pno,int bno);
+	int count(Criteria cri);
+	List<OrderlistVO> join(Criteria cri);
 }

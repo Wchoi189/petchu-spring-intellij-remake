@@ -1,12 +1,12 @@
 package com.example.domain;
 
 public class PageMaker {
-	private int totalCount; //��ü�����ͼ�
-	private int startPage; //����������
-	private int endPage; //������������
-	private boolean prev; //����
-	private boolean next; //����
-	private int displayPageNum = 10; //ȭ�鿡 ���̴� ��������
+	private int totalCount; //전체데이터수
+	private int startPage; //시작페이지
+	private int endPage; //마지막페이지
+	private boolean prev; //이전
+	private boolean next; //다음
+	private int displayPageNum = 10; //화면에 보이는 페이지수
 	private Criteria cri;
 
 	public void setCri(Criteria cri) {

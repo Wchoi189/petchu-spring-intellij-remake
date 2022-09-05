@@ -1,9 +1,9 @@
 package com.example.dao;
 
-import java.util.List;
-
 import com.example.domain.ReserveVO;
 import com.example.domain.ServiceVO;
+
+import java.util.List;
 
 
 public interface HoschoolDAO {

@@ -26,7 +26,7 @@
 .shopproduct_info_container, .pbrand {
 	font-size: 16px;
 	text-align: left;
-	font-style:"nanum gothic";
+	font-family:"nanum-gothic";
 	
 }
 
@@ -95,7 +95,7 @@ span.input-text qty text {
 }
 .product_price{
 	font-size: 16px;
-	font-style: "nanum-gothic";
+	font-family: "nanum-gothic";
 	margin-right: 5px;
 }
 .price_container_price_value {
@@ -264,7 +264,7 @@ share::after{
 }
 
 .buy_now:hover {
-	background-color: 7F9730;
+	background-color: #7F9730;
 	transition: all 0.2s;
 }
 

@@ -1,0 +1,348 @@
+@charset "UTF-8";
+
+/* 페이지 레이아웃  */
+.checkout_page {
+  /* background-color: #fbfbfb; */
+  width: 900px;
+  border-radius: 20px;
+
+/* SECTION1 (Left SIDE) 주문상풍정보 */
+/* 주문 상품 정보 */
+
+}
+.checkout_page_heading {
+  font-size: 1.5rem;
+  margin: 50px;
+  text-align: center;
+}
+.card_heading {
+  font-weight: 900;
+  font-size: 1.3em;
+  display: flex;
+  justify-content: flex-start;
+}
+.checkout_container_main {
+  display: flex;
+  width: 900px;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-between;
+  gap: 40px;
+  background-color: #EFF3E4;
+  height: 80vh;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.checkout_heading {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.checkout_left_section {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50%;
+  overflow: auto;
+  /* background-color: #fbfbfb; */
+  gap: 17px;
+}
+.checkout_right_section {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 40%;
+  height: 100vh;
+  gap: 17px;
+}
+.checkout_cartinfo_card {
+  background-color: white;
+  gap: 10px;
+  height: auto;
+  padding: 10px;
+}
+.checkout_cart_list {
+  background-color: white;
+}
+
+.cartitem_info_card {
+  display: flex;
+  padding: 5px;
+  background-color: white;
+}
+.cartitem_info_left {
+  background-color: white;
+}
+.cart_item_img {
+/*   border: 1px black solid; */
+  margin: 5px;
+  height: 90px;
+  width: 90px;
+}
+.cartitem_info_right {
+  margin: 5px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.cartitem_title {
+  font-size: 0.8rem;
+}
+.cartitem_description {
+  font-size: 0.8rem;
+}
+.cartitem_price {
+  font-size: 1rem;
+}
+/* 주문자 정보 */
+.checkout_buyer_info_card {
+  background-color: white;
+  padding: 10px;
+}
+.tbl_buyer {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+text-align: left;line-height: 30px;}
+.buyer_userid {
+  background-color: white;
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+.checkout_shipping_info_card {
+  background-color: white;
+  padding: 10px;
+}
+.checkout_delivery_address {
+  background-color: white;
+  padding: 10px;
+  display: inline-block;
+}
+.receiver_line1 {
+  margin-bottom: 5px;
+}
+.receiver_line1 input {
+  width: 49.5%;
+}
+.receiver_line2 {
+  margin-bottom: 5px;
+}
+.receiver_line2 input {
+  width: 20%;
+}
+.receiver_line3 {
+}
+.receiver_line3 input {
+  margin-bottom: 5px;
+}
+/* 쿠폰/포인트	 */
+.coupon_points_card {
+  background-color: white;
+ /*  padding: 10px; */
+}
+.coupon_points_card input{
+  margin-right:5px;
+}
+.point_paragraphs {
+  line-height: 2px;
+}
+.points_heading {
+  line-height: 2px;
+  font-size: 1.2rem;
+}
+
+/* SECTION2 (RIGHT SIDE) 최종결제금액 */
+.checkout_total_card {
+  background-color: white;
+  width: 100%;
+  font-size: 1em;
+}
+.checkout_total_outside {
+  padding: 15px;
+}
+.checkout_total_inside {
+  background-color: white;
+}
+hr.transition {
+  margin: 1.5em auto;
+}
+.checkout_total_card_line1 {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1x;
+}
+.checkout_total_card_line2 {
+  display: flex;
+  justify-content: space-between;
+  line-height: 20%;
+}
+.checkout_total_card_line3 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1px;
+  padding: 1px;
+}
+.checkout_radio_option_container_wrap {
+  display: flex;
+  justify-content: justify-content;
+  align-items: space-between;
+  width: 100%;
+}
+.checkout_radio_option_container {
+  padding: 5px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 250px;
+  height: 50px;
+  /* align-items: center; */
+  align-items: space-between;
+}
+
+.checkout_method_card {
+  background-color: white;
+  width: 100%;
+}
+.transition {
+  width: 93%;
+}
+.checkout_method_card_outside_wrapper {
+  padding: 15px 15px 0px 15px;
+}
+.checkout_terms_card {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.terms_outside_wrapper {
+  width: 100%;
+  background-color: white;
+}
+.terms_inside_wrapper {
+  background-color: white;
+  padding: 20px;
+}
+.terms_agree_button {
+  width: 100%;
+  height: 50px;
+  font-size: 1.2rem;
+  gap: none;
+  color: white;
+  background-color: black;
+  border: none;
+  justify-content: center;
+}
+input[name=terms_agree_all], input[name=same_address]{
+	width: 20px;
+	height: 20px;
+	accent-color: green;
+	position: relative;
+	top: 5px;
+}
+input[name=same_address]{
+	
+	width: 20px;
+	height: 20px;
+	accent-color: green;
+	position: relative;
+	top: 5px;
+}
+
+#chk_row{
+	text-align: left;
+	/* border: 1px solid black; */
+	width: 350px;
+	position: relative;
+	left: 20px;
+	
+	
+	
+}
+.btn_shape {
+  height: 25px;
+  text-align: center;
+  padding: 6px 0px 10px 6px;
+  background-color: #a7ca37;
+  
+}
+.btn_shape:hover{
+	background-color: 7F9730;
+}
+
+a.pay_btn:link {
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color:white;
+}
+a.pay_btn:visited {
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color:white;
+}
+a.pay_btn:hover {
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color:white;
+}
+a.pay_btn:active {
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color:white;
+}
+
+input[name=delivery_address1]::focus, input[name=delivery_address2]::focus  {
+    outline: none !important;
+    border:1px solid red;
+    box-shadow: 0 0 10px #719ECE;
+  }
+
+input#delivery_message{
+	width: 100%;
+}
+input[type=text] {
+    /* width: 250px; */
+    border-radius: 15px;
+    border: #BFC1B9 1px solid;
+    outline-color: #A7CA37;
+    padding: 13px 10px 13px 10px;
+    margin-bottom: 10px;
+}
+button {
+    border: none;
+    padding: 8px 12px 8px 12px;
+    background-color: A7CA37;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 900px;
+    color: white;
+    cursor: pointer;
+}
+.cart_item_img img {width:90px; height:90px;}
+.checkout_delivery_address, .terms_wrapper{text-align:left;}
+.none{display:none;}
+.left{text-align:left;}
+#delivery_message{
+	border-radius: 10px;
+    border: #BFC1B9 1px solid;
+    outline-color: #A7CA37;
+    padding: 10px;
+ 		resize: none;
+		width:400px;
+       height: 100px;
+}
+.point_apply{
+	margin-right:5px;
+}
+.card_cart_grandtotal_row_right{
+	font-weight:600;
+}
+.card_cart_point_right{
+	color:#A7CA37;
+}
