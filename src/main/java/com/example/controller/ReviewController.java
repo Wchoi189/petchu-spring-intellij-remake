@@ -119,7 +119,7 @@ public class ReviewController {
 	}
 	//리뷰 입력페이지(출력)
 		@GetMapping("/insert-review")
-		public String insert(Model model,int pno, int bno){
+		public String insert(@ModelAttribute("reviewVO") ReviewVO reviewVO, Model model,int pno, int bno){
 			log.debug("review insert controller..");
 			model.addAttribute("vo",odao.read(pno,bno));
 			model.addAttribute("pageName", "review/insert.jsp");
@@ -128,7 +128,8 @@ public class ReviewController {
 		
 		
 		@PostMapping("/insert")
-		public String insert(ReviewVO vo, MultipartHttpServletRequest multi, String uid, Integer pno){
+		public String insert(@ModelAttribute("reviewVO") ReviewVO vo,Model model, MultipartHttpServletRequest multi, String uid, Integer pno){
+
 			System.out.println(vo.getUid()+"이게 말이 되냐고");
 
 			vo.setUid(uid);

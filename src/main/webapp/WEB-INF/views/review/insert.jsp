@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 let targetNum=null;
 <head>
     <link href="/resources/css/shopproduct_review.css" rel="stylesheet"/>
@@ -13,7 +15,7 @@ let targetNum=null;
     <script type="text/javascript" src="/resources/chart.js"></script>
 </head>
 <div id="page_review">
-    <form name="frm" method="post" action="insert" enctype="multipart/form-data">
+    <form:form name="frm" method="post" action="insert" enctype="multipart/form-data" modelAttribute="reviewVO">
 
         <div class="all">
             <div class="insert_page">
@@ -73,7 +75,7 @@ let targetNum=null;
                                                 <i class="fa-solid fa-star" value="3"></i>
                                                 <i class="fa-solid fa-star" value="4"></i>
                                                 <i class="fa-solid fa-star" value="5"></i> &nbsp;
-                                                <div style="display :inline" id="evaluation" class="evaluation" data-value=0></div>
+                                                <div style="display :inline" id="evaluation" class="evaluation" data-value=0 path="star" name="star"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +179,7 @@ let targetNum=null;
 
 
         <!--    all      -->
-    </form>
+    </form:form>
 </div>
 <script>
     //별점

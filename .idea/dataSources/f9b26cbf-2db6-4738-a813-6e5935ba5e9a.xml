@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="petchudb@localhost">
-  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.31">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.41">
     <root id="1">
       <DefaultCasing>lower/lower</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1188,26 +1188,26 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Charset>eucjpms</Charset>
     </collation>
     <schema id="324" parent="1" name="petchudb">
-      <Collation>utf8mb4_general_ci</Collation>
       <Current>1</Current>
+      <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="325" parent="1" name="information_schema">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="326" parent="1" name="interview_assignment_db">
-      <Collation>utf8mb4_general_ci</Collation>
+      <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="327" parent="1" name="mysql">
-      <Collation>latin1_swedish_ci</Collation>
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
     <schema id="328" parent="1" name="performance_schema">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="329" parent="1" name="sys">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="330" parent="1" name="topasdb">
-      <Collation>utf8mb4_general_ci</Collation>
+      <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <user id="331" parent="1" name="mariadb.sys">
       <Host>localhost</Host>
@@ -1228,107 +1228,107 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Host>localhost</Host>
     </user>
     <table id="337" parent="324" name="beautyrequest">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="338" parent="324" name="cashhistory">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="339" parent="324" name="chartdata">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="340" parent="324" name="chatmessage">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="341" parent="324" name="chatroom">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="342" parent="324" name="chkrequ">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="343" parent="324" name="cleaningrequest">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="344" parent="324" name="doctor">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="345" parent="324" name="doctor_request">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="346" parent="324" name="faq">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="347" parent="324" name="hcheck">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="348" parent="324" name="lessonrequest">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="349" parent="324" name="orderlist">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="350" parent="324" name="pet">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="351" parent="324" name="pointhistory">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="352" parent="324" name="porderlist"/>
     <table id="353" parent="324" name="rate">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="354" parent="324" name="recruit">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="355" parent="324" name="recruitreply">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="356" parent="324" name="reserve">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="357" parent="324" name="review">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="358" parent="324" name="rinfo">
       <Comment>copy of review table</Comment>
     </table>
     <table id="359" parent="324" name="serviceco">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="360" parent="324" name="serviceestimate">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="361" parent="324" name="shopcart">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="362" parent="324" name="shopproduct">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="363" parent="324" name="tbl_board">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="364" parent="324" name="tbl_message">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="365" parent="324" name="tbl_reply">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="366" parent="324" name="tbl_user">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="367" parent="324" name="user">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="368" parent="324" name="user_order">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="369" parent="324" name="user_request">
-      <Collation>utf8mb3_general_ci</Collation>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <column id="370" parent="337" name="brno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="371" parent="337" name="uid">
       <DataType>varchar(200)|0s</DataType>
@@ -1409,15 +1409,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="389" parent="337" name="PRIMARY">
-      <ColNames>brno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>brno</UnderlyingIndexColNames>
     </key>
     <column id="390" parent="338" name="chno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="391" parent="338" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -1446,9 +1446,9 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="397" parent="338" name="PRIMARY">
-      <ColNames>chno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>chno</UnderlyingIndexColNames>
     </key>
     <column id="398" parent="339" name="dname">
       <DataType>varchar(200)|0s</DataType>
@@ -1468,15 +1468,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Position>4</Position>
     </column>
     <key id="402" parent="339" name="PRIMARY">
-      <ColNames>dname</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>dname</UnderlyingIndexColNames>
     </key>
     <column id="403" parent="340" name="meno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="404" parent="340" name="message">
       <DataType>varchar(10000)|0s</DataType>
@@ -1552,15 +1552,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="420" parent="340" name="PRIMARY">
-      <ColNames>meno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>meno</UnderlyingIndexColNames>
     </key>
     <column id="421" parent="341" name="crno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="422" parent="341" name="doctorid">
       <DataType>varchar(200)|0s</DataType>
@@ -1589,15 +1589,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="428" parent="341" name="PRIMARY">
-      <ColNames>crno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>crno</UnderlyingIndexColNames>
     </key>
     <column id="429" parent="342" name="chkno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="430" parent="342" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -1626,15 +1626,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="436" parent="342" name="PRIMARY">
-      <ColNames>chkno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>chkno</UnderlyingIndexColNames>
     </key>
     <column id="437" parent="343" name="crno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="438" parent="343" name="uid">
       <DataType>varchar(200)|0s</DataType>
@@ -1704,15 +1704,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="452" parent="343" name="PRIMARY">
-      <ColNames>crno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>crno</UnderlyingIndexColNames>
     </key>
     <column id="453" parent="344" name="dno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="454" parent="344" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -1780,15 +1780,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="469" parent="344" name="PRIMARY">
-      <ColNames>dno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>dno</UnderlyingIndexColNames>
     </key>
     <column id="470" parent="345" name="drno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="471" parent="345" name="drdisease">
       <DataType>varchar(1000)|0s</DataType>
@@ -1846,15 +1846,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="483" parent="345" name="PRIMARY">
-      <ColNames>drno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>drno</UnderlyingIndexColNames>
     </key>
     <column id="484" parent="346" name="fno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="485" parent="346" name="title">
       <DataType>varchar(100)|0s</DataType>
@@ -1870,15 +1870,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Position>4</Position>
     </column>
     <key id="488" parent="346" name="PRIMARY">
-      <ColNames>fno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>fno</UnderlyingIndexColNames>
     </key>
     <column id="489" parent="347" name="hno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="490" parent="347" name="uid">
       <DataType>varchar(200)|0s</DataType>
@@ -1922,15 +1922,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="498" parent="347" name="PRIMARY">
-      <ColNames>hno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>hno</UnderlyingIndexColNames>
     </key>
     <column id="499" parent="348" name="lrno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="500" parent="348" name="uid">
       <DataType>varchar(200)|0s</DataType>
@@ -2030,9 +2030,9 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="520" parent="348" name="PRIMARY">
-      <ColNames>lrno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>lrno</UnderlyingIndexColNames>
     </key>
     <column id="521" parent="349" name="uid">
       <DataType>varchar(200)|0s</DataType>
@@ -2076,10 +2076,10 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Position>10</Position>
     </column>
     <column id="531" parent="349" name="bno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>11</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="532" parent="349" name="isDelete">
       <DataType>int(11)|0s</DataType>
@@ -2110,15 +2110,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="538" parent="349" name="PRIMARY">
-      <ColNames>bno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>bno</UnderlyingIndexColNames>
     </key>
     <column id="539" parent="350" name="pno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="540" parent="350" name="pname">
       <DataType>varchar(200)|0s</DataType>
@@ -2171,15 +2171,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="552" parent="350" name="PRIMARY">
-      <ColNames>pno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>pno</UnderlyingIndexColNames>
     </key>
     <column id="553" parent="351" name="phno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="554" parent="351" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -2208,9 +2208,9 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="560" parent="351" name="PRIMARY">
-      <ColNames>phno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>phno</UnderlyingIndexColNames>
     </key>
     <column id="561" parent="352" name="uid">
       <DataType>mediumtext|0s</DataType>
@@ -2261,10 +2261,10 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Position>12</Position>
     </column>
     <column id="573" parent="353" name="rno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="574" parent="353" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -2306,9 +2306,9 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="583" parent="353" name="PRIMARY">
-      <ColNames>rno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>rno</UnderlyingIndexColNames>
     </key>
     <column id="584" parent="354" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -2316,10 +2316,10 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Position>1</Position>
     </column>
     <column id="585" parent="354" name="bno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="586" parent="354" name="regdate">
       <DataType>datetime|0s</DataType>
@@ -2344,9 +2344,9 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="591" parent="354" name="PRIMARY">
-      <ColNames>bno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>bno</UnderlyingIndexColNames>
     </key>
     <column id="592" parent="355" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -2354,10 +2354,10 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Position>1</Position>
     </column>
     <column id="593" parent="355" name="rno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="594" parent="355" name="bno">
       <DataType>int(11)|0s</DataType>
@@ -2391,15 +2391,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="601" parent="355" name="PRIMARY">
-      <ColNames>rno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>rno</UnderlyingIndexColNames>
     </key>
     <column id="602" parent="356" name="rno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="603" parent="356" name="scno">
       <DataType>int(11)|0s</DataType>
@@ -2465,15 +2465,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="617" parent="356" name="PRIMARY">
-      <ColNames>rno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>rno</UnderlyingIndexColNames>
     </key>
     <column id="618" parent="357" name="rid">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="619" parent="357" name="rtitle">
       <DataType>varchar(200)|0s</DataType>
@@ -2587,9 +2587,9 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="644" parent="357" name="PRIMARY">
-      <ColNames>rid</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>rid</UnderlyingIndexColNames>
     </key>
     <column id="645" parent="358" name="rid">
       <DataType>int(11)|0s</DataType>
@@ -2668,10 +2668,10 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Position>19</Position>
     </column>
     <column id="664" parent="359" name="scno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="665" parent="359" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -2772,15 +2772,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="686" parent="359" name="PRIMARY">
-      <ColNames>scno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>scno</UnderlyingIndexColNames>
     </key>
     <column id="687" parent="360" name="seno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="688" parent="360" name="scno">
       <DataType>int(11)|0s</DataType>
@@ -2862,15 +2862,15 @@ interview_assignment_db|schema||user|localhost|UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="706" parent="360" name="PRIMARY">
-      <ColNames>seno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>seno</UnderlyingIndexColNames>
     </key>
     <column id="707" parent="361" name="cno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="708" parent="361" name="pno">
       <DataType>int(11)|0s</DataType>
@@ -2916,20 +2916,18 @@ pno</ColNames>
       <Type>btree</Type>
     </index>
     <key id="717" parent="361" name="PRIMARY">
-      <ColNames>cno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>cno</UnderlyingIndexColNames>
     </key>
     <key id="718" parent="361" name="uid">
-      <ColNames>uid
-pno</ColNames>
       <UnderlyingIndexName>uid</UnderlyingIndexName>
     </key>
     <column id="719" parent="362" name="pno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="720" parent="362" name="pname">
       <DataType>varchar(500)|0s</DataType>
@@ -2989,15 +2987,15 @@ pno</ColNames>
       <Position>14</Position>
     </column>
     <key id="733" parent="362" name="PRIMARY">
-      <ColNames>pno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>pno</UnderlyingIndexColNames>
     </key>
     <column id="734" parent="363" name="bno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="735" parent="363" name="title">
       <DataType>varchar(1000)|0s</DataType>
@@ -3038,15 +3036,15 @@ pno</ColNames>
       <Type>btree</Type>
     </index>
     <key id="743" parent="363" name="PRIMARY">
-      <ColNames>bno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>bno</UnderlyingIndexColNames>
     </key>
     <column id="744" parent="364" name="mno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="745" parent="364" name="receiver">
       <DataType>varchar(20)|0s</DataType>
@@ -3090,15 +3088,15 @@ pno</ColNames>
       <Type>btree</Type>
     </index>
     <key id="754" parent="364" name="PRIMARY">
-      <ColNames>mno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>mno</UnderlyingIndexColNames>
     </key>
     <column id="755" parent="365" name="rno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="756" parent="365" name="bno">
       <DataType>int(11)|0s</DataType>
@@ -3135,9 +3133,9 @@ pno</ColNames>
       <Type>btree</Type>
     </index>
     <key id="763" parent="365" name="PRIMARY">
-      <ColNames>rno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>rno</UnderlyingIndexColNames>
     </key>
     <column id="764" parent="366" name="uid">
       <DataType>varchar(20)|0s</DataType>
@@ -3176,9 +3174,9 @@ pno</ColNames>
       <Position>8</Position>
     </column>
     <key id="772" parent="366" name="PRIMARY">
-      <ColNames>uid</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>uid</UnderlyingIndexColNames>
     </key>
     <column id="773" parent="367" name="id">
       <DataType>varchar(200)|0s</DataType>
@@ -3260,15 +3258,15 @@ pno</ColNames>
       <Position>17</Position>
     </column>
     <key id="790" parent="367" name="PRIMARY">
-      <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>id</UnderlyingIndexColNames>
     </key>
     <column id="791" parent="368" name="uono">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="792" parent="368" name="uid">
       <DataType>varchar(200)|0s</DataType>
@@ -3310,15 +3308,15 @@ pno</ColNames>
       <Type>btree</Type>
     </index>
     <key id="801" parent="368" name="PRIMARY">
-      <ColNames>uono</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>uono</UnderlyingIndexColNames>
     </key>
     <column id="802" parent="369" name="rno">
+      <AutoIncrement>1</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="803" parent="369" name="d1">
       <DataType>tinyint(1)|0s</DataType>
@@ -3402,9 +3400,9 @@ pno</ColNames>
       <Type>btree</Type>
     </index>
     <key id="822" parent="369" name="PRIMARY">
-      <ColNames>rno</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
+      <UnderlyingIndexColNames>rno</UnderlyingIndexColNames>
     </key>
   </database-model>
 </dataSource>

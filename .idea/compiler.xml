@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="petchu-intellij" />
+        <module name="petchu-spring-intellij-remake" />
       </profile>
     </annotationProcessing>
   </component>

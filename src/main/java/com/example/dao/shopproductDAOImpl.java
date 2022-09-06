@@ -17,22 +17,22 @@ public class shopproductDAOImpl implements shopproductDAO{
 	
 	String namespace="com.example.mapper.shopproductMapper";
 
-	//»óÇ° Á¤º¸ (ÃßÈÄ ¼öÁ¤ ÇÊ¿ä)
+	//ìƒí’ˆ ì •ë³´ (ì¶”í›„ ìˆ˜ì • í•„ìš”)
 	public List<shopproductVO> list() {
 		return session.selectList(namespace+".list");
 	}
 
-	//»óÇ° Á¤º¸ ÆäÀÌÁö
+	//ìƒí’ˆ ì •ë³´ í˜ì´ì§€
 	@Override
 	public shopproductVO read(int pno) {
 		return session.selectOne(namespace+".read", pno);
 	}
 
-	//Ä«Å×°í¸® ¼³Á¤ ÈÄ ÇÊÅÍ¸µµÈ »óÇ°¸ñ·Ï ÆäÀÌÁö
+	//ì¹´í…Œê³ ë¦¬ ì„¤ì • í›„ í•„í„°ë§ëœ ìƒí’ˆëª©ë¡ í˜ì´ì§€
 	@Override
 	public List<shopproductVO> contents_list(String selectCate, String selectCate2, String selectCate3, Criteria cri) {
 		HashMap<String, Object> map = new HashMap<>();
-		//Ä«Å×°í¸® Á¤º¸¸¦ °¡Áö°í ÀÌµ¿
+		//ì¹´í…Œê³ ë¦¬ ì •ë³´ë¥¼ ê°€ì§€ê³  ì´ë™
 		map.put("selectCate", selectCate);
 		map.put("selectCate2", selectCate2);
 		map.put("selectCate3", selectCate3);
@@ -41,7 +41,7 @@ public class shopproductDAOImpl implements shopproductDAO{
 		return session.selectList(namespace+".contents_list", map);
 	}
 
-	//ÁÖ¹®¸ñ·Ï
+	//ì£¼ë¬¸ëª©ë¡
 		@Override
 		public shopcartVO cart_read(String uid) {
 			return session.selectOne(namespace+".cart_read", uid);

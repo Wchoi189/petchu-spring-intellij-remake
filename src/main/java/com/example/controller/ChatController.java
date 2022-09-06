@@ -60,7 +60,8 @@ public class ChatController {
 	@ResponseBody
 	@RequestMapping("/notreadall")
 	public int notreadall(HttpSession session){
-		return mdao.notreadall(session.getAttribute("id").toString());
+		return 2;
+//		return mdao.notreadall(session.getAttribute("id").toString());
 	}
 	@ResponseBody
 	@RequestMapping(value="/update", method=RequestMethod.POST)
