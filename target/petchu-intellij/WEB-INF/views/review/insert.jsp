@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-let targetNum=null;
 <head>
     <link href="/resources/css/shopproduct_review.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="#">
@@ -15,7 +14,7 @@ let targetNum=null;
     <script type="text/javascript" src="/resources/chart.js"></script>
 </head>
 <div id="page_review">
-    <form:form name="frm" method="post" action="insert" enctype="multipart/form-data" modelAttribute="reviewVO">
+    <form name="myfrm" id="myfrm" method="post" action="insert" enctype="multipart/form-data" onsubmit="return onSubmit(event)">
 
         <div class="all">
             <div class="insert_page">
@@ -68,14 +67,14 @@ let targetNum=null;
                                     </div>
                                     <div class="star">
                                         <div class="make_star">
-                                            <input type="hidden"  style="display:none;">
+                                            <input type="hidden"  style="display:none;" id="star_rating" name="star">
                                             <div class="rate" style="display:inline; cursor : pointer;">
                                                 <i class="fa-solid fa-star" value="1"></i>
                                                 <i class="fa-solid fa-star" value="2"></i>
                                                 <i class="fa-solid fa-star" value="3"></i>
                                                 <i class="fa-solid fa-star" value="4"></i>
                                                 <i class="fa-solid fa-star" value="5"></i> &nbsp;
-                                                <div style="display :inline" id="evaluation" class="evaluation" data-value=0 path="star" name="star"></div>
+                                                <div style="display :inline" id="evaluation" class="evaluation"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -107,6 +106,7 @@ let targetNum=null;
                                 <div class="photo_a">
                                     <h3>사진첨부</h3>
                                 </div>
+
                             </div>
                             <div class="r_photo_file_wrapper">
                                 <div class="file">
@@ -166,10 +166,10 @@ let targetNum=null;
                         </div>
                     </div>
                     <div id="review_btn">
-                        <a href="#" class="review_btn">취소하기</a>
+                        <button class="review_btn" type="reset">취소하기</button>
                         <div class="box"></div>
-                        <a href="javascript: submitform(event)" class="review_submit review_btn" style="background: #32af00; color: black">등록하기</a>
-
+                        <%--<a href="javascript:;"  onclick="document.getElementById('myfrm').submit();" id= f"review_submit" class="review_submit review_btn" style="background: #32af00; color: black">등록하기</a>--%>
+                        <button id="submit_review" type="submit" class="review_btn" style="background: #32af00; color: black">등록하기</button>
                     </div>
                 </div>
                 <!--page_info-->
@@ -177,76 +177,37 @@ let targetNum=null;
             </div>
             <!--insert_page-->
 
-
         <!--    all      -->
-    </form:form>
+    </form>
 </div>
 <script>
     //별점
-    let rating = $('.rating');
-
-
-    /* rating.each(function(){
-        var tagetscore = $(this).attr('data-rate');
-        console.log(tagetscore);
-        $(this).find('.fa-solid').css({color:'#D3D3D3'});
-        $(this).find('.fa-solid:nth-child(-n+' + tagetscore + ')').css({color:'#F08d28'});
-    }); */
-    let userScore = $('#makeStar');
-
-    userScore.change(function () {
-        let userScoreNum = $(this).val();
-        switch (userScoreNum) {
-            case "1":
-                $("#evaluation").html("별로에요");
-                $("#evaluation").data(value, 1)
-                break;
-            case "2":
-                $("#evaluation").html("조금 별로에요");
-                $("#evaluation").data(value, 2)
-                break;
-            case "3":
-                $("#evaluation").html("보통이에요");
-                $("#evaluation").data(value, 3)
-                break;
-            case "4":
-                $("#evaluation").html("좋아요");
-                $("#evaluation").data(value, 4)
-                break;
-            case "5":
-                $("#evaluation").html("아주 좋아요");
-                $("#evaluation").data(value, 5)
-                break;
-        }
-        $('.make_star .fa-solid').css({color: '#D3D3D3'})
-        $('.make_star .fa-solid:nth-child(-n+' + userScoreNum + ')').css({color: '#F08d28'});
-    });
-
-
     $('.make_star .fa-solid').click(function () {
-        targetNum = $(this).index() + 1;
+        let $starRating = $('#star_rating');  //input box to store star rating
+        let $evaluation = $('#evaluation');
+        let targetNum = $(this).index() + 1;  //star rating value based on index
         //$('#makeStar').val(targetNum);
-        let check = $(frm.star).val(targetNum);
+        let check = $(myfrm.star).val(targetNum);
         switch (targetNum) {
             case 1:
-                $("#evaluation").html("별로에요");
-                $("#evaluation").val(1);
+                $evaluation.html("별로에요");
+                $starRating.val(1)
                 break;
             case 2:
-                $("#evaluation").html("조금 별로에요");
-                $("#evaluation").val(2);
+                $evaluation.html("조금 별로에요");
+                $starRating.val(2)
                 break;
             case 3:
-                $("#evaluation").html("보통이에요");
-                $("#evaluation").val(3);
+                $evaluation.html("보통이에요");
+                $starRating.val(3)
                 break;
             case 4:
-                $("#evaluation").html("좋아요");
-                $("#evaluation").val(4);
+                $evaluation.html("좋아요");
+                $starRating.val(4)
                 break;
             case 5:
-                $("#evaluation").html("아주 좋아요");
-                $("#evaluation").val(5);
+                $evaluation.html("아주 좋아요");
+                $starRating.val(5)
                 break;
         }
 
@@ -266,7 +227,6 @@ let targetNum=null;
 
     $(document).ready(function (e) {
         $("input[type='file']").change(function (e) {
-
          /*   //div 내용 비워주기
             $('.preview').empty();
 */
@@ -290,7 +250,7 @@ let targetNum=null;
             let maxSize = 20971520;  //20MB
             let fileEx = fileName.slice(fileName.indexOf(".") + 1).toLowerCase();
 
-            if (fileEx != "png" && fileEx != "jpg" && fileEx != "gif") {
+            if (fileEx !== "png" && fileEx !== "jpg" && fileEx !== "gif") {
                 alert("등록가능한 형식이 아닙니다.");
                 return false;
             }
@@ -316,7 +276,6 @@ let targetNum=null;
                 let fileName = f.name;
                 if (fileName.length > 10) {
                     fileName = fileName.substring(0, 7) + "..";
-
                 }
 
                 //div에 이미지 추가
@@ -340,13 +299,9 @@ let targetNum=null;
                                 </span>`
 
                         str += `</div></li>`;
-
-
-
                         $(str).appendTo('.review_file_list_ul');
                     }
                     reader.readAsDataURL(f);
-
                 } else {
                     str += '<img src ="/resources/img/fileImg.png" title"' + f.name + '" width=68 height=68 />'
                     str += `</div></li>`
@@ -357,14 +312,38 @@ let targetNum=null;
     });
 
     //submit 버튼을 클릭한 경우
+function onSubmit(event){
+    event.preventDefault()
 
-    $('.review_submit').click(function(event){
-        event.preventDefault()
+    let review_details = document.getElementById('textarea_1').value;
+    let review_summary = document.getElementById('textarea_2').value;
+    let files = document.getElementById('btn_file').files;
+    let uid = document.getElementById('user_name').innerText;
+    let pno = document.getElementById('pno').innerText;
+    let bno = document.getElementById('bno').innerText;
+    let star = document.getElementById('star_rating').value;
+    if (review_details === "") {
+        alert("리뷰를 입력해주세요");
+        review_details.focus();
+        return false;
+    } else if (review_summary === "") {
+        alert("한줄요약을 입력해주세요");
+        review_summary.focus();
+        return false;
+    }
 
+    if (!confirm("리뷰를 등록하실래요?" + "\n" +"review_details : " + review_details + "\n"+  " review_summary : " +review_summary+ "\n" +" files : " +files + "\n" + "uid :" + uid+"\n"+ " star " + star)) return false;
+
+    document.myfrm.submit();
+
+    return true;
+
+}
+    /*$('#review_submit').on(function(event){
+        event.preventDefault();
 
         let review_details = document.getElementById('textarea_1').value;
         let review_summary = document.getElementById('textarea_2').value;
-        /*      var star = $(frm.star).val();*/
         let files = document.getElementById('btn_file').files;
         let uid = document.getElementById('user_name').innerText;
         let pno = document.getElementById('pno').innerText;
@@ -380,26 +359,15 @@ let targetNum=null;
             return;
         }
 
-        if (!confirm("리뷰를 등록하실래요?" + "\n" +"review_details : " + review_details + "\n"+  " review_summary : " +review_summary+ "\n" +" files : " +files + "\n" + "uid :" + uid+"\n"+ " star " + star)) return;
-        document.forms["frm"].append("star",star)
-        document.forms["frm"].submit();
-        location.href="/review/list";
-/*
-        $.ajax({
-            type: "post",
-            url: "/review/insert",
-            data: {star:star},
-            success: function() {
-                document.forms["frm"].submit();
-                location.href="/review/list";
-            }
-        })
-*/
+        if(!confirm("리뷰를 등록하실래요?" + "\n" +"review_details : " + review_details + "\n"+  " review_summary : " +review_summary+ "\n" +" files : " +files + "\n" + "uid :" + uid+"\n"+ " star " + star)) return;
 
+        document.myfrm.submit();
+     /!*   document.getElementById("myfrm").submit();*!/
+        /!*document.myfrm.append("star",star)*!/
+        location.href="/review/list";
 
     });
-
-
+*/
 
 
     // textarea 저녀 변수

@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-let targetNum=null;
 <head>
     <link href="/resources/css/shopproduct_review.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="#">
@@ -15,7 +14,8 @@ let targetNum=null;
     <script type="text/javascript" src="/resources/chart.js"></script>
 </head>
 <div id="page_review">
-    <form:form name="frm" method="post" action="insert" enctype="multipart/form-data" modelAttribute="reviewVO">
+    <form name="myfrm" id="myfrm" method="post" action="insert" enctype="multipart/form-data"
+          onsubmit="return onSubmit(event)">
 
         <div class="all">
             <div class="insert_page">
@@ -25,16 +25,16 @@ let targetNum=null;
 
                 <div class="page_info">
                     <div class="user_info">
-                        <span><img src="/resources/icon/user_info.png" width="80" /> </span>
+                        <span><img src="/resources/icon/user_info.png" width="80"/> </span>
                         <span id="user_name">${vo.uid}</span>
-                        <input type ="hidden" value="${vo.pno}" name="pno" />
-                        <input type ="hidden" value="${vo.bno}" name="bno" />
+                        <input type="hidden" value="${vo.pno}" name="pno"/>
+                        <input type="hidden" value="${vo.bno}" name="bno"/>
                         <span></span>
                     </div>
                     <div class="review_details1">
-                    <span class="details1_title">만족도</span>
-                        <span><img src="/resources/icon/thumb-down.png" width="30" class="details1_thumbs" /></span>
-                        <span><img src="/resources/icon/thumbs-up.png" width="30" class="details1_thumbs" /></span>
+                        <span class="details1_title">만족도</span>
+                        <span><img src="/resources/icon/thumb-down.png" width="30" class="details1_thumbs"/></span>
+                        <span><img src="/resources/icon/thumbs-up.png" width="30" class="details1_thumbs"/></span>
                     </div>
                     <div class="review_details2">
 
@@ -43,7 +43,9 @@ let targetNum=null;
                     <div class="inin_page">
                         <!--한줄요약까지-->
                         <div class="page_heading">
-                            <span class="page_title_span_wrap"><img src="/resources/icon/product_review1.png" width="25px" /></span><span class="page_title_span_wrap ptitle">상품 품질 리뷰</span>
+                            <span class="page_title_span_wrap"><img src="/resources/icon/product_review1.png"
+                                                                    width="25px"/></span><span
+                                class="page_title_span_wrap ptitle">상품 품질 리뷰</span>
                             <h5>상품에 대해서 얼마나 만족하시나요?</h5>
                         </div>
                         <!--r_q-->
@@ -59,7 +61,7 @@ let targetNum=null;
 
                             <div class="product_container">
                                 <div id="p_img">
-                                    <img src="${vo.pimage}" width=200 height=200 />
+                                    <img src="${vo.pimage}" width=200 height=200/>
                                 </div>
 
                                 <div class="product_name">
@@ -68,14 +70,14 @@ let targetNum=null;
                                     </div>
                                     <div class="star">
                                         <div class="make_star">
-                                            <input type="hidden"  style="display:none;">
+                                            <input type="hidden" style="display:none;" id="star_rating" name="star">
                                             <div class="rate" style="display:inline; cursor : pointer;">
                                                 <i class="fa-solid fa-star" value="1"></i>
                                                 <i class="fa-solid fa-star" value="2"></i>
                                                 <i class="fa-solid fa-star" value="3"></i>
                                                 <i class="fa-solid fa-star" value="4"></i>
                                                 <i class="fa-solid fa-star" value="5"></i> &nbsp;
-                                                <div style="display :inline" id="evaluation" class="evaluation" data-value=0 path="star" name="star"></div>
+                                                <div style="display :inline" id="evaluation" class="evaluation"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -107,146 +109,111 @@ let targetNum=null;
                                 <div class="photo_a">
                                     <h3>사진첨부</h3>
                                 </div>
+
                             </div>
                             <div class="r_photo_file_wrapper">
                                 <div class="file">
-                                        <button class="review_file_upload-btn" type="button">
-                                            사진 올리기
-                                        </button>
+                                    <button class="review_file_upload-btn" type="button">
+                                        사진 올리기
+                                    </button>
                                     <input id="btn_file" name="file_input" class="file_input"
-                                               type="file" multiple/>
+                                           type="file" multiple/>
 
                                     <span class="review_modify_file_count">
-                                        <strong class="reviewFileUploadCount">0</strong>&nbsp;/&nbsp;<span class="reviewFileUploadMaxCount">10</span>
+                                        <strong class="reviewFileUploadCount">0</strong>&nbsp;/&nbsp;<span
+                                            class="reviewFileUploadMaxCount">10</span>
                             </span>
-                                        <span class="review_file_guide">사진은 최대 20MB 이하의 JPG, PNG, GIF 파일 10장까지 첨부 가능합니다.</span>
-                                    </div>
+                                    <span class="review_file_guide">사진은 최대 20MB 이하의 JPG, PNG, GIF 파일 10장까지 첨부 가능합니다.</span>
+                                </div>
 
 
-                                    <div class="my-review-filelist-wrap" style="display: block;">
-                                        <ul class="review_file_list_ul">
+                                <div class="my-review-filelist-wrap" style="display: block;">
+                                    <ul class="review_file_list_ul">
 
-                                        </ul>
-                                    </div>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
-                        <div class="rtitle">
-                            <div>
-                                <h3 class="rtitleh3">한줄요약</h3>
-                            </div>
-                            <div id="rtitle summary_container">
-                                <div class="textarea_review">
+                    <div class="rtitle">
+                        <div>
+                            <h3 class="rtitleh3">한줄요약</h3>
+                        </div>
+                        <div id="rtitle summary_container">
+                            <div class="textarea_review">
                                     <textarea name="rtitle" id="textarea_2" class="textarea_2" rows="3" cols="95"
                                               placeholder="한 줄 요약을 입력해주세요" maxlength=30></textarea>
-                                </div>
-                                <div class="textarea_review_row_bottom2">
-                                    <div class="review_overlay_row2">
+                            </div>
+                            <div class="textarea_review_row_bottom2">
+                                <div class="review_overlay_row2">
 
-                                        <div class="word_count2_container">
+                                    <div class="word_count2_container">
                       <span class="word_count2" data-count="0">
                       </span><span>/</span><span>30</span>
-                                        </div>
-
                                     </div>
+
                                 </div>
-
                             </div>
-                        </div>
-                        <!--rtitle-->
-                    </div>
-                    <!--inin_page-->
-                    <div class="h_info" style="display:none;">
-                        <div class="satis">
-                            <p>만족도</p>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                    <div id="review_btn">
-                        <a href="#" class="review_btn">취소하기</a>
-                        <div class="box"></div>
-                        <a href="javascript: submitform(event)" class="review_submit review_btn" style="background: #32af00; color: black">등록하기</a>
 
+                        </div>
+                    </div>
+                    <!--rtitle-->
+                </div>
+                <!--inin_page-->
+                <div class="h_info" style="display:none;">
+                    <div class="satis">
+                        <p>만족도</p>
+                    </div>
+                    <div>
                     </div>
                 </div>
-                <!--page_info-->
-
+                <div id="review_btn">
+                    <button class="review_btn" type="reset">취소하기</button>
+                    <div class="box"></div>
+                    <%--<a href="javascript:;"  onclick="document.getElementById('myfrm').submit();" id= f"review_submit" class="review_submit review_btn" style="background: #32af00; color: black">등록하기</a>--%>
+                    <button id="submit_review" type="submit" class="review_btn"
+                            style="background: #32af00; color: black">등록하기
+                    </button>
+                </div>
             </div>
-            <!--insert_page-->
+            <!--page_info-->
 
+        </div>
+        <!--insert_page-->
 
         <!--    all      -->
-    </form:form>
+    </form>
 </div>
 <script>
     //별점
-    let rating = $('.rating');
-
-
-    /* rating.each(function(){
-        var tagetscore = $(this).attr('data-rate');
-        console.log(tagetscore);
-        $(this).find('.fa-solid').css({color:'#D3D3D3'});
-        $(this).find('.fa-solid:nth-child(-n+' + tagetscore + ')').css({color:'#F08d28'});
-    }); */
-    let userScore = $('#makeStar');
-
-    userScore.change(function () {
-        let userScoreNum = $(this).val();
-        switch (userScoreNum) {
-            case "1":
-                $("#evaluation").html("별로에요");
-                $("#evaluation").data(value, 1)
-                break;
-            case "2":
-                $("#evaluation").html("조금 별로에요");
-                $("#evaluation").data(value, 2)
-                break;
-            case "3":
-                $("#evaluation").html("보통이에요");
-                $("#evaluation").data(value, 3)
-                break;
-            case "4":
-                $("#evaluation").html("좋아요");
-                $("#evaluation").data(value, 4)
-                break;
-            case "5":
-                $("#evaluation").html("아주 좋아요");
-                $("#evaluation").data(value, 5)
-                break;
-        }
-        $('.make_star .fa-solid').css({color: '#D3D3D3'})
-        $('.make_star .fa-solid:nth-child(-n+' + userScoreNum + ')').css({color: '#F08d28'});
-    });
-
-
     $('.make_star .fa-solid').click(function () {
-        targetNum = $(this).index() + 1;
+        let $starRating = $('#star_rating');  //input box to store star rating
+        let $evaluation = $('#evaluation');
+        let targetNum = $(this).index() + 1;  //star rating value based on index
         //$('#makeStar').val(targetNum);
-        let check = $(frm.star).val(targetNum);
+        let check = $(myfrm.star).val(targetNum);
         switch (targetNum) {
             case 1:
-                $("#evaluation").html("별로에요");
-                $("#evaluation").val(1);
+                $evaluation.html("별로에요");
+                $starRating.val(1)
                 break;
             case 2:
-                $("#evaluation").html("조금 별로에요");
-                $("#evaluation").val(2);
+                $evaluation.html("조금 별로에요");
+                $starRating.val(2)
                 break;
             case 3:
-                $("#evaluation").html("보통이에요");
-                $("#evaluation").val(3);
+                $evaluation.html("보통이에요");
+                $starRating.val(3)
                 break;
             case 4:
-                $("#evaluation").html("좋아요");
-                $("#evaluation").val(4);
+                $evaluation.html("좋아요");
+                $starRating.val(4)
                 break;
             case 5:
-                $("#evaluation").html("아주 좋아요");
-                $("#evaluation").val(5);
+                $evaluation.html("아주 좋아요");
+                $starRating.val(5)
                 break;
         }
 
@@ -266,10 +233,9 @@ let targetNum=null;
 
     $(document).ready(function (e) {
         $("input[type='file']").change(function (e) {
-
-         /*   //div 내용 비워주기
-            $('.preview').empty();
-*/
+            /*   //div 내용 비워주기
+               $('.preview').empty();
+   */
             let files = e.target.files;
             arr = Array.prototype.slice.call(files);
 
@@ -290,7 +256,7 @@ let targetNum=null;
             let maxSize = 20971520;  //20MB
             let fileEx = fileName.slice(fileName.indexOf(".") + 1).toLowerCase();
 
-            if (fileEx != "png" && fileEx != "jpg" && fileEx != "gif") {
+            if (fileEx !== "png" && fileEx !== "jpg" && fileEx !== "gif") {
                 alert("등록가능한 형식이 아닙니다.");
                 return false;
             }
@@ -316,7 +282,6 @@ let targetNum=null;
                 let fileName = f.name;
                 if (fileName.length > 10) {
                     fileName = fileName.substring(0, 7) + "..";
-
                 }
 
                 //div에 이미지 추가
@@ -328,8 +293,8 @@ let targetNum=null;
                     reader.onload = function (e) {
                         console.log(" reader.onload = function (e) === ?")
                         console.log(e)
-                        str += '<span class="preview"><img class="my-review_image" src="'+e.target.result+'" width=66.7 height=66.7 /></span>'
-                    /*    str += '<p>' + fileName + '</p>';*/
+                        str += '<span class="preview"><img class="my-review_image" src="' + e.target.result + '" width=66.7 height=66.7 /></span>'
+                        /*    str += '<p>' + fileName + '</p>';*/
                         str += `<span class="attachment_caption_container">
                                 <textarea rows="3" cols="75" class="caption__text" placeholder="이 사진의 설명글을 작성해보세요." maxlength="150"></textarea>
                                 </span>`
@@ -340,13 +305,9 @@ let targetNum=null;
                                 </span>`
 
                         str += `</div></li>`;
-
-
-
                         $(str).appendTo('.review_file_list_ul');
                     }
                     reader.readAsDataURL(f);
-
                 } else {
                     str += '<img src ="/resources/img/fileImg.png" title"' + f.name + '" width=68 height=68 />'
                     str += `</div></li>`
@@ -357,54 +318,37 @@ let targetNum=null;
     });
 
     //submit 버튼을 클릭한 경우
-
-    $('.review_submit').click(function(event){
+    function onSubmit(event) {
         event.preventDefault()
-
 
         let review_details = document.getElementById('textarea_1').value;
         let review_summary = document.getElementById('textarea_2').value;
-        /*      var star = $(frm.star).val();*/
         let files = document.getElementById('btn_file').files;
         let uid = document.getElementById('user_name').innerText;
         let pno = document.getElementById('pno').innerText;
         let bno = document.getElementById('bno').innerText;
-        let star = document.getElementById('evaluation').value;
-        if (review_details == "") {
+        let star = document.getElementById('star_rating').value;
+        if (review_details === "") {
             alert("리뷰를 입력해주세요");
             review_details.focus();
-            return;
-        } else if (review_summary == "") {
+            return false;
+        } else if (review_summary === "") {
             alert("한줄요약을 입력해주세요");
             review_summary.focus();
-            return;
+            return false;
         }
 
-        if (!confirm("리뷰를 등록하실래요?" + "\n" +"review_details : " + review_details + "\n"+  " review_summary : " +review_summary+ "\n" +" files : " +files + "\n" + "uid :" + uid+"\n"+ " star " + star)) return;
-        document.forms["frm"].append("star",star)
-        document.forms["frm"].submit();
-        location.href="/review/list";
-/*
-        $.ajax({
-            type: "post",
-            url: "/review/insert",
-            data: {star:star},
-            success: function() {
-                document.forms["frm"].submit();
-                location.href="/review/list";
-            }
-        })
-*/
+        if (!confirm("리뷰를 등록하실래요?" + "\n" + "review_details : " + review_details + "\n" + " review_summary : " + review_summary + "\n" + " files : " + files + "\n" + "uid :" + uid + "\n" + " star " + star)) return false;
 
+        document.myfrm.submit();
 
-    });
+        return true;
 
-
-
+    }
 
     // textarea 저녀 변수
-    var word_count1 = $(".word_count1");
-    var word_count2 = $(".word_count2");
+    let word_count1 = $(".word_count1");
+    let word_count2 = $(".word_count2");
     // 초기 글자 수
     word_count1.html(0);
     word_count2.html(0);

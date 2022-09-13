@@ -1,11 +1,9 @@
 package com.example.config;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +12,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -40,6 +37,8 @@ public class RootConfig {
     @Value("${spring.datasource.password}")
     private String password;
 
+    @Value("${spring.uploadPath}")
+    private String uploadPath;
     @Bean
     public DataSource dataSource() {
 
@@ -82,9 +81,11 @@ public class RootConfig {
         multipartResolver.setMaxUploadSize(5000000);
         return multipartResolver;
     }
+
+    //   absolute path
     @Bean
     public String uploadPath (){
-        String path = "c:/zzz/";
+        String path = uploadPath;
         return path;
     }
 
