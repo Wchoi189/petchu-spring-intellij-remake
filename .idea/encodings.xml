@@ -121,6 +121,8 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/domain/shopcartVO.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/domain/shopproductVO.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/log4jdbc.log4j2.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/logback.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/BeautyRequestMapper.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/CashhistoryMapper.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/ChartdataMapper.xml" charset="UTF-8" />

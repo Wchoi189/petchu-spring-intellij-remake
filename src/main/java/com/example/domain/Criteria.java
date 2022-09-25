@@ -1,69 +1,81 @@
 package com.example.domain;
 
 public class Criteria {
-	private int page; //현재페이지
-	private int perPageNum; //한페이지 출력 데이터수
-	private String searchType; //검색키
-	private String keyword; //검색어
-	private String sort; //정렬
+    private int page; //현재페이지
+    private int perPageNum; //한페이지 출력 데이터수
+    private String searchType; //검색키
+    private String keyword; //검색어
+    private String sort; //정렬
 
-	public String getSort() {
-		return sort;
-	}
+    private String uid;
 
-	public void setSort(String sort) {
-		this.sort = sort;
-	}
+    public String getUid() {
+        return uid;
+    }
 
-	public Criteria() {
-		this(1, 10);
-	}
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
-	public Criteria(int page, int perPageNum) {
-		this.page = page;
-		this.perPageNum = perPageNum;
-	}
+    public String getSort() {
+        return sort;
+    }
 
-	// 1페이지인 경우 pageStart는 0
-	public int getPageStart() {
-		return (this.page - 1) * perPageNum;
-	}
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
 
-	public int getPage() {
-		return page;
-	}
+    public Criteria() {
+        this(1, 10);
+    }
 
-	public void setPage(int page) {
-		this.page = page;
-	}
+    public Criteria(int page, int perPageNum) {
+        this.page = page;
+        this.perPageNum = perPageNum;
+    }
 
-	public int getPerPageNum() {
-		return perPageNum;
-	}
+    // 1페이지인 경우 pageStart는 0
+    public int getPageStart() {
+        return (this.page - 1) * perPageNum;
+    }
 
-	public void setPerPageNum(int perPageNum) {
-		this.perPageNum = perPageNum;
-	}
+    public int getPage() {
+        return page;
+    }
 
-	public String getSearchType() {
-		return searchType;
-	}
+    public void setPage(int page) {
+        this.page = page;
+    }
 
-	public void setSearchType(String searchType) {
-		this.searchType = searchType;
-	}
+    public int getPerPageNum() {
+        return perPageNum;
+    }
 
-	public String getKeyword() {
-		return keyword;
-	}
+    public void setPerPageNum(int perPageNum) {
+        this.perPageNum = perPageNum;
+    }
 
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
+    public String getSearchType() {
+        return searchType;
+    }
 
-	@Override
-	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType + ", keyword="
-				+ keyword + "]";
-	}
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    @Override
+    public String toString() {
+        return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType + ", keyword="
+                + keyword + "]";
+    }
+
+
 }

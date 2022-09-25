@@ -3,53 +3,79 @@
 
 <mapper namespace="com.example.mapper.ReviewMapper">
     <select id="read" resultType="com.example.domain.ReviewVO">
-        select * from review
-      	where rid=#{rid} and pno=#{pno}
+        select *
+        from review
+        where rid = #{rid}
+          and pno = #{pno}
     </select>
-    
+
     <select id="idReview" resultType="com.example.domain.ReviewVO">
-    	select * from review where uid=#{uid}
+        select *
+        from review
+        where uid = #{uid}
     </select>
-    
+
     <select id="idReviewCount" resultType="int">
-    	select count(*) from review where uid=#{uid}
+        select count(*)
+        from review
+        where uid = #{uid}
     </select>
-    
+
     <select id="list" resultType="com.example.domain.ReviewVO">
-        select * from review
-        where bno=#{bno}
+        select *
+        from review
+        where bno = #{bno}
         order by rid desc
     </select>
-    <insert id="insert">
-    	insert into review(rtitle, star, review, rimage1, rimage2, uid, pno, bno)
-    	values(#{rtitle}, #{star}, #{review}, #{rimage1}, #{rimage2}, #{uid}, #{pno}, #{bno})
+    <insert id="insert" parameterType="com.example.domain.ReviewVO">
+        insert into review(rtitle, star, review, rimage1, rimage2, rimage3, uid, pno, bno)
+        values (#{rtitle}, #{star}, #{review}, #{rimage1}, #{rimage2}, #{rimage3}, #{uid}, #{pno}, #{bno})
     </insert>
     <update id="update">
-    	update review
-    	set rtitle=#{rtitle}, star=#{star}, review=#{review}, rimage1=#{rimage1}, rimage2=#{rimage2},rdate=now()
-    	where rid=#{rid}
+        update review
+        set rtitle=#{rtitle},
+            star=#{star},
+            review=#{review},
+            rimage1=#{rimage1},
+            rimage2=#{rimage2},
+            rdate=now()
+        where rid = #{rid}
     </update>
     <update id="reviewUpdate">
-    	update review set star=#{star}, review=#{review} where rid=#{rid}
+        update review
+        set star=#{star},
+            review=#{review}
+        where rid = #{rid}
     </update>
     <delete id="delete">
-    	delete from review
-    	where rid=#{rid}
+        delete
+        from review
+        where rid = #{rid}
     </delete>
-    <select id="join" resultType="com.example.domain.ReviewVO">
-    	select r.*, p.pname, p.pimage from review r, shopproduct p
-		where r.pno=p.pno
-		order by rdate desc
-		limit #{pageStart}, #{perPageNum}
+    <select id="join" resultType="com.example.domain.ReviewVO" parameterType="com.example.domain.Criteria">
+        select r.*, p.pname, p.pimage, r.uid
+        from review r,
+             shopproduct p
+        where r.pno = p.pno
+          and r.uid = #{uid}
+        order by rdate desc
+            limit #{pageStart}, #{perPageNum}
     </select>
     <select id="count" resultType="int">
-    	select count(*) from rinfo
+        select count(*)
+        from rinfo
     </select>
-	<select id="updateread" resultType="com.example.domain.ReviewVO">
-		select r.*, p.pname, p.pimage from review r, shopproduct p
-		where r.pno=p.pno and r.rid=#{rid};
-	</select>
-	<select id="user_review_count" resultType="int">
-		 select count(*) from review where uid=#{uid} and bno=#{bno};
-	</select>
+    <select id="updateread" resultType="com.example.domain.ReviewVO">
+        select r.*, p.pname, p.pimage
+        from review r,
+             shopproduct p
+        where r.pno = p.pno
+          and r.rid = #{rid};
+    </select>
+    <select id="user_review_count" resultType="int">
+        select count(*)
+        from review
+        where uid = #{uid}
+          and bno = #{bno};
+    </select>
 </mapper>

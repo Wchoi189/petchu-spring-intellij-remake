@@ -19,75 +19,77 @@ import java.util.List;
 @Controller
 @RequestMapping("/serviceCo")
 public class ServiceCoController {
-	@Autowired
-	ServiceCoDAO dao;
-	@Resource(name = "uploadPath")
-	String path;
+    @Autowired
+    ServiceCoDAO dao;
+    @Resource(name = "uploadPath")
+    String path;
 
-	@RequestMapping("/list")
-	public String list(Model model){
-		model.addAttribute("pageName","serviceCo/list.jsp");
-		return "/home";
-	}
-	@RequestMapping("/list.json")
-	@ResponseBody
-	public List<ServiceCoVO> listJSON(HttpSession session){
-		List<ServiceCoVO> list=dao.list(session.getAttribute("id").toString());
-		
-		
+    @RequestMapping("/list")
+    public String list(Model model) {
+        model.addAttribute("pageName", "serviceCo/list.jsp");
+        return "/home";
+    }
 
-		return list;
-	}
+    @RequestMapping("/list.json")
+    @ResponseBody
+    public List<ServiceCoVO> listJSON(HttpSession session) {
+        List<ServiceCoVO> list = dao.list(session.getAttribute("id").toString());
 
-	@RequestMapping("/insert")
-	public String insert(Model model){
-		model.addAttribute("pageName","serviceCo/insert.jsp");
-		return "/home";
-	}
-	
-	
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(ServiceCoVO vo,MultipartHttpServletRequest multi ,HttpSession session) throws Exception {
 
-		MultipartFile file = multi.getFile("file");
-		if (!file.isEmpty()) {
-			String image = "serviceCo/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
-			file.transferTo(new File(path + image));
-			vo.setScimage(image);
-			System.out.println(vo.toString());
-			dao.insert(vo);
-		}else{
-			dao.insert(vo);
-		}
-		return "redirect:/serviceCo/list";
-	}
-	
-	@RequestMapping("/update")
-	public String update(Model model,int scno){
-		model.addAttribute("vo",dao.read(scno));
-		model.addAttribute("pageName","serviceCo/update.jsp");
-		
-		return "/home";
+        return list;
+    }
 
-		
-	}
-	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String updatePost(ServiceCoVO vo, MultipartHttpServletRequest multi) throws Exception{
+    @RequestMapping("/insert")
+    public String insert(Model model) {
+        model.addAttribute("pageName", "serviceCo/insert.jsp");
+        return "/home";
+    }
 
-		MultipartFile file=multi.getFile("file");
-		if(!file.isEmpty()){
-			new File(path + vo.getScimage()).delete();
-			String image= "serviceCo/" + System.currentTimeMillis()+"_"+file.getOriginalFilename();
-			file.transferTo(new File(path + image));
-			vo.setScimage(image);
-		}
-		dao.update(vo);
-		return "redirect:/serviceCo/list";
-	}
-	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	@ResponseBody
-	public void delete(int scno){
-		dao.delete(scno);
-		
-	}
+
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    public String insert(ServiceCoVO vo, MultipartHttpServletRequest multi, HttpSession session) throws Exception {
+
+        MultipartFile file = multi.getFile("file");
+        if (!file.isEmpty()) {
+            String image = "serviceCo/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            file.transferTo(new File(path + image));
+            vo.setScimage(image);
+            System.out.println(vo.toString());
+            dao.insert(vo);
+        } else {
+            dao.insert(vo);
+        }
+        return "redirect:/serviceCo/list";
+    }
+
+    @RequestMapping("/update")
+    public String update(Model model, int scno) {
+        model.addAttribute("vo", dao.read(scno));
+        model.addAttribute("pageName", "serviceCo/updateCOPY.jsp");
+
+        return "/home";
+
+
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String updatePost(ServiceCoVO vo, MultipartHttpServletRequest multi) throws Exception {
+
+        MultipartFile file = multi.getFile("file");
+        if (!file.isEmpty()) {
+            new File(path + vo.getScimage()).delete();
+            String image = "serviceCo/" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            file.transferTo(new File(path + image));
+            vo.setScimage(image);
+        }
+        dao.update(vo);
+        return "redirect:/serviceCo/list";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public void delete(int scno) {
+        dao.delete(scno);
+
+    }
 }
